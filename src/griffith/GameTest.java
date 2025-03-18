@@ -17,7 +17,7 @@ class GameTest {
 		//Default resolution if width and height is incorrect
 		assertEquals(1000, game2.getWindowWidth());
 		assertEquals(1000, game2.getWindowHeight());
-		assertEquals("Title1", game2.getWindowTitle());
+		assertEquals("Title2", game2.getWindowTitle());
 		
 		Game game3 = new Game(null, 100, 200);
 		assertEquals(100, game3.getWindowWidth());

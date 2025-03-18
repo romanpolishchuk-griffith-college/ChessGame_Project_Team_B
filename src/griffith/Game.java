@@ -6,7 +6,25 @@ public class Game {
 	private int windowHeight;
 	
 	public Game(String windowTitle, int windowWidth, int windowHeight) {
-		// TODO Auto-generated constructor stub
+		
+		if(windowWidth <= 0) {
+			//Default value if value is invalid
+			windowWidth = 1000;
+		}
+		
+		if(windowHeight <= 0) {
+			//Default value if value is invalid
+			windowHeight = 1000;
+		}
+		
+		if(windowTitle == null || windowTitle.equals("")) {
+			//Default value if value is invalid
+			windowTitle = "Title";
+		}
+		
+		this.windowTitle = windowTitle;
+		this.windowWidth = windowWidth;
+		this.windowHeight = windowHeight;
 	}
 	
 	public void Run() {
