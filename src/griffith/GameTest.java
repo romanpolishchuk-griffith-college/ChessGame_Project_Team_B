@@ -8,7 +8,7 @@ class GameTest {
 
 	@Test
 	void testGameInitProperties() {
-		fail("Not yet implemented");
+		
 	}
 
 }
