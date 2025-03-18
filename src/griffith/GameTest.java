@@ -32,4 +32,11 @@ class GameTest {
 		assertEquals("Title", game4.getWindowTitle());
 	}
 
+	@Test
+	void testGameRun() {
+		Game game1 = new Game("Title1", 100, 200);
+		
+		//Test that there are no exceptions in a game
+		assertDoesNotThrow(() -> game1.Run());
+	}
 }
