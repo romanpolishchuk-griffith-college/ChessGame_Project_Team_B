@@ -34,7 +34,7 @@ class GameTest {
 
 	@Test
 	void testGameRun() {
-		Game game1 = new Game("Title1", 100, 200);
+		Game game1 = new Game("Title1", 1080, 720);
 		
 		//Test that there are no exceptions in a game
 		assertDoesNotThrow(() -> game1.Run());
