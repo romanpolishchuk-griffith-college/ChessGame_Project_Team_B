@@ -30,6 +30,9 @@ public class Game {
 	public void Run() {
 		Renderer renderer = new Renderer();
 		renderer.Render();
+		
+		GameLogic gameLogic = new GameLogic();
+		gameLogic.HandleLogic();
 	}
 
 	public String getWindowTitle() {
