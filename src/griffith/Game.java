@@ -28,7 +28,8 @@ public class Game {
 	}
 	
 	public void Run() {
-
+		Renderer renderer = new Renderer();
+		renderer.Render();
 	}
 
 	public String getWindowTitle() {
