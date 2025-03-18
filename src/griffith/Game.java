@@ -5,6 +5,8 @@ public class Game {
 	private int windowWidth;
 	private int windowHeight;
 	
+	private boolean gameActive = true;
+	
 	public Game(String windowTitle, int windowWidth, int windowHeight) {
 		
 		if(windowWidth <= 0) {
@@ -29,10 +31,14 @@ public class Game {
 	
 	public void Run() {
 		Renderer renderer = new Renderer();
-		renderer.Render();
-		
 		GameLogic gameLogic = new GameLogic();
-		gameLogic.HandleLogic();
+		
+		renderer.Setup(windowTitle, windowWidth, windowHeight);
+		
+		while(gameActive) {
+			renderer.Render();
+			gameLogic.HandleLogic();
+		}
 	}
 
 	public String getWindowTitle() {
