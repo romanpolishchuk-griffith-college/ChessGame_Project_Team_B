@@ -19,7 +19,7 @@ public class Game {
 		
 		if(windowTitle == null || windowTitle.equals("")) {
 			//Default value if value is invalid
-			windowTitle = "Title";
+			windowTitle = "";
 		}
 		
 		this.windowTitle = windowTitle;
