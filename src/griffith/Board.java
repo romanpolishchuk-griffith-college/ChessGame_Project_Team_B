@@ -42,7 +42,7 @@ public class Board  {
 	    }
 	 
 	public Color  getSquareColor(int row, int column) {
-		// TODO Auto-generated method stub
+		
 		if ((row + column) % 2 == 0) {
             return Color.WHITE;
         } else {
