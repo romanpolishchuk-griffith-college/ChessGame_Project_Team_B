@@ -19,7 +19,7 @@ public class BoardTest {
 	@Test
 	public void testBoardSize() {
 		// Testing if chess board is 8x8 
-		assertEquals(8,board.getSize());
+		assertEquals(8,board.getBoredSize());
 	}
 	
 	@Test
