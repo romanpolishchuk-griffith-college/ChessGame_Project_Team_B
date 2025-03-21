@@ -11,18 +11,23 @@ public class Board {
 			null, null, null, null, null, null, null, null,
 			null, null, null, null, null, null, null, null
 	};
+	
+	public int getSize(){
+		return 0;
+	}
 
 	public ChessPiece getPiece() {
 		//Stab
 		return null;
 	}
-
-	public void setPiece() {
-		//Stab
-	}
 	
 	public void draw() {
 		//Stab
+	}
+
+	public Object getSquareColor(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
