@@ -23,7 +23,7 @@ class BoardTest {
 
 		assertInstanceOf(Pawn.class, board.getPiece(0, 0));
 		assertEquals(null, board.getPiece(1, 0));
-		assertInstanceOf(Rook.class, board.getPiece(2, 6));
+		assertInstanceOf(Rook.class, board.getPiece(1, 6));
 		assertInstanceOf(King.class, board.getPiece(4, 0));
 
 		assertEquals(null, board.getPiece(-10, 0));

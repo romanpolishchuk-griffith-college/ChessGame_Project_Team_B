@@ -2,14 +2,14 @@ package griffith;
 
 public class Board {
 	private ChessPiece[][] board = {
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
+			{null, null, null, null, null, null, null, null},
 	};
 
 	public Board() {}
@@ -18,9 +18,11 @@ public class Board {
 		this.board = board;
 	}
 
-	public ChessPiece getPiece() {
-		//Stab
-		return null;
+	public ChessPiece getPiece(int x, int y) {
+		if(x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
+			return null;
+		}
+		return board[board.length-1-y][x];
 	}
 
 	public void setPiece() {
