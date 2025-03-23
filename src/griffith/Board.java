@@ -25,8 +25,11 @@ public class Board {
 		return board[board.length-1-y][x];
 	}
 
-	public void setPiece() {
-		//Stab
+	public void setPiece(int x, int y, ChessPiece piece) {
+		if(x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
+			return;
+		}
+		board[board.length-1-y][x] = piece;
 	}
 	
 	public void draw() {
