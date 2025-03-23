@@ -33,7 +33,19 @@ class BoardTest {
 
 	@Test
 	void setPieceTest() {
-		fail("Not yet implemented");
+		Board board = new Board(testBoard);
+
+		board.setPiece(0, 0, new Rook());
+		board.setPiece(1, 2, new Queen());
+		board.setPiece(3, 4, new King());
+
+		assertEquals(null, board.getPiece(1, 0));
+		assertInstanceOf(Rook.class, board.getPiece(1, 6));
+		assertInstanceOf(King.class, board.getPiece(4, 0));
+
+		assertInstanceOf(Rook.class, board.getPiece(0, 0));
+		assertInstanceOf(Queen.class, board.getPiece(1, 2));
+		assertInstanceOf(King.class, board.getPiece(3, 4));
 	}
 
 }
