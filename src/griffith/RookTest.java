@@ -35,5 +35,25 @@ public class RookTest {
 	}
 	
 	@Test
-	void isMoveValidTest() {}
+	void isMoveValidTest() {
+		Board board = new Board();
+        Rook rook = new Rook(board);
+
+        board.setPiece(3, 3, rook);
+
+        assertTrue(rook.isMoveValid(3, 5));
+        assertTrue(rook.isMoveValid(6, 3));
+        assertTrue(rook.isMoveValid(3, 0));
+        assertTrue(rook.isMoveValid(0, 3));
+
+        assertFalse(rook.isMoveValid(4, 4));
+        assertFalse(rook.isMoveValid(5, 6));
+        assertFalse(rook.isMoveValid(3, 5));
+        assertFalse(rook.isMoveValid(3, 3));
+
+        board.setPiece(3, 5, new Pawn(board));
+
+        assertTrue(rook.isMoveValid(3, 5));
+        assertFalse(rook.isMoveValid(3, 6));
+	}
 }
