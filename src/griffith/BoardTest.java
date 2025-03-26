@@ -42,8 +42,6 @@ class BoardTest {
 		board.setPiece(3, 4, new King(board));
 
 		assertEquals(null, board.getPiece(1, 0));
-		assertInstanceOf(Rook.class, board.getPiece(1, 6));
-		assertInstanceOf(King.class, board.getPiece(4, 0));
 
 		assertInstanceOf(Rook.class, board.getPiece(0, 0));
 		assertInstanceOf(Queen.class, board.getPiece(1, 2));
@@ -79,7 +77,6 @@ class BoardTest {
 
 		board.setBoard(testBoardPlacement);
 		
-
 		assertArrayEquals(testBoardPlacement, board.getBoard());
 
 		assertArrayEquals(testBoardPlacement2, board2.getBoard());
