@@ -2,7 +2,7 @@ package griffith;
 
 public abstract class ChessPiece {
 
-	private	Board board;
+	protected Board board;
 
 	ChessPiece(Board board) {
 		this.board = board;
