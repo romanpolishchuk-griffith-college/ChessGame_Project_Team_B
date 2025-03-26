@@ -69,9 +69,24 @@ public class Rook extends ChessPiece {
 	}
 
 	@Override
-	public boolean isMoveValid() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isMoveValid(int x, int y) {
+        int rookX = -1;
+        int rookY = -1;
+
+        for (int yi = 0; yi < board.getBoard().length; yi++) {
+            for (int xi = 0; xi < board.getBoard()[y].length; xi++) {
+                if (board.getPiece(xi, yi) == this) {
+                    rookX = xi;
+                    rookY = yi;
+                    break;
+                }
+            }
+        }
+
+        String validMoves = getValidMoves();
+        String targetMove = x + "," + y;
+
+        return validMoves.contains(targetMove);
 	}
 
 	@Override

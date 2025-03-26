@@ -10,7 +10,7 @@ public abstract class ChessPiece {
 
 	abstract public String getValidMoves();
 	
-	abstract public boolean isMoveValid();
+	abstract public boolean isMoveValid(int x, int y);
 	
 	abstract public void draw();
 	

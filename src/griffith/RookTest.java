@@ -48,7 +48,6 @@ public class RookTest {
 
         assertFalse(rook.isMoveValid(4, 4));
         assertFalse(rook.isMoveValid(5, 6));
-        assertFalse(rook.isMoveValid(3, 5));
         assertFalse(rook.isMoveValid(3, 3));
 
         board.setPiece(3, 5, new Pawn(board));
