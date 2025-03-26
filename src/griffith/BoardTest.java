@@ -51,6 +51,38 @@ class BoardTest {
 	}
 
 	@Test
-	void getBoardTest() {}
+	void getBoardTest() {
+		Board board = new Board();
+		Board board2 = new Board();
+
+		ChessPiece[][] testBoardPlacement = {
+				{null, null, null, null, null, null, new Knight(board), null},
+				{null, new Rook(board), null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, new Queen(board), null, null},
+				{null, null, new Pawn(board), null, null, null, null, null},
+				{new Pawn(board), null, null, null, new King(board), null, null, null},
+		};
+		
+		ChessPiece[][] testBoardPlacement2 = {
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+		};
+
+		board.setBoard(testBoardPlacement);
+		
+
+		assertArrayEquals(testBoardPlacement, board.getBoard());
+
+		assertArrayEquals(testBoardPlacement2, board2.getBoard());
+	}
 
 }
