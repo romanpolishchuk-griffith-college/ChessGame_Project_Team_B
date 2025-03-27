@@ -63,5 +63,19 @@ public class BoardTest {
 	    assertFalse(blackKnight.isWhite);
 	    assertEquals("Knight", blackKnight.name);
 	  }
+	  
+	  @Test
+	  void testKnightPositionCalculation() {
+	    // Test white knight position calculation
+	    whiteKnight.updatePosition();
+	    assertEquals(80, whiteKnight.xPos);  // 1 * SQUARE_SIZE
+	    assertEquals(0, whiteKnight.yPos);   // 0 * SQUARE_SIZE
+
+	    // Test black knight position calculation
+	    blackKnight.updatePosition();
+	    assertEquals(480, blackKnight.xPos); // 6 * SQUARE_SIZE
+	    assertEquals(560, blackKnight.yPos); // 7 * SQUARE_SIZE
+	  }
+	 
 	
 }
