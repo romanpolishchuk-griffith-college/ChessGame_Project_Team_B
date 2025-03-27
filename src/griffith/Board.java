@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class Board extends JPanel  {
   private static final int BOARD_SIZE = 8;
-    private static final int SQUARE_SIZE = 70;
+  private static final int SQUARE_SIZE = 70;
     
     public Board() {
         setPreferredSize(new java.awt.Dimension(BOARD_SIZE * SQUARE_SIZE, BOARD_SIZE * SQUARE_SIZE));
@@ -70,4 +70,7 @@ public class Board extends JPanel  {
     
   }
   
+  public int getSquareSize() {
+	  return SQUARE_SIZE;
+  }
 }

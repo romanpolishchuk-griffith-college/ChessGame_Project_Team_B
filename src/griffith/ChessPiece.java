@@ -18,6 +18,12 @@ public abstract class ChessPiece {
 	
 	abstract public boolean isMoveValid();
 	
+	// Update the position of the piece
+    public void updatePosition() {
+        this.xPos = board.getSquareSize() * col;
+        this.yPos = board.getSquareSize() * row;
+    }
+	
 	abstract public void draw();
 	
 }
