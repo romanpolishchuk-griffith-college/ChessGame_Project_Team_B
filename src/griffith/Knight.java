@@ -8,6 +8,10 @@ public class Knight extends ChessPiece {
         this.row = row;
         this.isWhite = isWhite;
         this.name = "Knight";
+        
+        // Load the appropriate knight image
+        String imageName = isWhite ? "w - knight.png" : "b - knight.png";
+        loadImage(imageName);
    
     }
 	
