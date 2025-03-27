@@ -16,6 +16,8 @@ public class BoardTest {
 	@BeforeEach
 	public void setUp() {
 		board = new Board();
+		whiteKnight = new Knight(board, 1, 0, true);  // b1 position
+	    blackKnight = new Knight(board, 6, 7, false); // g8 position
 	}
 	
 	@Test
@@ -45,6 +47,21 @@ public class BoardTest {
 	    // Test that getValidMoves() returns empty string (since it's not implemented yet)
 	    assertEquals("", whiteKnight.getValidMoves());
 	    assertEquals("", blackKnight.getValidMoves());
+	  }
+	  
+	  @Test
+	  void testKnightInitialization() {
+	    // Test white knight initialization
+	    assertEquals(1, whiteKnight.col);
+	    assertEquals(0, whiteKnight.row);
+	    assertTrue(whiteKnight.isWhite);
+	    assertEquals("Knight", whiteKnight.name);
+
+	    // Test black knight initialization
+	    assertEquals(6, blackKnight.col);
+	    assertEquals(7, blackKnight.row);
+	    assertFalse(blackKnight.isWhite);
+	    assertEquals("Knight", blackKnight.name);
 	  }
 	
 }
