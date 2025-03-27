@@ -27,10 +27,4 @@ public class Knight extends ChessPiece {
 		return false;
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

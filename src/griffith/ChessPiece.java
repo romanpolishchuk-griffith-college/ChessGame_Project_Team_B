@@ -1,6 +1,5 @@
 package griffith;
 
-import java.awt.Graphics;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -52,6 +51,12 @@ public abstract class ChessPiece {
         this.yPos = board.getSquareSize() * row;
     }
 	
-	abstract public void draw();
+ // Draw the piece
+    public void draw(Graphics g) {
+        if (sprite != null) {
+            updatePosition();
+            g.drawImage(sprite, xPos, yPos, null);
+        }
+    }
 	
 }
