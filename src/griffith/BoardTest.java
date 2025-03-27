@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 public class BoardTest {
 
 	private Board board;
+	private Knight whiteKnight;
+	private Knight blackKnight;
 	
 	@BeforeEach
 	public void setUp() {
@@ -30,5 +32,19 @@ public class BoardTest {
 	    assertEquals(Color.BLACK, board.getSquareColor(1, 0));
 	    assertEquals(Color.WHITE, board.getSquareColor(1, 1));
 	}
+	
+	@Test
+	  void testKnightMovementValidation() {
+	    // Test that isMoveValid() returns false (since it's not implemented yet)
+	    assertFalse(whiteKnight.isMoveValid());
+	    assertFalse(blackKnight.isMoveValid());
+	  }
+
+	  @Test
+	  void testKnightValidMoves() {
+	    // Test that getValidMoves() returns empty string (since it's not implemented yet)
+	    assertEquals("", whiteKnight.getValidMoves());
+	    assertEquals("", blackKnight.getValidMoves());
+	  }
 	
 }
