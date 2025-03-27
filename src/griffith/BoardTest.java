@@ -77,5 +77,10 @@ public class BoardTest {
 	    assertEquals(560, blackKnight.yPos); // 7 * SQUARE_SIZE
 	  }
 	 
-	
+	  @Test
+	  void testKnightImageLoading() {
+	    // Test that sprites are loaded (not null)
+	    assertNotNull(whiteKnight.sprite);
+	    assertNotNull(blackKnight.sprite);
+	  }
 }
