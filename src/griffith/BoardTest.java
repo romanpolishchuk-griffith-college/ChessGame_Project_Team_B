@@ -37,6 +37,7 @@ public class BoardTest {
 	
 	@Test
 	  void testKnightMovementValidation() {
+		// TODO
 	    // Test that isMoveValid() returns false (since it's not implemented yet)
 	    assertFalse(whiteKnight.isMoveValid());
 	    assertFalse(blackKnight.isMoveValid());
@@ -44,6 +45,7 @@ public class BoardTest {
 
 	  @Test
 	  void testKnightValidMoves() {
+		// TODO
 	    // Test that getValidMoves() returns empty string (since it's not implemented yet)
 	    assertEquals("", whiteKnight.getValidMoves());
 	    assertEquals("", blackKnight.getValidMoves());
