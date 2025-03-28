@@ -139,4 +139,21 @@ public class BoardTest {
 	        assertTrue(blackKing.isWhite);				// Test color
 	        assertEquals("King", blackKing.name);		// Test name
 	    }
+	  
+	  @Test
+	    public void testPawnInitialization() {
+	        Pawn whitePawn = new Pawn(board, 0, 1, true);
+	        Pawn blackPawn = new Pawn(board, 0, 6, true);
+	        
+	        assertEquals(0, whitePawn.col);
+	        assertEquals(1, whitePawn.row);
+	        assertTrue(whitePawn.isWhite);
+	        assertEquals("Pawn", whitePawn.name);		// Test name
+	        
+	        assertEquals(0, blackPawn.col);
+	        assertEquals(6, blackPawn.row);
+	        assertTrue(blackPawn.isWhite);
+	        assertEquals("Pawn", blackPawn.name);		// Test name
+	    }
+	  
 }
