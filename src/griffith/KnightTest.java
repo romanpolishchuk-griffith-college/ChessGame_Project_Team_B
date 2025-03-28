@@ -22,7 +22,7 @@ public class KnightTest {
         
         board2.setPiece(0, 0, knight2);
         validMoves = knight2.getValidMoves();
-        correctValidMoves = "2,1 1,2";
+        correctValidMoves = "1,2 2,1";
         assertEquals(correctValidMoves, validMoves);
 	}
 	
