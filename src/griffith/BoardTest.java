@@ -71,7 +71,6 @@ public class BoardTest {
 	    assertEquals(560, blackKnight.yPos); // 7 * SQUARE_SIZE
 	  }
 
-
 	  @Test
 	  public void testRookInitialization() {
 		Rook whiteRook = new Rook(board, 0, 0, true);
@@ -91,11 +90,10 @@ public class BoardTest {
 		  assertEquals("Rook", blackRook.name);  // Test name
 	  }
 	  
-
 	  @Test
-	    public void testBishopInitialization() {
+	  public void testBishopInitialization() {
 	        Bishop whiteBishop = new Bishop(board, 2, 0, true);
-	        Bishop blackBishop = new Bishop(board, 2, 7, true);
+	        Bishop blackBishop = new Bishop(board, 2, 7, false);
 	        
 	        
 	        assertEquals(2, whiteBishop.col);			// Test position
@@ -109,11 +107,10 @@ public class BoardTest {
 	        assertEquals("Bishop", blackBishop.name);  	// Test name
 	    }
 	
-	  
 	  @Test
-	    public void testQueenInitialization() {
+	  public void testQueenInitialization() {
 		  	Queen whiteQueen = new Queen(board, 3, 0, true);
-		  	Queen blackQueen = new Queen(board, 3, 7, true);
+		  	Queen blackQueen = new Queen(board, 3, 7, false);
 	        
 	        
 	        assertEquals(3, whiteQueen.col);			// Test position
@@ -127,4 +124,19 @@ public class BoardTest {
 	        assertEquals("Queen", blackQueen.name);  	// Test name
 	    }
 	  
+	  @Test
+	  public void testKingInitialization() {
+	        King whiteKing = new King(board, 4, 0, true);
+	        King blackKing = new King(board, 4, 7, false);
+	        
+	        assertEquals(4, whiteKing.col);				// Test position
+	        assertEquals(0, whiteKing.row);				// Test position
+	        assertTrue(whiteKing.isWhite);				// Test color
+	        assertEquals("Queen", whiteKing.name);		// Test name
+	        
+	        assertEquals(4, blackKing.col);				// Test position
+	        assertEquals(0, blackKing.row);				// Test position
+	        assertTrue(blackKing.isWhite);				// Test color
+	        assertEquals("King", blackKing.name);		// Test name
+	    }
 }
