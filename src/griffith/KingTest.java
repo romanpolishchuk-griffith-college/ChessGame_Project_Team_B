@@ -29,7 +29,7 @@ public class KingTest {
         
         board3.setPiece(0, 0, king3);
         validMoves = king3.getValidMoves();
-        correctValidMoves = "0,1 1,1 1,0";
+        correctValidMoves = "0,1 1,0 1,1";
         assertEquals(correctValidMoves, validMoves);
 	}
 }

@@ -7,8 +7,61 @@ public class King extends ChessPiece {
 
 	@Override
 	public String getValidMoves() {
-		// TODO Auto-generated method stub
-		return null;
+		String moves = "";
+        int kingX = -1;
+        int kingY = -1;
+
+        for (int y = 0; y < board.getBoard().length; y++) {
+            for (int x = 0; x < board.getBoard()[y].length; x++) {
+                if (board.getPiece(x, y) == this) {
+                	kingX = x;
+                	kingY = y;
+                    break;
+                }
+            }
+        }
+        
+        if (kingX < board.getBoard()[0].length && kingX >= 0
+        		&& kingY + 1 < board.getBoard().length && kingY + 1 >= 0) {
+            moves += kingX + "," + (kingY + 1) + " ";
+        }
+        
+        if (kingX < board.getBoard()[0].length && kingX >= 0
+        		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0) {
+            moves += kingX + "," + (kingY - 1) + " ";
+        }
+        
+        if (kingX + 1 < board.getBoard()[0].length && kingX + 1 >= 0
+        		&& kingY < board.getBoard().length && kingY >= 0) {
+            moves += (kingX + 1) + "," + kingY + " ";
+        }
+        
+        if (kingX - 1 < board.getBoard()[0].length && kingX - 1 >= 0
+        		&& kingY < board.getBoard().length && kingY >= 0) {
+            moves += (kingX - 1) + "," + kingY + " ";
+        }
+        
+        if (kingX + 1 < board.getBoard()[0].length && kingX + 1 >= 0
+        		&& kingY + 1 < board.getBoard().length && kingY + 1 >= 0) {
+            moves += (kingX + 1) + "," + (kingY + 1) + " ";
+        }
+        
+        if (kingX - 1 < board.getBoard()[0].length && kingX - 1 >= 0
+        		&& kingY + 1 < board.getBoard().length && kingY + 1>= 0) {
+            moves += (kingX - 1) + "," + (kingY + 1) + " ";
+        }
+        
+        if (kingX + 1 < board.getBoard()[0].length && kingX + 1 >= 0
+        		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0) {
+            moves += (kingX + 1) + "," + (kingY - 1) + " ";
+        }
+        
+        if (kingX - 1 < board.getBoard()[0].length && kingX - 1 >= 0
+        		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0) {
+            moves += (kingX - 1) + "," + (kingY - 1) + " ";
+        }
+        
+        return moves.trim();
 	}
 
 	@Override
