@@ -113,9 +113,11 @@ public class Queen extends ChessPiece {
 	}
 
 	@Override
-	public boolean isMoveValid() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isMoveValid(int x, int y) {
+        String validMoves = getValidMoves();
+        String targetMove = x + "," + y;
+
+        return validMoves.contains(targetMove);
 	}
 
 	@Override
