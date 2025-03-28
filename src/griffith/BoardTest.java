@@ -90,4 +90,24 @@ public class BoardTest {
 		  assertFalse(blackRook.isWhite);	 	 // Test color
 		  assertEquals("Rook", blackRook.name);  // Test name
 	  }
+	  
+	  
+	  @Test
+	  void testRookPositionCalculation() {
+		Rook whiteRook = new Rook(board, 0, 0, true);
+		Rook blackRook = new Rook(board, 0, 7, false);
+	    
+		// Test white knight position calculation
+	    whiteKnight.updatePosition();
+	    assertEquals(80, whiteRook.xPos);  // 1 * SQUARE_SIZE
+	    assertEquals(0, whiteRook.yPos);   // 0 * SQUARE_SIZE
+
+	    // Test black knight position calculation
+	    blackKnight.updatePosition();
+	    assertEquals(480, blackRook.xPos); // 6 * SQUARE_SIZE
+	    assertEquals(560, blackRook.yPos); // 7 * SQUARE_SIZE
+	  }
+
+	  
+	  
 }
