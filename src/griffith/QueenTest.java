@@ -21,7 +21,7 @@ public class QueenTest {
         board2.setPiece(3, 3, queen2);
         board2.setPiece(3, 5, new Knight(board2));
         validMoves = queen2.getValidMoves();
-        correctValidMoves = "3,4 3,5 3,2 3,1 3,0 4,3 5,3 6,3 7,3 2,3 1,3 0,3 4,4 5,5 6,6 3,5 2,4 1,5 0,6 4,2 5,1 6,0 2,2 1,1 0,0";
+        correctValidMoves = "3,4 3,5 3,2 3,1 3,0 4,3 5,3 6,3 7,3 2,3 1,3 0,3 4,4 5,5 6,6 7,7 2,4 1,5 0,6 4,2 5,1 6,0 2,2 1,1 0,0";
         assertEquals(correctValidMoves, validMoves);
 
         Board board3 = new Board();
