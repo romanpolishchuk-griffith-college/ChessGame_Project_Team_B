@@ -1,6 +1,8 @@
 package griffith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +33,24 @@ public class PawnTest {
         validMoves = pawn3.getValidMoves();
         correctValidMoves = "0,1";
         assertEquals(correctValidMoves, validMoves);
+	}
+	
+	@Test
+	void isMoveValidTest() {
+		Board board = new Board();
+        Pawn pawn = new Pawn(board);
+
+        board.setPiece(3, 3, pawn);
+
+        assertTrue(pawn.isMoveValid(3, 4));
+
+        assertFalse(pawn.isMoveValid(4, 4));
+        assertFalse(pawn.isMoveValid(5, 6));
+        assertFalse(pawn.isMoveValid(3, 3));
+
+        board.setPiece(4, 4, new Pawn(board));
+
+        assertTrue(pawn.isMoveValid(4, 4));
+        assertFalse(pawn.isMoveValid(2, 4));
 	}
 }
