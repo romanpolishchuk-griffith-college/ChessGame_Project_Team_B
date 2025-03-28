@@ -28,7 +28,7 @@ public class Knight extends ChessPiece {
         
         if (knightX - 1 < board.getBoard()[0].length && knightX - 1 >= 0
         		&& knightY + 2 < board.getBoard().length && knightY + 2 >= 0) {
-            moves += (knightX - 1) + "," + (knightY + 1) + " ";
+            moves += (knightX - 1) + "," + (knightY + 2) + " ";
         }
         
         if (knightX + 1 < board.getBoard()[0].length && knightX + 1 >= 0
@@ -63,11 +63,13 @@ public class Knight extends ChessPiece {
         
         return moves.trim();
 	}
-
+	
 	@Override
-	public boolean isMoveValid() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isMoveValid(int x, int y) {
+        String validMoves = getValidMoves();
+        String targetMove = x + "," + y;
+
+        return validMoves.contains(targetMove);
 	}
 
 	@Override
