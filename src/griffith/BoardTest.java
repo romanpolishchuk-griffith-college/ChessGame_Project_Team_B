@@ -103,7 +103,7 @@ public class BoardTest {
 	        
 	        assertEquals(2, blackBishop.col);			// Test position
 	        assertEquals(7, blackBishop.row);			// Test position
-	        assertTrue(blackBishop.isWhite);			// Test color
+	        assertFalse(blackBishop.isWhite);			// Test color
 	        assertEquals("Bishop", blackBishop.name);  	// Test name
 	    }
 	
@@ -120,7 +120,7 @@ public class BoardTest {
 	        
 	        assertEquals(3, blackQueen.col);			// Test position
 	        assertEquals(7, blackQueen.row);			// Test position
-	        assertTrue(blackQueen.isWhite);				// Test color
+	        assertFalse(blackQueen.isWhite);				// Test color
 	        assertEquals("Queen", blackQueen.name);  	// Test name
 	    }
 	  
@@ -132,18 +132,18 @@ public class BoardTest {
 	        assertEquals(4, whiteKing.col);				// Test position
 	        assertEquals(0, whiteKing.row);				// Test position
 	        assertTrue(whiteKing.isWhite);				// Test color
-	        assertEquals("Queen", whiteKing.name);		// Test name
+	        assertEquals("King", whiteKing.name);		// Test name
 	        
 	        assertEquals(4, blackKing.col);				// Test position
-	        assertEquals(0, blackKing.row);				// Test position
-	        assertTrue(blackKing.isWhite);				// Test color
+	        assertEquals(7, blackKing.row);				// Test position
+	        assertFalse(blackKing.isWhite);				// Test color
 	        assertEquals("King", blackKing.name);		// Test name
 	    }
 	  
 	  @Test
 	    public void testPawnInitialization() {
 	        Pawn whitePawn = new Pawn(board, 0, 1, true);
-	        Pawn blackPawn = new Pawn(board, 0, 6, true);
+	        Pawn blackPawn = new Pawn(board, 0, 6, false);
 	        
 	        assertEquals(0, whitePawn.col);
 	        assertEquals(1, whitePawn.row);
@@ -152,7 +152,7 @@ public class BoardTest {
 	        
 	        assertEquals(0, blackPawn.col);
 	        assertEquals(6, blackPawn.row);
-	        assertTrue(blackPawn.isWhite);
+	        assertFalse(blackPawn.isWhite);
 	        assertEquals("Pawn", blackPawn.name);		// Test name
 	    }
 	  
