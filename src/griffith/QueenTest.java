@@ -34,5 +34,28 @@ public class QueenTest {
 	}
 	
 	@Test
-	void isMoveValidTest() {}
+	void isMoveValidTest() {
+		Board board = new Board();
+        Queen queen = new Queen(board);
+
+        board.setPiece(3, 3, queen);
+
+        assertTrue(queen.isMoveValid(3, 5));
+        assertTrue(queen.isMoveValid(6, 3));
+        assertTrue(queen.isMoveValid(3, 0));
+        assertTrue(queen.isMoveValid(0, 3));
+
+        assertTrue(queen.isMoveValid(4, 4));
+        assertTrue(queen.isMoveValid(4, 2));
+        assertTrue(queen.isMoveValid(2, 4));
+        assertTrue(queen.isMoveValid(2, 2));
+        
+        assertFalse(queen.isMoveValid(7, 2));
+        assertFalse(queen.isMoveValid(3, 3));
+
+        board.setPiece(3, 5, new Pawn(board));
+
+        assertTrue(queen.isMoveValid(3, 5));
+        assertFalse(queen.isMoveValid(3, 6));
+	}
 }
