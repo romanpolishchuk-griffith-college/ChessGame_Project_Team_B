@@ -72,4 +72,22 @@ public class BoardTest {
 	  }
 
 
+	  @Test
+	  public void testRookInitialization() {
+		Rook whiteRook = new Rook(board, 0, 0, true);
+		Rook blackRook = new Rook(board, 0, 7, false);
+		
+		  
+		  // Test white knight initialization
+		  assertEquals(0, whiteRook.col);  	 	 // Test position
+		  assertEquals(0, whiteRook.row);  	 	 // Test position
+		  assertTrue(whiteRook.isWhite);	 	 // Test color
+		  assertEquals("Rook", whiteRook.name);  // Test name
+		  
+		// Test black knight initialization
+		  assertEquals(0, blackRook.col);  	 	 // Test position
+		  assertEquals(7, blackRook.row);  	 	 // Test position
+		  assertFalse(blackRook.isWhite);	 	 // Test color
+		  assertEquals("Rook", blackRook.name);  // Test name
+	  }
 }
