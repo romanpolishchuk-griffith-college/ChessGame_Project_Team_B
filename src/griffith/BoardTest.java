@@ -108,5 +108,23 @@ public class BoardTest {
 	        assertTrue(blackBishop.isWhite);			// Test color
 	        assertEquals("Bishop", blackBishop.name);  	// Test name
 	    }
+	
+	  
+	  @Test
+	    public void testQueenInitialization() {
+		  	Queen whiteQueen = new Queen(board, 3, 0, true);
+		  	Queen blackQueen = new Queen(board, 3, 7, true);
+	        
+	        
+	        assertEquals(3, whiteQueen.col);			// Test position
+	        assertEquals(0, whiteQueen.row);			// Test position
+	        assertTrue(whiteQueen.isWhite);				// Test color
+	        assertEquals("Queen", whiteQueen.name);  	// Test name
+	        
+	        assertEquals(3, blackQueen.col);			// Test position
+	        assertEquals(7, blackQueen.row);			// Test position
+	        assertTrue(blackQueen.isWhite);				// Test color
+	        assertEquals("Queen", blackQueen.name);  	// Test name
+	    }
 	  
 }
