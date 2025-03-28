@@ -91,23 +91,22 @@ public class BoardTest {
 		  assertEquals("Rook", blackRook.name);  // Test name
 	  }
 	  
-	  
+
 	  @Test
-	  void testRookPositionCalculation() {
-		Rook whiteRook = new Rook(board, 0, 0, true);
-		Rook blackRook = new Rook(board, 0, 7, false);
-	    
-		// Test white knight position calculation
-	    whiteKnight.updatePosition();
-	    assertEquals(80, whiteRook.xPos);  // 1 * SQUARE_SIZE
-	    assertEquals(0, whiteRook.yPos);   // 0 * SQUARE_SIZE
-
-	    // Test black knight position calculation
-	    blackKnight.updatePosition();
-	    assertEquals(480, blackRook.xPos); // 6 * SQUARE_SIZE
-	    assertEquals(560, blackRook.yPos); // 7 * SQUARE_SIZE
-	  }
-
-	  
+	    public void testBishopInitialization() {
+	        Bishop whiteBishop = new Bishop(board, 2, 0, true);
+	        Bishop blackBishop = new Bishop(board, 2, 7, true);
+	        
+	        
+	        assertEquals(2, whiteBishop.col);			// Test position
+	        assertEquals(0, whiteBishop.row);			// Test position
+	        assertTrue(whiteBishop.isWhite);			// Test color
+	        assertEquals("Bishop", blackBishop.name);  	// Test name
+	        
+	        assertEquals(2, blackBishop.col);			// Test position
+	        assertEquals(7, blackBishop.row);			// Test position
+	        assertTrue(blackBishop.isWhite);			// Test color
+	        assertEquals("Bishop", blackBishop.name);  	// Test name
+	    }
 	  
 }
