@@ -70,8 +70,10 @@ public class Bishop extends ChessPiece {
 
 	@Override
 	public boolean isMoveValid(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+        String validMoves = getValidMoves();
+        String targetMove = x + "," + y;
+
+        return validMoves.contains(targetMove);
 	}
 
 	@Override
