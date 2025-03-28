@@ -28,6 +28,18 @@ public class KnightTest {
 	
 	@Test
 	void isMoveValidTest() {
+		Board board = new Board();
+        Knight knight = new Knight(board);
 
+        board.setPiece(3, 3, knight);
+
+        assertTrue(knight.isMoveValid(1, 4));
+        assertTrue(knight.isMoveValid(2, 5));
+        assertTrue(knight.isMoveValid(5, 2));
+        assertTrue(knight.isMoveValid(1, 2));
+
+        assertFalse(knight.isMoveValid(6, 6));
+        assertFalse(knight.isMoveValid(0, 0));
+        assertFalse(knight.isMoveValid(3, 3));
 	}
 }
