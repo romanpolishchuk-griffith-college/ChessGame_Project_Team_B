@@ -78,7 +78,25 @@ public class ChessGameUI {
 	    }
 	    
 	    private void createBoardPanel() {
-	    	
+	        boardPanel = new JPanel(new GridLayout(8, 8)); //8x8 grid layout
+	        for (int row = 0; row < 8; row++) {
+	            for (int col = 0; col < 8; col++) {
+	                JButton square = new JButton();  //Creates a new button for each square on the board
+	                square.setOpaque(true);  //Making the button opaque so we can set a background color
+	                square.setBorderPainted(false); 
+
+	                //Setting the background color to white or black 
+	                if ((row + col) % 2 == 0) {
+	                    square.setBackground(Color.WHITE); 
+	                } else {
+	                    square.setBackground(Color.BLACK);  
+	                }
+	                
+	                square.setPreferredSize(new Dimension(50, 50));  //Size of each square
+	                boardPanel.add(square); 
+	            }
+	        }
+	        frame.add(boardPanel, BorderLayout.CENTER); 
 	    }
 	    
 	    private void createCapturedPanel() {
