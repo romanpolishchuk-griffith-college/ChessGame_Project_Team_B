@@ -18,10 +18,14 @@ public class Renderer {
 		window.setVisible(true);
 	}
 	
-	public void Render() {
+	public void RenderGame() {
 		board.repaint();
 
-		 System.out.println("Rendering frame...");
+		System.out.println("Rendering frame...");
+	}
+	
+	public void RenderMenu() {
+		
 	}
 	
 //	//initialising ChessGameUI

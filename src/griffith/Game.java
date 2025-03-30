@@ -51,8 +51,13 @@ public class Game {
 		renderer.Setup(windowTitle, windowWidth, windowHeight);
 		
 		while(gameActive) {
-			renderer.Render();
-			gameLogic.HandleLogic();
+			if(gameState == GAME_STATE.MENU) {
+				renderer.RenderMenu();
+			}
+			else if (gameState == GAME_STATE.ACTIVE_GAME) {
+				renderer.RenderGame();
+				gameLogic.HandleLogic();
+			}
 		}
 	}
 
