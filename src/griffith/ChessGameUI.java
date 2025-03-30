@@ -23,6 +23,7 @@ public class ChessGameUI {
 	    }
 	    
 	    private void createWelcomePanel() {
-	    	
+	    	welcomePanel = new JPanel(); //New panel for the welcome screen
+	        welcomePanel.setLayout(new GridBagLayout());//Using GridBagLayout for flexible positioning
 	    }
 }
