@@ -35,6 +35,9 @@ public class ChessGameUI {
 	        startButton.addActionListener(e -> startGame());  //Calls startGame() to start the game
 	        exitButton.addActionListener(e -> System.exit(0)); //Exits application if pressed
 
+	        JPanel buttonPanel = new JPanel();//Panel to keep the buttons
+	        buttonPanel.add(startButton); 
+	        buttonPanel.add(exitButton);  
 	    }
 	    
 	    private void startGame() {
