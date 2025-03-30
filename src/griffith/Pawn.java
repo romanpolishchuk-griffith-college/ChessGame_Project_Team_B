@@ -1,9 +1,19 @@
 package griffith;
 
 public class Pawn extends ChessPiece {
-    Pawn(Board board) {
-        super(board);
-    }
+	
+	public Pawn(Board board, boolean isWhite) {
+		super(board);
+	    this.isWhite = isWhite;
+	    // Load the appropriate knight image
+	    String imageName = isWhite ? "w - pawn.png" : "b - pawn.png";
+	    loadImage(imageName);
+	   
+	}
+	public Pawn(Board board) {
+		super(board);
+	
+	}
 
 	@Override
 	public String getValidMoves() {
@@ -48,11 +58,5 @@ public class Pawn extends ChessPiece {
         String targetMove = x + "," + y;
 
         return validMoves.contains(targetMove);
-	}
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
 	}
 }

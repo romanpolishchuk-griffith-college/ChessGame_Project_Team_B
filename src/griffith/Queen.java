@@ -1,9 +1,20 @@
 package griffith;
 
 public class Queen extends ChessPiece {
-    Queen(Board board) {
-        super(board);
-    }
+
+public Queen(Board board, boolean isWhite) {
+	
+	super(board,isWhite);
+	        
+	// Load the appropriate knight image
+	String imageName = isWhite ? "w - queen.png" : "b - queen.png";
+	loadImage(imageName);
+	   
+	}
+
+public Queen(Board board) {	
+	super(board);
+	}
 
 	@Override
 	public String getValidMoves() {
@@ -120,9 +131,5 @@ public class Queen extends ChessPiece {
         return validMoves.contains(targetMove);
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

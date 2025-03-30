@@ -1,9 +1,19 @@
 package griffith;
 
 public class Bishop extends ChessPiece {
-    Bishop(Board board) {
-        super(board);
-    }
+
+    public Bishop(Board board,boolean isWhite) {
+		 super(board, isWhite);
+	        this.isWhite = isWhite;
+	        // Load the appropriate knight image
+	        String imageName = isWhite ? "w - bishop.png" : "b - bishop.png";
+	        loadImage(imageName);
+	   
+	}
+    
+    public Bishop(Board board) {
+		 super(board); 
+	}
     
     @Override
 	public String getValidMoves() {
@@ -76,9 +86,5 @@ public class Bishop extends ChessPiece {
         return validMoves.contains(targetMove);
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

@@ -1,9 +1,19 @@
 package griffith;
 
 public class Rook extends ChessPiece {
-    Rook(Board board) {
-        super(board);
-    }
+    public Rook(Board board, boolean isWhite) {
+		super(board);
+	        
+	    // Load the appropriate knight image
+	    String imageName = isWhite ? "w - rook.png" : "b - rook.png";
+	    loadImage(imageName);
+	  
+	}
+    
+    public Rook(Board board) {
+  		super(board);  	   
+  	}
+
 
 	@Override
 	public String getValidMoves() {
@@ -76,9 +86,4 @@ public class Rook extends ChessPiece {
         return validMoves.contains(targetMove);
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
 }

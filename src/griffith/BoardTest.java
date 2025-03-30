@@ -2,6 +2,8 @@ package griffith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
+
 import org.junit.jupiter.api.Test;
 
 class BoardTest {
@@ -35,7 +37,7 @@ class BoardTest {
 
 	@Test
 	void setPieceTest() {
-		Board board = new Board();
+		Board board = new Board(false);
 
 		board.setPiece(0, 0, new Rook(board));
 		board.setPiece(1, 2, new Queen(board));
@@ -50,8 +52,8 @@ class BoardTest {
 
 	@Test
 	void getBoardTest() {
-		Board board = new Board();
-		Board board2 = new Board();
+		Board board = new Board(false);
+		Board board2 = new Board(false);
 
 		ChessPiece[][] testBoardPlacement = {
 				{null, null, null, null, null, null, new Knight(board), null},
@@ -82,4 +84,14 @@ class BoardTest {
 		assertArrayEquals(testBoardPlacement2, board2.getBoard());
 	}
 
+	@Test
+    public void testGetSquareColor() {
+		Board board = new Board();
+		// Test color of squares
+		assertEquals(Color.WHITE, board.getSquareColor(0, 0));
+		assertEquals(Color.BLACK, board.getSquareColor(0, 1));
+	    assertEquals(Color.BLACK, board.getSquareColor(1, 0));
+	    assertEquals(Color.WHITE, board.getSquareColor(1, 1));
+	}
+	  
 }
