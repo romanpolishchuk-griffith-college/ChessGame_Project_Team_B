@@ -14,64 +14,69 @@ public class Renderer {
 	
 	private JFrame window;
 	private Board board;
+	private JPanel welcomePanel;
 	
 	public void Setup(String title, int width, int heigth) {
 		window = new JFrame(title);
 		window.setSize(width, heigth);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
 		
-	
+		board = new Board(true);
+		
 		window.setVisible(true);
 	}
 	
 	public void RenderGame() {
-		board = new Board(true);
+		if (welcomePanel != null) {
+			window.remove(welcomePanel);
+			welcomePanel = null;
+		}
+		
 		window.add(board);
-		board.repaint();
-		System.out.println("Rendering frame...");
+		window.revalidate();
+		window.repaint();
 	}
 	
 	public void RenderMenu() {
+		if (board != null) {
+			window.remove(board);
+		}
 		createWelcomePanel();
-		
 	}
 	
 	private void createWelcomePanel() {
-    	JPanel welcomePanel = new JPanel(); //New panel for the welcome screen
-        welcomePanel.setLayout(new GridBagLayout());//Using GridBagLayout for flexible positioning
+    	welcomePanel = new JPanel(); //New panel for the welcome screen
+        welcomePanel.setLayout(new GridBagLayout());//Using GridBagLayout for flexible
    
         JLabel welcomeLabel = new JLabel("Chess"); 
         welcomeLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));//Setting font for Title
 
-        JButton startButton = new JButton("Start Game"); //Button to start the game
-        JButton exitButton = new JButton("Quit");  //Button to quit the game
+        JButton startButton = new JButton("Start Game");
+        JButton exitButton = new JButton("Quit");
         
-        startButton.addActionListener(e -> changeGameState(welcomePanel));  //Calls startGame() to start the game
-        exitButton.addActionListener(e -> System.exit(0)); //Exits application if pressed
+        startButton.addActionListener(e -> changeGameState());
+        exitButton.addActionListener(e -> System.exit(0));
 
-        JPanel buttonPanel = new JPanel();//Panel to keep the buttons
+        JPanel buttonPanel = new JPanel();
         buttonPanel.add(startButton); 
         buttonPanel.add(exitButton);  
         
-        GridBagConstraints gbc = new GridBagConstraints(); //Setting layout constraints for the components
-        gbc.gridx = 0;  //Position for the welcome label
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10);  //Adding padding around the components
-        welcomePanel.add(welcomeLabel, gbc);  //Adding a welcome label 
+        gbc.insets = new Insets(10, 10, 10, 10);
+        welcomePanel.add(welcomeLabel, gbc);
 
-        gbc.gridy = 1;  //Sets the position for the button panel
-        welcomePanel.add(buttonPanel, gbc);//Adding the button panel to the welcome screen
-        window.add(welcomePanel, BorderLayout.CENTER); //Center aligning the welcome panel
+        gbc.gridy = 1;
+        welcomePanel.add(buttonPanel, gbc);
         
-        welcomePanel.revalidate();  //Revalidates the frame to reflect the changes
-        welcomePanel.repaint();     //Redraws the frame to show the updated UI
+        window.add(welcomePanel, BorderLayout.CENTER);
+        window.revalidate();
+        window.repaint();
     }
-	private void changeGameState(JPanel panel) {
+	
+	private void changeGameState() {
 		Game.setGameState(GAME_STATE.ACTIVE_GAME);
-		panel.remove(panel); //Removes the welcome panel when game starts
-		panel.revalidate();  //Revalidates the frame to reflect the changes
-		panel.repaint();     //Redraws the frame to show the updated UI
 	}
 
 }

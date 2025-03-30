@@ -50,14 +50,28 @@ public class Game {
 		
 		renderer.Setup(windowTitle, windowWidth, windowHeight);
 		
+		GAME_STATE lastState = null;
+		
 		while(gameActive) {
-			if(gameState == GAME_STATE.MENU) {
-				renderer.RenderMenu();
+			if(gameState != lastState) {  // Only render when state changes
+				if(gameState == GAME_STATE.MENU) {
+					renderer.RenderMenu();
+				}
+				else if (gameState == GAME_STATE.ACTIVE_GAME) {
+					renderer.RenderGame();
+				}
+				lastState = gameState;
 			}
-			else if (gameState == GAME_STATE.ACTIVE_GAME) {
-				renderer.RenderGame();
+			
+			if (gameState == GAME_STATE.ACTIVE_GAME) {
 				gameLogic.HandleLogic();
 			}
+			
+			 try {
+			 	Thread.sleep(16);  // Add a small delay to prevent CPU overuse
+			 } catch (InterruptedException e) {
+			 	e.printStackTrace();
+			 }
 		}
 	}
 
