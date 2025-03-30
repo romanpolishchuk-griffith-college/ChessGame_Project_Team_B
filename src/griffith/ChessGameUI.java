@@ -123,6 +123,8 @@ public class ChessGameUI {
 	        capturedPanel.revalidate();  //Revalidate the captured panel
 	        capturedPanel.repaint();  //Repaint the captured panel to reflect the changes
 	    }
-	    
+	    public static void main(String[] args) {
+	        SwingUtilities.invokeLater(ChessGameUI::new); //Ensures the UI is created and updated
+	    }
 	    
 }
