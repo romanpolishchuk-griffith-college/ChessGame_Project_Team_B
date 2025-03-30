@@ -18,6 +18,14 @@ public class Board {
 		this.board = board;
 	}
 
+	public ChessPiece[][] getBoard(){
+		return board;
+	}
+
+	public void setBoard(ChessPiece[][] board){
+		this.board = board;
+	}
+
 	public ChessPiece getPiece(int x, int y) {
 		if(x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
 			return null;
