@@ -52,7 +52,15 @@ public class ChessGameUI {
 	    }
 	    
 	    private void startGame() {
-	      
+	        frame.remove(welcomePanel); //Removes the welcome panel when game starts
+	        createGameUI(); //Creates the game interface
+	        frame.revalidate(); //Revalidates the frame to reflect the changes
+	        frame.repaint();  //Redraws the frame to show the updated UI
 	    }
+
+	    private void createGameUI() {
+	    
+	    }
+
 
 }
