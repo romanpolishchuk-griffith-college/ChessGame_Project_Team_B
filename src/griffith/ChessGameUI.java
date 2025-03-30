@@ -38,6 +38,16 @@ public class ChessGameUI {
 	        JPanel buttonPanel = new JPanel();//Panel to keep the buttons
 	        buttonPanel.add(startButton); 
 	        buttonPanel.add(exitButton);  
+	        
+	        GridBagConstraints gbc = new GridBagConstraints(); //Setting layout constraints for the components
+	        gbc.gridx = 0;  //Position for the welcome label
+	        gbc.gridy = 0;
+	        gbc.insets = new Insets(10, 10, 10, 10);  //Adding padding around the components
+	        welcomePanel.add(welcomeLabel, gbc);  //Adding a welcome label 
+
+	        gbc.gridy = 1;  //Sets the position for the button panel
+	        welcomePanel.add(buttonPanel, gbc);//Adding the button panel to the welcome screen
+	        
 	    }
 	    
 	    private void startGame() {
