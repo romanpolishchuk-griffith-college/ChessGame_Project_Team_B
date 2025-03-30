@@ -25,5 +25,9 @@ public class ChessGameUI {
 	    private void createWelcomePanel() {
 	    	welcomePanel = new JPanel(); //New panel for the welcome screen
 	        welcomePanel.setLayout(new GridBagLayout());//Using GridBagLayout for flexible positioning
+	   
+	        JLabel welcomeLabel = new JLabel("Chess"); 
+	        welcomeLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));//Setting font for Title
+
 	    }
 }
