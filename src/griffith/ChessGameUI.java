@@ -116,6 +116,13 @@ public class ChessGameUI {
 	    }
 
 	    private void resetGame() {
+	        moveCounter = 0;  //Resets the move counter
+	        statusLabel.setText("Turn: White");  //Sets turn to White
+	        moveCounterLabel.setText("Moves: 0");  //Move counter displays 0
+	        capturedPanel.removeAll();  //Remove all captured pieces
+	        capturedPanel.revalidate();  //Revalidate the captured panel
+	        capturedPanel.repaint();  //Repaint the captured panel to reflect the changes
 	    }
-
+	    
+	    
 }
