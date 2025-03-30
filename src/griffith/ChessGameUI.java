@@ -32,5 +32,13 @@ public class ChessGameUI {
 	        JButton startButton = new JButton("Start Game"); //Button to start the game
 	        JButton exitButton = new JButton("Quit");  //Button to quit the game
 	        
+	        startButton.addActionListener(e -> startGame());  //Calls startGame() to start the game
+	        exitButton.addActionListener(e -> System.exit(0)); //Exits application if pressed
+
 	    }
+	    
+	    private void startGame() {
+	      
+	    }
+
 }
