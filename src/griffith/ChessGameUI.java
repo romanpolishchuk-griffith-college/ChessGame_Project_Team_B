@@ -17,5 +17,12 @@ public class ChessGameUI {
 	         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Exits the application when window is closed
 	         frame.setSize(800, 600);//Window dimensions
 	         frame.setLayout(new BorderLayout());//Using BorderLayout to organize panels
+	         
+	         createWelcomePanel();  //Displays the welcome screen first
+	         frame.setVisible(true);
+	    }
+	    
+	    private void createWelcomePanel() {
+	    	
 	    }
 }
