@@ -65,7 +65,16 @@ public class ChessGameUI {
 	        createStatsPanel();  //Panel to display game statistics(like who's turn it is)
 	    }
 	    private void createMenuPanel() {
+	    	menuPanel = new JPanel();  //Creates a new panel for the menu
+	        JButton restartButton = new JButton("Restart");  //Button to restart the game
+	        JButton exitButton = new JButton("Quit Game");  // Button to quit the game
 
+	        restartButton.addActionListener(e -> resetGame());  
+	        exitButton.addActionListener(e -> System.exit(0));  
+
+	        menuPanel.add(restartButton);  
+	        menuPanel.add(exitButton);  
+	        frame.add(menuPanel, BorderLayout.NORTH); //Adds the menu panel to the top of the window
 	    }
 	    
 	    private void createBoardPanel() {
@@ -79,5 +88,7 @@ public class ChessGameUI {
 	    	
 	    }
 
+	    private void resetGame() {
+	    }
 
 }
