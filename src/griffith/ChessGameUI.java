@@ -47,6 +47,7 @@ public class ChessGameUI {
 
 	        gbc.gridy = 1;  //Sets the position for the button panel
 	        welcomePanel.add(buttonPanel, gbc);//Adding the button panel to the welcome screen
+	        frame.add(welcomePanel, BorderLayout.CENTER); //Center aligning the welcome panel
 	        
 	    }
 	    
