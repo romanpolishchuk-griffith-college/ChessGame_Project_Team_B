@@ -100,7 +100,10 @@ public class ChessGameUI {
 	    }
 	    
 	    private void createCapturedPanel() {
-	    	
+	        capturedPanel = new JPanel();  //Panel for captured pieces
+	        capturedPanel.setPreferredSize(new Dimension(150, 600));  //size of the panel
+	        capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
+	        frame.add(capturedPanel, BorderLayout.EAST); 
 	    }
 	    private void createStatsPanel() {
 	    	
