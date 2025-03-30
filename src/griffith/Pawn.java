@@ -25,6 +25,12 @@ public class Pawn extends ChessPiece {
             moves += pawnX + "," + (pawnY + 1) + " ";
         }
         
+        if (pawnY == 1 &&
+        		board.getPiece(pawnX, pawnY + 1) == null && 
+        		board.getPiece(pawnX, pawnY + 2) == null) {
+            moves += pawnX + "," + (pawnY + 2) + " ";
+        }
+        
         if (board.getPiece(pawnX + 1, pawnY + 1) != null) {
             moves += (pawnX + 1) + "," + (pawnY + 1) + " ";
         }
