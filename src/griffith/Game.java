@@ -7,6 +7,13 @@ public class Game {
 	
 	private boolean gameActive = true;
 	
+	enum GAME_STATE {
+		MENU,
+		ACTIVE_GAME
+	}
+	
+	private static GAME_STATE gameState = GAME_STATE.MENU;
+	
 	public Game(String windowTitle, int windowWidth, int windowHeight) {
 		
 		if(windowWidth <= 0) {
@@ -27,6 +34,14 @@ public class Game {
 		this.windowTitle = windowTitle;
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
+	}
+	
+	public static GAME_STATE getGameState() {
+		return gameState;
+	}
+	
+	public static void setGameStatus(GAME_STATE state) {
+		gameState = state;
 	}
 	
 	public void Run() {
