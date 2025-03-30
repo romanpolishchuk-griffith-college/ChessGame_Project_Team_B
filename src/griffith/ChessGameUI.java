@@ -59,7 +59,24 @@ public class ChessGameUI {
 	    }
 
 	    private void createGameUI() {
+	        createMenuPanel();  //Menu panel
+	        createBoardPanel();  //Chess board
+	        createCapturedPanel(); //Panel to display captured pieces
+	        createStatsPanel();  //Panel to display game statistics(like who's turn it is)
+	    }
+	    private void createMenuPanel() {
+
+	    }
 	    
+	    private void createBoardPanel() {
+	    	
+	    }
+	    
+	    private void createCapturedPanel() {
+	    	
+	    }
+	    private void createStatsPanel() {
+	    	
 	    }
 
 
