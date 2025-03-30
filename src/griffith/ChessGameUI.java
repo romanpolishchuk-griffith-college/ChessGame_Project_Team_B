@@ -29,5 +29,8 @@ public class ChessGameUI {
 	        JLabel welcomeLabel = new JLabel("Chess"); 
 	        welcomeLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));//Setting font for Title
 
+	        JButton startButton = new JButton("Start Game"); //Button to start the game
+	        JButton exitButton = new JButton("Quit");  //Button to quit the game
+	        
 	    }
 }
