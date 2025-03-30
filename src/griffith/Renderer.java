@@ -1,6 +1,6 @@
 package griffith;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Renderer {
 	
@@ -14,6 +14,14 @@ public class Renderer {
 	}
 	
 	public void Render() {
-
+		 System.out.println("Rendering frame...");//
 	}
-}
+	//initialising ChessGameUI
+	 public static void main(String[] args) {
+	        SwingUtilities.invokeLater(() -> {//Ensuring the graphics interface runs
+	            Renderer renderer = new Renderer();
+	            renderer.Setup("Chess Game", 800, 600);//Title window
+	            new ChessGameUI(); //Will start ChessGameUI
+	        });
+	    }
+	}
