@@ -9,5 +9,10 @@ public class ChessGameUI {
 	    private JLabel statusLabel, moveCounterLabel; //game information
 	    private int moveCounter = 0;  //cOunts the number of moves made in the game
 
-   
+	    public ChessGameUI() {
+	        initializeUI();//Initializes the graphical interface 
+	    }
+	    private void initializeUI() {
+	       
+	    }
 }
