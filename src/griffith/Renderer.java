@@ -8,8 +8,8 @@ public class Renderer {
 	
 	public void Setup(String title, int width, int heigth) {
 		window = new JFrame(title);
-		window.setTitle(title);
 		window.setSize(width, heigth);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Ensuring the application exits when the window is closed.
 		window.setVisible(true);
 	}
 	
