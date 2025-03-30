@@ -40,7 +40,7 @@ public class Game {
 		return gameState;
 	}
 	
-	public static void setGameStatus(GAME_STATE state) {
+	public static void setGameState(GAME_STATE state) {
 		gameState = state;
 	}
 	
