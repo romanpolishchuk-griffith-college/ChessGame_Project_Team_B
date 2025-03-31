@@ -90,21 +90,9 @@
 //	        frame.add(boardPanel, BorderLayout.CENTER); 
 //	    }
 //	    
-//	    private void createCapturedPanel() {
-//	        capturedPanel = new JPanel();  //Panel for captured pieces
-//	        capturedPanel.setPreferredSize(new Dimension(150, 600));  //size of the panel
-//	        capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
-//	        frame.add(capturedPanel, BorderLayout.EAST); 
-//	    }
+
 //	    
-//	    private void createStatsPanel() {
-//	        statsPanel = new JPanel();  //Panel for game stats
-//	        statusLabel = new JLabel("Turn: White");  //Label to show whose turn it is
-//	        moveCounterLabel = new JLabel("Moves: 0"); //Shows total number of moves made 
-//	        statsPanel.add(statusLabel);  
-//	        statsPanel.add(moveCounterLabel);
-//	        frame.add(statsPanel, BorderLayout.SOUTH); 
-//	    }
+//	   
 //
 //	    private void resetGame() {
 //	        moveCounter = 0;  //Resets the move counter

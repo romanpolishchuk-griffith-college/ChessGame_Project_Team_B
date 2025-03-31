@@ -3,11 +3,13 @@ package griffith;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Board extends JPanel  {
   private static final int BOARD_SIZE = 8;
   private static final int SQUARE_SIZE = 80;
+  private JPanel piecePanel;
 //  private ChessPiece[][] board;
   private ChessPiece[][] board = {
 	      {null, null, null, null, null, null, null, null},
@@ -73,9 +75,6 @@ public class Board extends JPanel  {
 }
 
     
-   
-
-  
 
   public ChessPiece[][] getBoard(){
 		return board;
@@ -104,41 +103,37 @@ public class Board extends JPanel  {
 		board[board.length-1-y][x] = piece;
 	}
   
-  @Override
-protected
-  void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    
-    // Draw board squares
-    for (int row = 0; row < BOARD_SIZE; row++) {
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            // Set color based on position
-            g.setColor(getSquareColor(row, col));
-            // Draw the square
-            g.fillRect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-        }
-    }
-    
-    // Draw pieces in separate loop to ensure they're on top
-    for (int row = 0; row < BOARD_SIZE; row++) {
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            ChessPiece piece = board[row][col];
-            if (piece != null) {
-                piece.draw(g);
-            }
-        }
-    }
-  }
+
   
-  public Color  getSquareColor(int row, int column) {
- 
-    if ((row + column) % 2 == 0) {
-            return Color.WHITE;
-        } else {
-            return Color.BLACK;
-        }
-    
+  public void draw(JFrame window) {
+	  BoardPanel boardPanel = new BoardPanel();
+	 
+	  
+	  for(int i = 0; i < BOARD_SIZE; i++) {
+		  for (int j = 0; j< BOARD_SIZE; j++) {
+			  
+			  if(getPiece(i,j) != null) {
+				  getPiece(i, j).draw(window);
+			  }
+			 
+			  
+		  }
+	  }
+	  window.add(boardPanel);
+	  window.revalidate();
+	  window.repaint();
+	 
   }
+  public Color  getSquareColor(int row, int column) {
+		 
+	    if ((row + column) % 2 == 0) {
+	            return Color.WHITE;
+	        } else {
+	            return Color.BLACK;
+	        }
+	    
+	  }
+
   
   public int getSquareSize() {
 	  return SQUARE_SIZE;

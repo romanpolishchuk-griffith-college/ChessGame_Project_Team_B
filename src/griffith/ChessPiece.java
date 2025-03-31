@@ -1,6 +1,11 @@
 package griffith;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.*;
 import java.io.File;
 public abstract class ChessPiece {
@@ -28,7 +33,7 @@ public abstract class ChessPiece {
 	                System.err.println("ERROR: Image file not found: " + imagePath);
 	                return;
 	            }
-	            
+ 
 	            sprite = ImageIO.read(imageFile)
 	                    .getScaledInstance(board.getSquareSize(), board.getSquareSize(), Image.SCALE_SMOOTH);
 	            
@@ -48,15 +53,25 @@ public abstract class ChessPiece {
 	
 	abstract public boolean isMoveValid(int x, int y);
 	
-	  public void draw(Graphics g) {
+	  public void draw(JFrame panel) {
+		  JButton piece = new JButton();
+		  
 			if (sprite != null) {
+				
 	            // Find position in board array
 	            for (int row = 0; row < board.getBoredSize(); row++) {
 	                for (int col = 0; col < board.getBoredSize(); col++) {
 	                    if (board.getBoard()[row][col] == this) {
 	                        int xPos = col * board.getSquareSize();
 	                        int yPos = row * board.getSquareSize();
-	                        g.drawImage(sprite, xPos, yPos, null);
+	                        
+	                        piece.setBounds(xPos, yPos, 80, 80);
+	                        piece.setIcon(new ImageIcon(sprite));
+	                        piece.setOpaque(true);
+	                        
+	                        
+	                        panel.add(piece);
+//	                        g.drawImage(sprite, xPos, yPos, null);
 	                        return;  // Exit after drawing once
 	                    }
 	                }

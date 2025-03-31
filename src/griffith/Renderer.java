@@ -1,6 +1,7 @@
 package griffith;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,7 +23,6 @@ public class Renderer {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		board = new Board(true);
-		
 		window.setVisible(true);
 	}
 	
@@ -32,9 +32,9 @@ public class Renderer {
 			welcomePanel = null;
 		}
 		
-		window.add(board);
-		window.revalidate();
-		window.repaint();
+		board.draw(window);
+		createCapturedPanel();
+		createStatsPanel();
 	}
 	
 	public void RenderMenu() {
@@ -71,6 +71,26 @@ public class Renderer {
         welcomePanel.add(buttonPanel, gbc);
         
         window.add(welcomePanel, BorderLayout.CENTER);
+        window.revalidate();
+        window.repaint();
+    }
+	
+    private void createCapturedPanel() {
+    JPanel capturedPanel = new JPanel();  //Panel for captured pieces
+    capturedPanel.setPreferredSize(new Dimension(150, 600));  //size of the panel
+    capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
+    window.add(capturedPanel, BorderLayout.EAST); 
+    window.revalidate();
+	window.repaint();
+    }
+	
+    private void createStatsPanel() {
+        JPanel statsPanel = new JPanel();  //Panel for game stats
+        JLabel statusLabel = new JLabel("Turn: White");  //Label to show whose turn it is
+        JLabel moveCounterLabel = new JLabel("Moves: 0"); //Shows total number of moves made 
+        statsPanel.add(statusLabel);  
+        statsPanel.add(moveCounterLabel);
+        window.add(statsPanel, BorderLayout.SOUTH); 
         window.revalidate();
         window.repaint();
     }
