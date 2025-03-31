@@ -10,14 +10,14 @@ public class Board extends JPanel  {
   private static final int SQUARE_SIZE = 80;
 //  private ChessPiece[][] board;
   private ChessPiece[][] board = {
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null,
-	      null, null, null, null, null, null, null, null
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null},
+	      {null, null, null, null, null, null, null, null}
 	  };
     
     public Board(boolean initializePieces) {
@@ -30,7 +30,6 @@ public class Board extends JPanel  {
     
     // Default constructor that creates a full game board
     public Board() {
-        this(true);
     }
     
     private void initializePieces() {
