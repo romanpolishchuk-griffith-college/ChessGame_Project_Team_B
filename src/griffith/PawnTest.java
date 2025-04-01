@@ -21,7 +21,7 @@ public class PawnTest {
         Pawn pawn2 = new Pawn(board2);
         
         board2.setPiece(3, 3, pawn2);
-        board2.setPiece(4, 4, new Knight(board2));
+        board2.setPiece(4, 4, new Knight(board2, false));
         validMoves = pawn2.getValidMoves();
         correctValidMoves = "3,4 4,4";
         assertEquals(correctValidMoves, validMoves);
@@ -48,7 +48,7 @@ public class PawnTest {
         assertFalse(pawn.isMoveValid(5, 6));
         assertFalse(pawn.isMoveValid(3, 3));
 
-        board.setPiece(4, 4, new Pawn(board));
+        board.setPiece(4, 4, new Pawn(board, false));
 
         assertTrue(pawn.isMoveValid(4, 4));
         assertFalse(pawn.isMoveValid(2, 4));

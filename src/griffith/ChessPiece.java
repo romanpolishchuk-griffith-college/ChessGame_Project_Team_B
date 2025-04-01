@@ -11,7 +11,7 @@ import java.awt.*;
 import java.io.File;
 
 public abstract class ChessPiece {
-	protected boolean isWhite;
+	protected boolean isWhite = true;
 	protected Board board;
 	protected Image sprite;
 	

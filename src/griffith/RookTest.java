@@ -20,7 +20,7 @@ public class RookTest {
         Rook rook2 = new Rook(board2);
         
         board2.setPiece(3, 3, rook2);
-        board2.setPiece(3, 5, new Knight(board2));
+        board2.setPiece(3, 5, new Knight(board2, false));
         validMoves = rook2.getValidMoves();
         correctValidMoves = "3,4 3,5 3,2 3,1 3,0 4,3 5,3 6,3 7,3 2,3 1,3 0,3";
         assertEquals(correctValidMoves, validMoves);
@@ -50,7 +50,7 @@ public class RookTest {
         assertFalse(rook.isMoveValid(5, 6));
         assertFalse(rook.isMoveValid(3, 3));
 
-        board.setPiece(3, 5, new Pawn(board));
+        board.setPiece(3, 5, new Pawn(board, false));
 
         assertTrue(rook.isMoveValid(3, 5));
         assertFalse(rook.isMoveValid(3, 6));

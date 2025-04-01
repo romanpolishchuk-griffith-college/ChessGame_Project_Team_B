@@ -31,22 +31,40 @@ public class Pawn extends ChessPiece {
             }
         }
         
-        if (board.getPiece(pawnX, pawnY + 1) == null) {
-            moves += pawnX + "," + (pawnY + 1) + " ";
+        int pawnOffset;
+        if(isWhite) {
+        	pawnOffset = 1;
+        }
+        else {
+        	pawnOffset = -1;
         }
         
-        if (pawnY == 1 &&
-        		board.getPiece(pawnX, pawnY + 1) == null && 
-        		board.getPiece(pawnX, pawnY + 2) == null) {
-            moves += pawnX + "," + (pawnY + 2) + " ";
+        if (board.getPiece(pawnX, pawnY + pawnOffset) == null) {
+            moves += pawnX + "," + (pawnY + pawnOffset) + " ";
         }
         
-        if (board.getPiece(pawnX + 1, pawnY + 1) != null) {
-            moves += (pawnX + 1) + "," + (pawnY + 1) + " ";
+        if (isWhite && 
+        		pawnY == 1 &&
+        		board.getPiece(pawnX, pawnY + pawnOffset) == null && 
+        		board.getPiece(pawnX, pawnY + pawnOffset*2) == null) {
+            moves += pawnX + "," + (pawnY + pawnOffset*2) + " ";
         }
         
-        if (board.getPiece(pawnX - 1, pawnY + 1) != null) {
-            moves += (pawnX - 1) + "," + (pawnY + 1) + " ";
+        if (!isWhite && 
+        		pawnY == 6 &&
+        		board.getPiece(pawnX, pawnY + pawnOffset) == null && 
+        		board.getPiece(pawnX, pawnY + pawnOffset*2) == null) {
+            moves += pawnX + "," + (pawnY + pawnOffset*2) + " ";
+        }
+        
+        if (board.getPiece(pawnX + 1, pawnY + pawnOffset) != null &&
+        		board.getPiece(pawnX + 1, pawnY + pawnOffset).isWhite != isWhite) {
+            moves += (pawnX + 1) + "," + (pawnY + pawnOffset) + " ";
+        }
+        
+        if (board.getPiece(pawnX - 1, pawnY + pawnOffset) != null &&
+        		board.getPiece(pawnX - 1, pawnY + pawnOffset).isWhite != isWhite) {
+            moves += (pawnX - 1) + "," + (pawnY + pawnOffset) + " ";
         }
         
         return moves.trim();

@@ -36,10 +36,14 @@ public Queen(Board board) {
         for (int y = queenY + 1; y < board.getBoard().length; y++) {
             if (board.getPiece(queenX, y) == null) {
                 moves += queenX + "," + y + " ";
-            } else {
-                moves += queenX + "," + y + " ";
-                // Stop if can capture a piece
+            } else if (board.getPiece(queenX, y).isWhite != isWhite){
+            	moves += queenX + "," + y + " ";
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -47,10 +51,14 @@ public Queen(Board board) {
         for (int y = queenY - 1; y >= 0; y--) {
             if (board.getPiece(queenX, y) == null) {
                 moves += queenX + "," + y + " ";
-            } else {
-                moves += queenX + "," + y + " ";
-                // Stop if can capture a piece
+            } else if (board.getPiece(queenX, y).isWhite != isWhite){
+            	moves += queenX + "," + y + " ";
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -58,10 +66,14 @@ public Queen(Board board) {
         for (int x = queenX + 1; x < board.getBoard()[0].length; x++) {
             if (board.getPiece(x, queenY) == null) {
                 moves += x + "," + queenY + " ";
-            } else {
-                moves += x + "," + queenY + " ";
-                // Stop if can capture a piece
+            } else if (board.getPiece(x, queenY).isWhite != isWhite){
+            	moves += x + "," + queenY + " ";
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -69,10 +81,14 @@ public Queen(Board board) {
         for (int x = queenX - 1; x >= 0; x--) {
             if (board.getPiece(x, queenY) == null) {
                 moves += x + "," + queenY + " ";
-            } else {
-                moves += x + "," + queenY + " ";
-                // Stop if can capture a piece
+            } else if (board.getPiece(x, queenY).isWhite != isWhite){
+            	moves += x + "," + queenY + " ";
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -80,10 +96,14 @@ public Queen(Board board) {
         for (int x = queenX + 1, y = queenY + 1; x < board.getBoard()[0].length && y < board.getBoard().length; x++, y++) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -91,10 +111,14 @@ public Queen(Board board) {
         for (int x = queenX - 1, y = queenY + 1; x >= 0 && y < board.getBoard().length; x--, y++) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -102,10 +126,14 @@ public Queen(Board board) {
         for (int x = queenX + 1, y = queenY - 1; x < board.getBoard()[0].length && y >= 0; x++, y--) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -113,10 +141,14 @@ public Queen(Board board) {
         for (int x = queenX - 1, y = queenY - 1; x >= 0 && y >= 0; x--, y--) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 

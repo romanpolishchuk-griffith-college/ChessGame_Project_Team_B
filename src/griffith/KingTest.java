@@ -21,7 +21,7 @@ public class KingTest {
         King king2 = new King(board2);
         
         board2.setPiece(3, 3, king2);
-        board2.setPiece(4, 4, new Knight(board2));
+        board2.setPiece(4, 4, new Knight(board2, false));
         validMoves = king2.getValidMoves();
         correctValidMoves = "3,4 3,2 4,3 2,3 4,4 2,4 4,2 2,2";
         assertEquals(correctValidMoves, validMoves);
@@ -48,7 +48,7 @@ public class KingTest {
         assertFalse(king.isMoveValid(7, 7));
         assertFalse(king.isMoveValid(3, 3));
 
-        board.setPiece(4, 4, new Pawn(board));
+        board.setPiece(4, 4, new Pawn(board, false));
 
         assertTrue(king.isMoveValid(4, 4));
         assertFalse(king.isMoveValid(5, 5));

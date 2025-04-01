@@ -35,10 +35,14 @@ public class Rook extends ChessPiece {
         for (int y = rookY + 1; y < board.getBoard().length; y++) {
             if (board.getPiece(rookX, y) == null) {
                 moves += rookX + "," + y + " ";
-            } else {
-                moves += rookX + "," + y + " ";
-                // Stop if can capture a piece
+            } else if (board.getPiece(rookX, y).isWhite != isWhite){
+            	moves += rookX + "," + y + " ";
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -46,10 +50,14 @@ public class Rook extends ChessPiece {
         for (int y = rookY - 1; y >= 0; y--) {
             if (board.getPiece(rookX, y) == null) {
             	moves += rookX + "," + y + " ";
-            } else {
+            } else if (board.getPiece(rookX, y).isWhite != isWhite){
             	moves += rookX + "," + y + " ";
-                // Stop if can capture a piece
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -57,10 +65,14 @@ public class Rook extends ChessPiece {
         for (int x = rookX + 1; x < board.getBoard()[0].length; x++) {
             if (board.getPiece(x, rookY) == null) {
                 moves += x + "," + rookY + " ";
-            } else {
-                moves += x + "," + rookY + " ";
-                // Stop if can capture a piece
+            } else if (board.getPiece(x, rookY).isWhite != isWhite){
+            	moves += x + "," + rookY + " ";
+            	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -68,10 +80,14 @@ public class Rook extends ChessPiece {
         for (int x = rookX - 1; x >= 0; x--) {
             if (board.getPiece(x, rookY) == null) {
             	moves += x + "," + rookY + " ";
-            } else {
+            } else if (board.getPiece(x, rookY).isWhite != isWhite){
             	moves += x + "," + rookY + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 

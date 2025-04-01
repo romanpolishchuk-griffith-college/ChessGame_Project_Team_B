@@ -2,7 +2,7 @@ package griffith;
 
 public class Bishop extends ChessPiece {
 
-    public Bishop(Board board,boolean isWhite) {
+    public Bishop(Board board, boolean isWhite) {
 		 super(board, isWhite);
 	        this.isWhite = isWhite;
 	        // Load the appropriate knight image
@@ -35,10 +35,14 @@ public class Bishop extends ChessPiece {
         for (int x = bishopX + 1, y = bishopY + 1; x < board.getBoard()[0].length && y < board.getBoard().length; x++, y++) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -46,10 +50,14 @@ public class Bishop extends ChessPiece {
         for (int x = bishopX - 1, y = bishopY + 1; x >= 0 && y < board.getBoard().length; x--, y++) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -57,10 +65,14 @@ public class Bishop extends ChessPiece {
         for (int x = bishopX + 1, y = bishopY - 1; x < board.getBoard()[0].length && y >= 0; x++, y--) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
@@ -68,10 +80,14 @@ public class Bishop extends ChessPiece {
         for (int x = bishopX - 1, y = bishopY - 1; x >= 0 && y >= 0; x--, y--) {
             if (board.getPiece(x, y) == null) {
             	moves += x + "," + y + " ";
-            } else {
+            } else if (board.getPiece(x, y).isWhite != isWhite){
             	moves += x + "," + y + " ";
             	// Stop if can capture a piece
                 break;
+            }
+            else {
+            	// The same color of a piece
+            	break;
             }
         }
 
