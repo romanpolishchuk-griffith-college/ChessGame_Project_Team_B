@@ -15,4 +15,11 @@ public class Multiplayer  {
         isWhiteTurn = true; // White starts the game
     }
 
+    protected void startGame() {
+        ChessBoard board = new ChessBoard();
+        GameLogic logic = new GameLogic();
+
+    }
+
+   
 }
