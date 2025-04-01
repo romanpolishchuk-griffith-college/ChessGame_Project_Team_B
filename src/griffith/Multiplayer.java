@@ -3,7 +3,7 @@ package griffith;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 
-public class Multiplayer  {
+public class Multiplayer {
     private ChessBoard chessBoard;
     private GameLogic gameLogic;
     private boolean isWhiteTurn; // True for white's turn, false for black's turn (computer)
@@ -15,13 +15,48 @@ public class Multiplayer  {
         isWhiteTurn = true; // White starts the game
     }
 
-    protected void startGame() {
-        ChessBoard board = new ChessBoard();
-        GameLogic logic = new GameLogic();
+    public void startGame() {
+        // Set up the game window
+        JFrame window = new JFrame("Chess vs Computer");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(800, 800);
+        window.add(chessBoard);
+        window.setVisible(true);
 
+        // Add mouse listener for player moves
+        chessBoard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (isWhiteTurn) {
+                    handlePlayerMove(e);
+                }
+            }
+        });
     }
 
-   
+    private void handlePlayerMove(MouseEvent e) {
+        // Get the clicked square
+        int x = e.getX() / (chessBoard.getWidth() / 8);
+        int y = e.getY() / (chessBoard.getHeight() / 8);
+
+        // Validate and execute the player's move
+        if (gameLogic.isMoveValid(chessBoard, x, y, isWhiteTurn)) {
+            gameLogic.executeMove(chessBoard, x, y);
+            chessBoard.repaint(); // Update the board
+            isWhiteTurn = false; // Switch to computer's turn
+
+            // Check if the game is over
+            if (gameLogic.isGameOver()) {
+                JOptionPane.showMessageDialog(null, "Game Over! White wins!");
+                return;
+            }
+
+            // Let the computer make its move
+            handleComputerMove();
+        } else {
+            System.out.println("Invalid move. Try again.");
+        }
+    }
+
     private void handleComputerMove() {
         // Computer makes a move
         int[] move = gameLogic.getComputerMove(chessBoard); // Get a move from the computer
