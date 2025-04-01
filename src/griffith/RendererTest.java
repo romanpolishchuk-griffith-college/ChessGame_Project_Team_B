@@ -24,6 +24,11 @@ class RendererTest {
         renderer.Setup("Test Window", 800, 600);
         assertDoesNotThrow(() -> renderer.RenderGame(), "RenderGame should not throw an exception");
     }
+	@Test
+	void testRenderMenu() {
+		renderer.Setup("Test Window", 800, 600);
+		assertDoesNotThrow(() -> renderer.RenderMenu(), "RenderMenu should not throw an exception");
+	}
 	   
 
 }
