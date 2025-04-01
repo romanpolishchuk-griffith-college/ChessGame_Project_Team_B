@@ -21,7 +21,7 @@ class MultiplayerTest {
         int x = 0, y = 1; // Example: Moving a pawn
         chessBoard.initializePiecePositions(); // Ensure pieces are initialized
         assertTrue(gameLogic.isMoveValid(chessBoard, x, y, true));
-        gameLogic.executeMove(chessBoard, x, y);
+        gameLogic.executeMove(chessBoard, x, y, y, y);
         assertFalse(multiplayer.isWhiteTurn); // Turn should switch to the computer
     }
 

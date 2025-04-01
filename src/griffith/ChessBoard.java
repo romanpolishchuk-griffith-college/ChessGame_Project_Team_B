@@ -34,7 +34,7 @@ public class ChessBoard extends JPanel {
         });
     }
 
-    private void initializePiecePositions() {
+    public void initializePiecePositions() {
         // Initialize piece positions for a new game
         // 1 for white pieces, -1 for black pieces, 0 for empty
         for (int i = 0; i < columns; i++) {
@@ -106,5 +106,12 @@ public class ChessBoard extends JPanel {
                 }
             }
         }
+    }
+    public String getPieceAt(int row, int col) {
+        // Assuming `board` is a 2D array of ChessPiece objects
+        if (row >= 0 && row < rows && col >= 0 && col < columns) {
+            return board[row][col]; // Replace with your actual data structure
+        }
+        return null; // Return null if the coordinates are out of bounds
     }
 }

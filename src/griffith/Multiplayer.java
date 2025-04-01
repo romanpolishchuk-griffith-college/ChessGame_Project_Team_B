@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 public class Multiplayer {
     private ChessBoard chessBoard;
     private GameLogic gameLogic;
-    private boolean isWhiteTurn; // True for white's turn, false for black's turn (computer)
+    boolean isWhiteTurn; // True for white's turn, false for black's turn (computer)
 
     public Multiplayer() {
         // Initialize components
@@ -34,14 +34,13 @@ public class Multiplayer {
     }
 
     private void handlePlayerMove(MouseEvent e) {
-        
         // Get the clicked square
         int x = e.getX() / (chessBoard.getWidth() / 8);
         int y = e.getY() / (chessBoard.getHeight() / 8);
 
         // Validate and execute the player's move
         if (gameLogic.isMoveValid(chessBoard, x, y, isWhiteTurn)) {
-            gameLogic.executeMove(chessBoard, x, y);
+            gameLogic.executeMove(chessBoard, x, y, y, y);
             chessBoard.repaint(); // Update the board
             isWhiteTurn = false; // Switch to computer's turn
 

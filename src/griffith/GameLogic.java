@@ -1,16 +1,57 @@
 package griffith;
 
 public class GameLogic {
-	public void isMoveValid() {
-		
-	}
-	public void executeMove() {
-		
-	}
-	public void isGameOver() {
-		
-	}
-	public void getComputerMove() {
-		
-	}
+
+    public boolean isMoveValid(ChessBoard board, int x, int y, boolean isWhiteTurn) {
+        ChessPiece piece = board.getPieceAt(x, y);
+        if (piece == null || piece.isWhite() != isWhiteTurn) {
+            return false; // No piece or wrong color
+        }
+        return piece.isMoveValid(x, y);
+    }
+
+    public void executeMove(ChessBoard board, int startX, int startY, int endX, int endY) {
+        ChessPiece piece = board.getPieceAt(startX, startY);
+        if (piece != null) {
+            board.movePiece(piece, endX, endY);
+        }
+    }
+
+    public int[] getComputerMove(ChessBoard board) {
+        // Example: Random valid move for the computer
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                ChessPiece piece = board.getPieceAt(row, col);
+                if (piece != null && !piece.isWhite()) { // Computer's pieces
+                    for (int targetRow = 0; targetRow < 8; targetRow++) {
+                        for (int targetCol = 0; targetCol < 8; targetCol++) {
+                            if (piece.isMoveValid(targetRow, targetCol)) {
+                                return new int[]{row, col, targetRow, targetCol};
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null; // No valid moves
+    }
+
+    public boolean isGameOver(ChessBoard board) {
+        // Example: Check if either king is missing
+        boolean whiteKingExists = false;
+        boolean blackKingExists = false;
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                ChessPiece piece = board.getPieceAt(row, col);
+                if (piece instanceof King) {
+                    if (piece.isWhite()) {
+                        whiteKingExists = true;
+                    } else {
+                        blackKingExists = true;
+                    }
+                }
+            }
+        }
+        return !(whiteKingExists && blackKingExists);
+    }
 }
