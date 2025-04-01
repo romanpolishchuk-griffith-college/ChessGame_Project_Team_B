@@ -25,7 +25,7 @@ class MultiplayerTest {
     }
 
     @Test
-    void testComputerMove() {
+    void testComputerMove(){
         Multiplayer multiplayer = new Multiplayer();
         ChessBoard chessBoard = new ChessBoard();
         GameLogic gameLogic = new GameLogic();
@@ -38,12 +38,12 @@ class MultiplayerTest {
     }
 
     @Test
-    void testGameOver() {
+    void testGameOver(){
         Multiplayer multiplayer = new Multiplayer();
         GameLogic gameLogic = new GameLogic();
 
         // Simulate a game over scenario
         assertTrue(gameLogic.isGameOver());
     }
-    
+
 }
