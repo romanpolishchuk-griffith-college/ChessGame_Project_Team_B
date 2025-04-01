@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class Main {
 	public static void main(String[] args) {
+		
 		JFrame window = new JFrame("ChessDreamApp");
 		window.setTitle("ChessDream");
 		window.setSize(800, 800);
@@ -19,5 +20,9 @@ public class Main {
 		
 
 		
+
+		Game game = new Game("Super Chess", 1080, 720);
+		game.Run();
+
 	}
 }
