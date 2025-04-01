@@ -34,6 +34,7 @@ public class Multiplayer {
     }
 
     private void handlePlayerMove(MouseEvent e) {
+        
         // Get the clicked square
         int x = e.getX() / (chessBoard.getWidth() / 8);
         int y = e.getY() / (chessBoard.getHeight() / 8);
