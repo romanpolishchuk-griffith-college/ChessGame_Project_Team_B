@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 
 
 class RendererTest {
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
- 
+	
+	private Renderer renderer;
+
+	   @BeforeEach //To prevent unexpected interactions between tests.
+	   void setUp() {
+		   renderer = new Renderer();
+	   }
 }
