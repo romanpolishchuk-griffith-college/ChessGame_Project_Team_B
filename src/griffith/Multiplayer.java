@@ -45,7 +45,7 @@ public class Multiplayer {
             isWhiteTurn = false; // Switch to computer's turn
 
             // Check if the game is over
-            if (gameLogic.isGameOver()) {
+            if (gameLogic.isGameOver(chessBoard)) {
                 JOptionPane.showMessageDialog(null, "Game Over! White wins!");
                 return;
             }
@@ -66,7 +66,7 @@ public class Multiplayer {
             isWhiteTurn = true; // Switch back to player's turn
 
             // Check if the game is over
-            if (gameLogic.isGameOver()) {
+            if (gameLogic.isGameOver(chessBoard)) {
                 JOptionPane.showMessageDialog(null, "Game Over! Black (Computer) wins!");
             }
         }
