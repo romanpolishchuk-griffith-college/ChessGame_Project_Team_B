@@ -1,17 +1,24 @@
 package griffith;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
+
+import java.awt.*;
+import java.awt.event.*;
 
 import java.awt.*;
 import java.io.File;
+
 public abstract class ChessPiece {
 	protected boolean isWhite;
 	protected Board board;
 	protected Image sprite;
+	
+	public JButton button;
+	
+	private int initialX = 0;
+	private int initialY = 0;
 	
 	ChessPiece(Board board ,boolean isWhite) {
 		this.board = board;
@@ -55,6 +62,7 @@ public abstract class ChessPiece {
 	
 	  public void draw(JFrame panel) {
 		  JButton piece = new JButton();
+		  button = piece;
 		  
 			if (sprite != null) {
 				
@@ -69,6 +77,43 @@ public abstract class ChessPiece {
 	                        piece.setIcon(new ImageIcon(sprite));
 	                        piece.setOpaque(true);
 	                        
+	                        initialX = xPos;
+	                        initialY = yPos;
+	                        
+	                        piece.addMouseListener(new MouseInputAdapter() {
+	                            public void mousePressed(MouseEvent e) {
+	                            }
+	                        });
+
+	                        piece.addMouseMotionListener(new MouseMotionAdapter() {
+	                            public void mouseDragged(MouseEvent e) {
+	                                int newX = piece.getX() + e.getX() - 40;
+	                                int newY = piece.getY() + e.getY() - 40;
+	                                piece.setLocation(newX, newY);
+	                            }
+	                        });
+	                        
+	                        ChessPiece thisPiece = this;
+	                        
+	                        piece.addMouseListener(new MouseAdapter() {
+	                            public void mouseReleased(MouseEvent e) {
+	                                int newX = piece.getX() + e.getX();
+	                                int newY = piece.getY() + e.getY();
+	                                newX = (int) (((newX / 80)) * 80);
+	                                newY = (int) (((newY / 80)) * 80);
+	                                System.out.println("X: " + newX / 80 + " " + (7 - newY / 80));
+	                                if(isMoveValid(newX / 80, 7 - newY / 80)) {
+	                                	piece.setLocation(newX, newY);
+	                                	board.movePiece(thisPiece, newX / 80, 7 - newY / 80);
+	                                	initialX = newX;
+	                                	initialY = newY;
+	                                }
+	                                else {
+	                                	piece.setLocation(initialX, initialY);
+	                                }
+	                                
+	                            }
+	                        });
 	                        
 	                        panel.add(piece);
 //	                        g.drawImage(sprite, xPos, yPos, null);

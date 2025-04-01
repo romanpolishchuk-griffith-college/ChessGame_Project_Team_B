@@ -10,6 +10,7 @@ public class Board extends JPanel  {
   private static final int BOARD_SIZE = 8;
   private static final int SQUARE_SIZE = 80;
   private JPanel piecePanel;
+  private JFrame window;
 //  private ChessPiece[][] board;
   private ChessPiece[][] board = {
 	      {null, null, null, null, null, null, null, null},
@@ -103,11 +104,36 @@ public class Board extends JPanel  {
 		board[board.length-1-y][x] = piece;
 	}
   
+  public void movePiece(ChessPiece piece, int newX, int newY) {
+	  int pieceX = -1;
+      int pieceY = -1;
+
+      for (int y = 0; y < board.length; y++) {
+          for (int x = 0; x < board[y].length; x++) {
+              if (getPiece(x, y) == piece) {
+            	  pieceX = x;
+            	  pieceY = y;
+                  break;
+              }
+          }
+      }
+      
+      if(window != null && getPiece(newX, newY) != null) {
+          window.remove(getPiece(newX, newY).button);  
+      }
+      
+      //Remove piece from old place
+      setPiece(pieceX, pieceY, null);
+      //Move piece to new place
+      setPiece(newX, newY, piece);
+  }
+  
 
   
   public void draw(JFrame window) {
 	  BoardPanel boardPanel = new BoardPanel();
-	 
+	  
+	  this.window = window;
 	  
 	  for(int i = 0; i < BOARD_SIZE; i++) {
 		  for (int j = 0; j< BOARD_SIZE; j++) {

@@ -17,6 +17,8 @@ public class Renderer {
 	private Board board;
 	private JPanel welcomePanel;
 	
+	private boolean isGameDrawn = false;
+	
 	public void Setup(String title, int width, int heigth) {
 		window = new JFrame(title);
 		window.setSize(width, heigth);
@@ -31,10 +33,12 @@ public class Renderer {
 			window.remove(welcomePanel);
 			welcomePanel = null;
 		}
-		
-		board.draw(window);
-		createCapturedPanel();
-		createStatsPanel();
+		if(!isGameDrawn) {
+			board.draw(window);
+			createCapturedPanel();
+			createStatsPanel();
+			isGameDrawn = true;
+		}
 	}
 	
 	public void RenderMenu() {

@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 public class BoardPanel extends JPanel {
 	private static final int BOARD_SIZE = 8;
 	private static final int SQUARE_SIZE = 80;
+	
+	
+	
 	 @Override
 	 protected
 	   void paintComponent(Graphics g) {
