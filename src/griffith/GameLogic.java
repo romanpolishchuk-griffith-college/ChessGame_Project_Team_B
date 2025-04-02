@@ -10,11 +10,13 @@ public class GameLogic {
         return piece.isMoveValid(x, y);
     }
 
-    public void executeMove(Board board, int startX, int startY, int endX, int endY) {
+    public boolean executeMove(Board board, int startX, int startY, int endX, int endY) {
         ChessPiece piece = board.getPiece(startX, startY);
         if (piece != null) {
             board.movePiece(piece, endX, endY);
+            return true;
         }
+        return false;
     }
 
     public static int[] getComputerMove(Board board) {
