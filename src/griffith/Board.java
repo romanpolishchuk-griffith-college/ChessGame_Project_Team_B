@@ -35,45 +35,45 @@ public class Board extends JPanel  {
     public Board() {
     }
     
-    private void initializePieces() {
-        // Initialize White pieces
-    // Pawns
-    for (int col = 0; col < BOARD_SIZE; col++) {
-      setPiece(col, 1, new Pawn(this, true));
-  }
-  // Rooks
-  setPiece(0, 0, new Rook(this, true));
-  setPiece(7, 0, new Rook(this,  true));
-  // Knights
-  setPiece(1, 0, new Knight(this, true));
-  setPiece(6, 0, new Knight(this,  true));
-  // Bishops
-  setPiece(2, 0, new Bishop(this,  true));
-  setPiece(5, 0, new Bishop(this,  true));
-  // Queen
-  setPiece(3, 0, new Queen(this,  true));
-  // King
-  setPiece(4, 0, new King(this, true));
+    protected void initializePieces() {
+      // Initialize White pieces
+      // Pawns
+      for (int col = 0; col < BOARD_SIZE; col++) {
+        setPiece(col, 1, new Pawn(this, true));
+    }
+    // Rooks
+    setPiece(0, 0, new Rook(this, true));
+    setPiece(7, 0, new Rook(this,  true));
+    // Knights
+    setPiece(1, 0, new Knight(this, true));
+    setPiece(6, 0, new Knight(this,  true));
+    // Bishops
+    setPiece(2, 0, new Bishop(this,  true));
+    setPiece(5, 0, new Bishop(this,  true));
+    // Queen
+    setPiece(3, 0, new Queen(this,  true));
+    // King
+    setPiece(4, 0, new King(this, true));
 
-//   Initialize Black pieces
-//   pawns
-  for (int col = 0; col < BOARD_SIZE; col++) {
-    setPiece(col, 6, new Pawn(this, false));
-}
-  // Rooks
-  setPiece(0, 7, new Rook(this,  false));
-  setPiece(7, 7, new Rook(this,  false));
-  // Knights
-  setPiece(1, 7, new Knight(this,  false));
-  setPiece(6, 7, new Knight(this,  false));
-  // Bishops
-  setPiece(2, 7, new Bishop(this,  false));
-  setPiece(5, 7, new Bishop(this, false));
-  // Queen
-  setPiece(3, 7, new Queen(this,false));
-  // King
-  setPiece(4, 7, new King(this,  false));
-}
+    //   Initialize Black pieces
+    //   pawns
+    for (int col = 0; col < BOARD_SIZE; col++) {
+      setPiece(col, 6, new Pawn(this, false));
+    }
+    // Rooks
+    setPiece(0, 7, new Rook(this,  false));
+    setPiece(7, 7, new Rook(this,  false));
+    // Knights
+    setPiece(1, 7, new Knight(this,  false));
+    setPiece(6, 7, new Knight(this,  false));
+    // Bishops
+    setPiece(2, 7, new Bishop(this,  false));
+    setPiece(5, 7, new Bishop(this, false));
+    // Queen
+    setPiece(3, 7, new Queen(this,false));
+    // King
+    setPiece(4, 7, new King(this,  false));
+  }
 
     
 

@@ -13,7 +13,7 @@ public class Main {
 		window.setVisible(true);
 
 		// Create a new instance of the ChessBoard class
-		ChessBoard board = new ChessBoard();
+		Board board = new Board();
 		window.add(board);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -22,6 +22,7 @@ public class Main {
 		
 
 		Game game = new Game("Super Chess", 1080, 720);
+		
 		game.Run();
 
 	}
