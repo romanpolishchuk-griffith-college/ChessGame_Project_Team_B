@@ -2,7 +2,7 @@ package griffith;
 
 public class Rook extends ChessPiece {
     public Rook(Board board, boolean isWhite) {
-		super(board);
+		super(board,isWhite);
 	        
 	    // Load the appropriate knight image
 	    String imageName = isWhite ? "w - rook.png" : "b - rook.png";
