@@ -106,7 +106,14 @@ public abstract class ChessPiece {
 	                                	piece.setLocation(newX, newY);
 	                                	board.movePiece(thisPiece, newX / 80, 7 - newY / 80);
 	                                	initialX = newX;
+
 	                                	initialY = newY;
+
+										int[] moves = GameLogic.getComputerMove(board);
+                                        ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
+                                        board.movePiece(pieceMove, moves[2], moves[3]);
+                                        pieceMove.button.setLocation(moves[2] * 80, (7-moves[3]) * 80);
+                                        System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
 	                                }
 	                                else {
 	                                	piece.setLocation(initialX, initialY);
@@ -126,8 +133,4 @@ public abstract class ChessPiece {
 	        }
 	
 }
-	  
-	  public boolean isWhite() {
-		  return isWhite;
-	  }
-	  }
+}

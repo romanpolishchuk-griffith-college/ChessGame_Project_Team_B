@@ -46,17 +46,12 @@ public class Game {
 	
 	public void Run() {
 		Renderer renderer = new Renderer();
-		GameLogic gameLogic = new GameLogic();
-		Multiplayer ai = new Multiplayer();
 		
 		renderer.Setup(windowTitle, windowWidth, windowHeight);
 		
 		GAME_STATE lastState = null;
 		
 		while(gameActive) {
-			renderer.Render();
-			gameLogic.HandleLogic();
-			ai.run();
 			if(gameState != lastState) {  // Only render when state changes
 				if(gameState == GAME_STATE.MENU) {
 					renderer.RenderMenu();
@@ -65,10 +60,6 @@ public class Game {
 					renderer.RenderGame();
 				}
 				lastState = gameState;
-			}
-			
-			if (gameState == GAME_STATE.ACTIVE_GAME) {
-				gameLogic.HandleLogic();
 			}
 			
 			 try {
