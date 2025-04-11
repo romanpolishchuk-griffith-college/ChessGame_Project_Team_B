@@ -38,31 +38,31 @@ public class BishopTest {
 	@Test
 	void isMoveValidTest() {
 		Board board = new Board();
-        Queen queen = new Queen(board);
+        Bishop bishop = new Bishop(board);
 
-        board.setPiece(3, 3, queen);
+        board.setPiece(3, 3, bishop);
 
-        assertTrue(queen.isMoveValid(4, 4));
-        assertTrue(queen.isMoveValid(4, 2));
-        assertTrue(queen.isMoveValid(2, 4));
-        assertTrue(queen.isMoveValid(2, 2));
+        assertTrue(bishop.isMoveValid(4, 4));
+        assertTrue(bishop.isMoveValid(4, 2));
+        assertTrue(bishop.isMoveValid(2, 4));
+        assertTrue(bishop.isMoveValid(2, 2));
         
-        assertFalse(queen.isMoveValid(7, 2));
-        assertFalse(queen.isMoveValid(3, 3));
+        assertFalse(bishop.isMoveValid(7, 2));
+        assertFalse(bishop.isMoveValid(3, 3));
 
         board.setPiece(5, 5, new Pawn(board, false));
 
-        assertTrue(queen.isMoveValid(5, 5));
-        assertFalse(queen.isMoveValid(6, 6));
+        assertTrue(bishop.isMoveValid(5, 5));
+        assertFalse(bishop.isMoveValid(6, 6));
         
         Board board2 = new Board();
-        Queen queen2 = new Queen(board2);
+        Bishop bishop2 = new Bishop(board2);
 
-        board2.setPiece(3, 3, queen);
+        board2.setPiece(3, 3, bishop2);
         
-        assertFalse(queen.isMoveValid(3, -1));
-        assertFalse(queen.isMoveValid(-1, 3));
-        assertFalse(queen.isMoveValid(3, 8));
-        assertFalse(queen.isMoveValid(8, 3));
+        assertFalse(bishop2.isMoveValid(3, -1));
+        assertFalse(bishop2.isMoveValid(-1, 3));
+        assertFalse(bishop2.isMoveValid(3, 8));
+        assertFalse(bishop2.isMoveValid(8, 3));
 	}
 }
