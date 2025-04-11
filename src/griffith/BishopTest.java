@@ -54,5 +54,15 @@ public class BishopTest {
 
         assertTrue(queen.isMoveValid(5, 5));
         assertFalse(queen.isMoveValid(6, 6));
+        
+        Board board2 = new Board();
+        Queen queen2 = new Queen(board2);
+
+        board2.setPiece(3, 3, queen);
+        
+        assertFalse(queen.isMoveValid(3, -1));
+        assertFalse(queen.isMoveValid(-1, 3));
+        assertFalse(queen.isMoveValid(3, 8));
+        assertFalse(queen.isMoveValid(8, 3));
 	}
 }
