@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+// Represents the game board for a chess game.
 public class Board extends JPanel  {
   private static final int BOARD_SIZE = 8;
   private static final int SQUARE_SIZE = 80;
@@ -23,6 +23,7 @@ public class Board extends JPanel  {
 	      {null, null, null, null, null, null, null, null}
 	  };
     
+    // Constructor that initializes the board with pieces if specified.
     public Board(boolean initializePieces) {
         setPreferredSize(new java.awt.Dimension(BOARD_SIZE * SQUARE_SIZE, BOARD_SIZE * SQUARE_SIZE));
         board = new ChessPiece[BOARD_SIZE][BOARD_SIZE];
@@ -31,11 +32,12 @@ public class Board extends JPanel  {
         }
        }
     
-    // Default constructor that creates a full game board
+    // Default constructor that creates a full game board.
     public Board() {
     }
     
-    protected void initializePieces() {
+    // Initializes the pieces on the board.
+    public void initializePieces() {
       // Initialize White pieces
       // Pawns
       for (int col = 0; col < BOARD_SIZE; col++) {
@@ -75,21 +77,23 @@ public class Board extends JPanel  {
     setPiece(4, 7, new King(this,  false));
   }
 
-    
+  // Returns the current board configuration.
 
   public ChessPiece[][] getBoard(){
 		return board;
 	}
 
+  // Sets the board configuration to the specified array.
   public void setBoard(ChessPiece[][] board){
 		this.board = board;
 	}
     
-  
+  // Returns the size of the board.
   public int getBoredSize(){
     return BOARD_SIZE;
   }
 
+  // Returns the piece at the specified coordinates.
   public ChessPiece getPiece(int x, int y) {
 		if(x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
 			return null;
@@ -97,13 +101,15 @@ public class Board extends JPanel  {
 		return board[board.length-1-y][x];
 	}
 
+  // Sets the piece at the specified coordinates.
   public void setPiece(int x, int y, ChessPiece piece) {
 		if(x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
 			return;
 		}
 		board[board.length-1-y][x] = piece;
 	}
-  
+
+  // Moves a piece from its current position to a new position.
   public void movePiece(ChessPiece piece, int newX, int newY) {
 	  int pieceX = -1;
       int pieceY = -1;
@@ -128,30 +134,32 @@ public class Board extends JPanel  {
       setPiece(newX, newY, piece);
   }
   
-
-  
+  // Draws the board and its pieces.
   public void draw(JFrame window) {
 	  BoardPanel boardPanel = new BoardPanel();
-	  
+	  // Set the window for the board
 	  this.window = window;
-	  
+	  // Draw the pieces on the board
 	  for(int i = 0; i < BOARD_SIZE; i++) {
 		  for (int j = 0; j< BOARD_SIZE; j++) {
-			  
+			  // Draw the piece if it exists
 			  if(getPiece(i,j) != null) {
 				  getPiece(i, j).draw(window);
 			  }
 			 
-			  
 		  }
 	  }
+	  // Add the board to the window
 	  window.add(boardPanel);
+	  // Refresh the window
 	  window.revalidate();
 	  window.repaint();
 	 
   }
+
+  // Returns the color of the square at the specified coordinates.
   public Color  getSquareColor(int row, int column) {
-		 
+	  // Check if the sum of the row and column is even
 	    if ((row + column) % 2 == 0) {
 	            return Color.WHITE;
 	        } else {
@@ -160,7 +168,7 @@ public class Board extends JPanel  {
 	    
 	  }
 
-  
+  // Returns the size of the square on the board.
   public int getSquareSize() {
 	  return SQUARE_SIZE;
   }
