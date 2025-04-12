@@ -5,12 +5,13 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+// Represents the panel that displays the game board.
 public class BoardPanel extends JPanel {
 	private static final int BOARD_SIZE = 8;
 	private static final int SQUARE_SIZE = 80;
 	
 	
-	
+	// Paints the board and its pieces.
 	 @Override
 	 protected
 	   void paintComponent(Graphics g) {
@@ -27,6 +28,7 @@ public class BoardPanel extends JPanel {
 	     }
 	 }
 	 
+	 // Returns the color of the square at the specified coordinates.
 	 public Color  getSquareColor(int row, int column) {
 		 
 		    if ((row + column) % 2 == 0) {
