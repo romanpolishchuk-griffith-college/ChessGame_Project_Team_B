@@ -61,8 +61,7 @@ public abstract class ChessPiece {
 	abstract public boolean isMoveValid(int x, int y);
 	
 	  public void draw(JFrame panel) {
-		  JButton piece = new JButton();
-		  button = piece;
+		  JButton pieceButton = new JButton();
 		  
 			if (sprite != null) {
 				
@@ -73,57 +72,49 @@ public abstract class ChessPiece {
 	                        int xPos = col * board.getSquareSize();
 	                        int yPos = row * board.getSquareSize();
 	                        
-	                        piece.setBounds(xPos, yPos, 80, 80);
-	                        piece.setIcon(new ImageIcon(sprite));
-	                        piece.setOpaque(true);
+	                        pieceButton.setBounds(xPos, yPos, 80, 80);
+	                        pieceButton.setIcon(new ImageIcon(sprite));
+	                        pieceButton.setOpaque(true);
 	                        
 	                        initialX = xPos;
 	                        initialY = yPos;
-	                        
-	                        piece.addMouseListener(new MouseInputAdapter() {
-	                            public void mousePressed(MouseEvent e) {
-	                            }
-	                        });
 
-	                        piece.addMouseMotionListener(new MouseMotionAdapter() {
+	                        pieceButton.addMouseMotionListener(new MouseMotionAdapter() {
 	                            public void mouseDragged(MouseEvent e) {
-	                                int newX = piece.getX() + e.getX() - 40;
-	                                int newY = piece.getY() + e.getY() - 40;
-	                                piece.setLocation(newX, newY);
+	                                int newX = pieceButton.getX() + e.getX() - 40;
+	                                int newY = pieceButton.getY() + e.getY() - 40;
+	                                pieceButton.setLocation(newX, newY);
 	                            }
 	                        });
 	                        
 	                        ChessPiece thisPiece = this;
 	                        
-	                        piece.addMouseListener(new MouseAdapter() {
+	                        pieceButton.addMouseListener(new MouseAdapter() {
 	                            public void mouseReleased(MouseEvent e) {
-	                                int newX = piece.getX() + e.getX();
-	                                int newY = piece.getY() + e.getY();
+	                                int newX = pieceButton.getX() + 40;
+	                                int newY = pieceButton.getY() + 40;
 	                                newX = (int) (((newX / 80)) * 80);
 	                                newY = (int) (((newY / 80)) * 80);
-	                                System.out.println("X: " + newX / 80 + " " + (7 - newY / 80));
-	                                if(isMoveValid(newX / 80, 7 - newY / 80)) {
-	                                	piece.setLocation(newX, newY);
-	                                	board.movePiece(thisPiece, newX / 80, 7 - newY / 80);
-	                                	initialX = newX;
 
+	                                if(isMoveValid(newX / 80, board.getBoard().length - 1 - newY / 80)) {
+	                                	pieceButton.setLocation(newX, newY);
+	                                	board.movePiece(thisPiece, newX / 80, board.getBoard().length - 1 - newY / 80);
+	                                	initialX = newX;
 	                                	initialY = newY;
 
 										int[] moves = GameLogic.getComputerMove(board);
-                                        ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
-                                        board.movePiece(pieceMove, moves[2], moves[3]);
-                                        pieceMove.button.setLocation(moves[2] * 80, (7-moves[3]) * 80);
-                                        System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
+                                        ChessPiece enemyPiece = board.getPiece(moves[0], moves[1]);
+                                        board.movePiece(enemyPiece, moves[2], moves[3]);
+                                        enemyPiece.button.setLocation(moves[2] * 80, (board.getBoard().length - 1 - moves[3]) * 80);
 	                                }
 	                                else {
-	                                	piece.setLocation(initialX, initialY);
+	                                	pieceButton.setLocation(initialX, initialY);
 	                                }
 	                                
 	                            }
 	                        });
 	                        
-	                        panel.add(piece);
-//	                        g.drawImage(sprite, xPos, yPos, null);
+	                        panel.add(pieceButton);
 	                        return;  // Exit after drawing once
 	                    }
 	                }
