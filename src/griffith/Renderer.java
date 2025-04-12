@@ -77,6 +77,8 @@ public class Renderer {
         JLabel welcomeLabel = new JLabel("Chess");
 		// Set the font of the welcome label
         welcomeLabel.setFont(new Font("Roboto", Font.BOLD, 80));//Setting font for Title
+        // Set white color of text
+        welcomeLabel.setForeground(Color.WHITE);
         // Create a new start button
         JButton startButton = new JButton("Start Game");
 		// Create a new exit button
