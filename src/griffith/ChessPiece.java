@@ -82,6 +82,9 @@ public abstract class ChessPiece {
 
 	                        pieceButton.addMouseMotionListener(new MouseMotionAdapter() {
 	                            public void mouseDragged(MouseEvent e) {
+	                            	if (!isWhite) {
+	                            		return;
+	                            	}
 	                                int newX = pieceButton.getX() + e.getX() - 40;
 	                                int newY = pieceButton.getY() + e.getY() - 40;
 	                                pieceButton.setLocation(newX, newY);
@@ -92,6 +95,9 @@ public abstract class ChessPiece {
 	                        
 	                        pieceButton.addMouseListener(new MouseAdapter() {
 	                            public void mouseReleased(MouseEvent e) {
+	                            	if (!isWhite) {
+	                            		return;
+	                            	}
 	                                int newX = pieceButton.getX() + 40;
 	                                int newY = pieceButton.getY() + 40;
 	                                newX = (int) (((newX / 80)) * 80);
