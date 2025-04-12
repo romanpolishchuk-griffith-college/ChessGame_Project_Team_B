@@ -62,6 +62,7 @@ public abstract class ChessPiece {
 	
 	  public void draw(JFrame panel) {
 		  JButton pieceButton = new JButton();
+		  button = pieceButton;
 		  
 			if (sprite != null) {
 				
