@@ -75,4 +75,8 @@ public class Multiplayer {
             }
         }
     }
+    
+    public boolean getIsWhiteTurn() {
+    	return isWhiteTurn;
+    }
 }

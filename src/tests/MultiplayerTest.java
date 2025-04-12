@@ -1,16 +1,21 @@
-package griffith;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-class MultiplayerTest {
+import griffith.Board;
+import griffith.GameLogic;
+import griffith.Multiplayer;
 
+// Represents a test for the Multiplayer class.
+class MultiplayerTest {
+	// Test for initializing the game
     @Test
     void testGameInitialization() {
         Multiplayer multiplayer = new Multiplayer();
         assertNotNull(multiplayer);
     }
-
+	// Test for the player's move
     @Test
     void testPlayerMove() {
         Multiplayer multiplayer = new Multiplayer();
@@ -22,9 +27,9 @@ class MultiplayerTest {
         board.initializePieces(); // Ensure pieces are initialized
         assertFalse(gameLogic.isMoveValid(board, x, y, true));
         gameLogic.executeMove(board, x, y, y, y);
-        assertTrue(multiplayer.isWhiteTurn); // Turn should switch to the computer
+        assertTrue(multiplayer.getIsWhiteTurn()); // Turn should switch to the computer
     }
-
+	// Test for the computer's move
     @Test
     void testComputerMove() {
         Multiplayer multiplayer = new Multiplayer();
@@ -36,7 +41,7 @@ class MultiplayerTest {
         int[] move = gameLogic.getComputerMove(board);
         assertNotNull(move);
         gameLogic.executeMove(board, move[0], move[1], move[2], move[3]);
-        assertTrue(multiplayer.isWhiteTurn); // Turn should switch back to the player
+        assertTrue(multiplayer.getIsWhiteTurn()); // Turn should switch back to the player
     }
 
     @Test
