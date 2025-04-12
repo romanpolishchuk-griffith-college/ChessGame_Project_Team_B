@@ -85,8 +85,23 @@ public class Renderer {
     	welcomePanel = new GradientPanel(); //New panel for the welcome screen
 		// Set the layout of the welcome panel
         welcomePanel.setLayout(new GridBagLayout());//Using GridBagLayout for flexible
-		// Create a new welcome label
-        JLabel welcomeLabel = new JLabel("Chess");
+        
+        ImageIcon chessImageForGameMenu = null;
+       
+        try {
+    	   chessImageForGameMenu = new ImageIcon(getClass().getResource("/res/gameMenuChessImage.png"));
+       }catch(Exception e){
+			System.out.println("Failed to load title icon"+ e.getMessage());
+			} 
+		
+       JLabel welcomeLabel;
+       
+       if (chessImageForGameMenu != null) {
+    	    welcomeLabel = new JLabel("Chess", chessImageForGameMenu, JLabel.CENTER); // With icon
+    	} else {
+    	    welcomeLabel = new JLabel("Chess"); // Without icon
+    	}
+       
 		// Set the font of the welcome label
         welcomeLabel.setFont(new Font("Roboto", Font.BOLD, 80));//Setting font for Title
         // Set white color of text
