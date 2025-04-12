@@ -1,7 +1,8 @@
 package griffith;
 
+// Represents a king.
 public class King extends ChessPiece {
-	
+	// Constructor with specified board and color.
 	public King(Board board, boolean isWhite) {
 		 super(board);
 	        this.isWhite = isWhite;
@@ -12,22 +13,32 @@ public class King extends ChessPiece {
 	   
 	}
 	
+	// Constructor with specified board.
 	public King(Board board) {
 		 super(board);
 	 
 	}
 
+	// Returns the valid moves for the king.
 	@Override
 	public String getValidMoves() {
+		// The moves for the king
 		String moves = "";
+		// The x position of the king
         int kingX = -1;
+		// The y position of the king
         int kingY = -1;
-
+		// Loop through the board
         for (int y = 0; y < board.getBoard().length; y++) {
+			// Loop through the board
             for (int x = 0; x < board.getBoard()[y].length; x++) {
+				// If the piece is the king
                 if (board.getPiece(x, y) == this) {
+					// Set the x position of the king
                 	kingX = x;
+					// Set the y position of the king
                 	kingY = y;
+					// Break the loop
                     break;
                 }
             }
@@ -101,11 +112,14 @@ public class King extends ChessPiece {
         return moves.trim();
 	}
 
+	// Returns true if the move is valid for the king.
 	@Override
 	public boolean isMoveValid(int x, int y) {
+		// Get the valid moves for the king
         String validMoves = getValidMoves();
+		// Get the target move
         String targetMove = x + "," + y;
-
+		// Return if the move is valid
         return validMoves.contains(targetMove);
 	}
 }
