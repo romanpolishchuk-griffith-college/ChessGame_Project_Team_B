@@ -94,4 +94,13 @@ class BoardTest {
 	    assertEquals(Color.WHITE, board.getSquareColor(1, 1));
 	}
 	  
+	@Test
+	public void testIsWhiteWon() {
+		
+	}
+	
+	@Test
+	public void testIsBlackWon() {
+		
+	}
 }
