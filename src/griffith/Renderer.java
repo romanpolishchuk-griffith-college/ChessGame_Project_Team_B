@@ -28,6 +28,17 @@ public class Renderer {
 	public void Setup(String title, int width, int heigth) {
 		// Create a new window
 		window = new JFrame(title);
+		
+		try {
+			ImageIcon titleIcon = new ImageIcon(getClass().getResource("/res/titleIcon.png"));
+		
+			window.setIconImage(titleIcon.getImage());
+			
+			}catch(NullPointerException e){
+				System.out.println("Failed to load title icon"+ e.getStackTrace());
+			}
+		
+		
 		// Set the size of the window
 		window.setSize(width, heigth);
 		// Set the default close operation of the window
@@ -35,6 +46,7 @@ public class Renderer {
 		// Create a new board
 		board = new Board(true);
 		window.setVisible(true);
+	
         }
 	// Renders the game.
 	public void RenderGame() {
