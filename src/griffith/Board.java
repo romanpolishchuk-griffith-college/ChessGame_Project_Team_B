@@ -164,4 +164,12 @@ public class Board extends JPanel  {
   public int getSquareSize() {
 	  return SQUARE_SIZE;
   }
+  
+  public boolean isWhiteWon() {
+	  return false;
+  }
+  
+  public boolean isBlackWon() {
+	  return false;
+  }
 }
