@@ -89,6 +89,13 @@ public class Renderer {
         startButton.setFont(new Font("Roboto", Font.BOLD, 16));
         startButton.setBorder(new LineBorder(Color.DARK_GRAY, 2));
         startButton.setPreferredSize(new Dimension(120,50));
+        
+        exitButton.setBackground(new Color(250, 106, 104));
+        exitButton.setForeground(Color.WHITE);
+        exitButton.setFocusPainted(true);
+        exitButton.setFont(new Font("Roboto", Font.BOLD, 16));
+        exitButton.setBorder(new LineBorder(Color.DARK_GRAY, 2));
+        exitButton.setPreferredSize(new Dimension(120,50));
 
 		// Add an action listener to the start button
         startButton.addActionListener(e -> changeGameState());
