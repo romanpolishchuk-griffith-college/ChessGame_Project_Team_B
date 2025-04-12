@@ -1,8 +1,9 @@
 package griffith;
 
+// Represents a knight.
 public class Knight extends ChessPiece {
-
-public Knight(Board board, boolean isWhite) {
+	// Constructor with specified board and color.
+    public Knight(Board board, boolean isWhite) {
 	super(board);
     this.isWhite = isWhite;
     // Load the appropriate knight image
@@ -10,7 +11,8 @@ public Knight(Board board, boolean isWhite) {
     loadImage(imageName);
     }
    
-public Knight(Board board) {
+	// Constructor with specified board.
+    public Knight(Board board) {
 	super(board);
     }
 
@@ -19,17 +21,22 @@ public Knight(Board board) {
 		String moves = "";
         int knightX = -1;
         int knightY = -1;
-
+        // Loop through the board
         for (int y = 0; y < board.getBoard().length; y++) {
+            // Loop through the board
             for (int x = 0; x < board.getBoard()[y].length; x++) {
+                // If the piece is the knight
                 if (board.getPiece(x, y) == this) {
+                    // Set the x position of the knight
                 	knightX = x;
+                    // Set the y position of the knight
                 	knightY = y;
+                    // Break the loop
                     break;
                 }
             }
         }
-        
+        // Check if the move is valid
         if (knightX - 2 < board.getBoard()[0].length && knightX - 2 >= 0
         		&& knightY + 1 < board.getBoard().length && knightY + 1 >= 0 &&
                 		(board.getPiece(knightX - 2, knightY + 1) == null ||
@@ -97,8 +104,10 @@ public Knight(Board board) {
         return moves.trim();
 	}
 	
+	// Returns true if the move is valid for the knight.
 	@Override
 	public boolean isMoveValid(int x, int y) {
+        // Get the valid moves for the knight
         String validMoves = getValidMoves();
         String targetMove = x + "," + y;
 
