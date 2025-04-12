@@ -1,4 +1,4 @@
-package griffith;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,12 +6,20 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Test;
 
-class BoardTest {
+import griffith.Board;
+import griffith.ChessPiece;
+import griffith.King;
+import griffith.Knight;
+import griffith.Pawn;
+import griffith.Queen;
+import griffith.Rook;
 
+class BoardTest {
+	// Test for getting a piece from the board
 	@Test
 	void getPieceTest() {
 		Board board = new Board();
-
+	
 		ChessPiece[][] testBoardPlacement = {
 				{null, null, null, null, null, null, new Knight(board), null},
 				{null, new Rook(board), null, null, null, null, null, null},
@@ -23,33 +31,39 @@ class BoardTest {
 				{new Pawn(board), null, null, null, new King(board), null, null, null},
 		};
 
+		// Set the board
 		board.setBoard(testBoardPlacement);
 
+		// Test the piece at the specified coordinates
 		assertInstanceOf(Pawn.class, board.getPiece(0, 0));
 		assertEquals(null, board.getPiece(1, 0));
 		assertInstanceOf(Rook.class, board.getPiece(1, 6));
 		assertInstanceOf(King.class, board.getPiece(4, 0));
 
+		// Test invalid coordinates
 		assertEquals(null, board.getPiece(-10, 0));
 		assertEquals(null, board.getPiece(0, -10));
 		assertEquals(null, board.getPiece(-10, -10));
 	}
 
+	// Test for setting a piece on the board
 	@Test
 	void setPieceTest() {
 		Board board = new Board(false);
 
+		// Set the piece on the board
 		board.setPiece(0, 0, new Rook(board));
 		board.setPiece(1, 2, new Queen(board));
 		board.setPiece(3, 4, new King(board));
-
+		// Test the piece at the specified coordinates
 		assertEquals(null, board.getPiece(1, 0));
-
+		// Test the piece at the specified coordinates
 		assertInstanceOf(Rook.class, board.getPiece(0, 0));
 		assertInstanceOf(Queen.class, board.getPiece(1, 2));
 		assertInstanceOf(King.class, board.getPiece(3, 4));
 	}
 
+	// Test for getting the board
 	@Test
 	void getBoardTest() {
 		Board board = new Board(false);
@@ -77,13 +91,14 @@ class BoardTest {
 				{null, null, null, null, null, null, null, null},
 		};
 
+		// Set the board
 		board.setBoard(testBoardPlacement);
-		
+		// Test the board
 		assertArrayEquals(testBoardPlacement, board.getBoard());
 
 		assertArrayEquals(testBoardPlacement2, board2.getBoard());
 	}
-
+	// Test for getting the color of a square
 	@Test
     public void testGetSquareColor() {
 		Board board = new Board();
