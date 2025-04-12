@@ -3,11 +3,13 @@ package griffith;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 
+// Represents a multiplayer game.
 public class Multiplayer {
     private Board board;
     private GameLogic gameLogic;
     boolean isWhiteTurn; // True for white's turn, false for black's turn (computer)
 
+    // Constructor for the multiplayer game.
     public Multiplayer() {
         // Initialize components
         board = new Board();
@@ -15,6 +17,7 @@ public class Multiplayer {
         isWhiteTurn = true; // White starts the game
     }
 
+    // Starts the game.
     public void startGame() {
         // Set up the game window
         JFrame window = new JFrame("Chess vs Computer");
@@ -33,6 +36,7 @@ public class Multiplayer {
         });
     }
 
+    // Handles the player's move.
     private void handlePlayerMove(MouseEvent e) {
         // Get the clicked square
         int x = e.getX() / (board.getWidth() / 8);
