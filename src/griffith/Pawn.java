@@ -74,6 +74,11 @@ public class Pawn extends ChessPiece {
 
 	@Override
 	public boolean isMoveValid(int x, int y) {
+		if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
+				y > board.getBoard().length) {
+			return false;
+		}
+		
         String validMoves = getValidMoves();
         String targetMove = x + "," + y;
 
