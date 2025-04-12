@@ -39,7 +39,9 @@ public class Pawn extends ChessPiece {
         	pawnOffset = -1;
         }
         
-        if (board.getPiece(pawnX, pawnY + pawnOffset) == null) {
+        if (board.getPiece(pawnX, pawnY + pawnOffset) == null &&
+        		pawnY + pawnOffset < board.getBoard().length &&
+        		pawnY + pawnOffset > 0) {
             moves += pawnX + "," + (pawnY + pawnOffset) + " ";
         }
         

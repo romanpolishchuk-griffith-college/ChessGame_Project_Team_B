@@ -68,7 +68,7 @@ public class PawnTest {
         //Out of bounds of the board
         Board board2 = new Board();
         Pawn pawn2 = new Pawn(board2);
-        board.setPiece(3, 7, pawn2);
-        assertFalse(pawn2.isMoveValid(3, 8));
+        board.setPiece(3, 0, pawn2);
+        assertFalse(pawn2.isMoveValid(3, -1));
 	}
 }
