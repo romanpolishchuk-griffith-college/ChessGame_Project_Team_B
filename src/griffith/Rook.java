@@ -1,6 +1,8 @@
 package griffith;
 
+// Represents a rook in the game.
 public class Rook extends ChessPiece {
+	// Constructor with specified board and color.
     public Rook(Board board, boolean isWhite) {
 		super(board,isWhite);
 	        
@@ -9,11 +11,11 @@ public class Rook extends ChessPiece {
 	    loadImage(imageName);
 	  
 	}
-    
+	// Constructor with specified board.
     public Rook(Board board) {
   		super(board);  	   
   	}
-
+	// Returns the valid moves for the rook.
 
 	@Override
 	public String getValidMoves() {
@@ -90,7 +92,7 @@ public class Rook extends ChessPiece {
             	break;
             }
         }
-
+        
         return moves.trim();
 	}
 
