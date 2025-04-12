@@ -105,6 +105,8 @@ public class Renderer {
         exitButton.addActionListener(e -> System.exit(0));
 		// Create a new button panel
         JPanel buttonPanel = new JPanel();
+        // Removing margin color
+        buttonPanel.setOpaque(false);
 		// Add the start button to the button panel
         buttonPanel.add(startButton); 
 		// Add the exit button to the button panel
