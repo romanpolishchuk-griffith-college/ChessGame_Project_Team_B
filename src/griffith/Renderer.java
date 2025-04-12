@@ -70,7 +70,7 @@ public class Renderer {
 	// Creates the welcome panel.
 	private void createWelcomePanel() {
 		// Create a new welcome panel
-    	welcomePanel = new JPanel(); //New panel for the welcome screen
+    	welcomePanel = new GradientPanel(); //New panel for the welcome screen
 		// Set the layout of the welcome panel
         welcomePanel.setLayout(new GridBagLayout());//Using GridBagLayout for flexible
 		// Create a new welcome label
