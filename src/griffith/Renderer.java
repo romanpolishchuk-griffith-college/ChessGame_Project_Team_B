@@ -1,6 +1,7 @@
 package griffith;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -8,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import griffith.Game.GAME_STATE;
 
@@ -74,11 +76,20 @@ public class Renderer {
 		// Create a new welcome label
         JLabel welcomeLabel = new JLabel("Chess");
 		// Set the font of the welcome label
-        welcomeLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));//Setting font for Title
-		// Create a new start button
+        welcomeLabel.setFont(new Font("Roboto", Font.BOLD, 80));//Setting font for Title
+        // Create a new start button
         JButton startButton = new JButton("Start Game");
 		// Create a new exit button
         JButton exitButton = new JButton("Quit");
+        
+     
+        startButton.setBackground(new Color(60, 179, 113));
+        startButton.setForeground(Color.WHITE);
+        startButton.setFocusPainted(false);
+        startButton.setFont(new Font("Roboto", Font.BOLD, 16));
+        startButton.setBorder(new LineBorder(Color.DARK_GRAY, 2));
+        startButton.setPreferredSize(new Dimension(120,50));
+
 		// Add an action listener to the start button
         startButton.addActionListener(e -> changeGameState());
 		// Add an action listener to the exit button
