@@ -72,7 +72,7 @@ public class QueenTest {
         assertFalse(queen.isMoveValid(3, 6));
         
         Board board2 = new Board();
-        Bishop queen2 = new Bishop(board2);
+        Queen queen2 = new Queen(board2);
 
         board2.setPiece(3, 3, queen2);
         
