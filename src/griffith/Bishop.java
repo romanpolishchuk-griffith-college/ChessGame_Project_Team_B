@@ -2,6 +2,7 @@ package griffith;
 
 public class Bishop extends ChessPiece {
 
+    // Constructor with specified board position and color.
     public Bishop(Board board, boolean isWhite) {
 		 super(board, isWhite);
 	        this.isWhite = isWhite;
@@ -11,16 +12,19 @@ public class Bishop extends ChessPiece {
 	   
 	}
     
+    // Constructor with specified board.
     public Bishop(Board board) {
 		 super(board); 
 	}
     
+    //Calculates and returns valid moves for this bishop as a space-separated string.
     @Override
 	public String getValidMoves() {
 		String moves = "";
         int bishopX = -1;
         int bishopY = -1;
 
+        // Find the bishop's position on the board
         for (int y = 0; y < board.getBoard().length; y++) {
             for (int x = 0; x < board.getBoard()[y].length; x++) {
                 if (board.getPiece(x, y) == this) {
@@ -91,11 +95,14 @@ public class Bishop extends ChessPiece {
             }
         }
 
+        // Return the valid moves as a space-separated string
         return moves.trim();
 	}
-
+    
+    // Checks if a move to the specified coordinates is valid for this bishop.
 	@Override
 	public boolean isMoveValid(int x, int y) {
+        // Get the valid moves for this bishop
         String validMoves = getValidMoves();
         String targetMove = x + "," + y;
 
