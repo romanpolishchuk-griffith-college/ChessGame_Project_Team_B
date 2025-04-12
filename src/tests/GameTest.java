@@ -1,13 +1,17 @@
-package griffith;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class GameTest {
+import griffith.Game;
 
+// Represents a test for the Game class.
+class GameTest {
+	// Test for initializing the properties of the game	
 	@Test
 	void testGameInitProperties() {
+		// Create a new game
 		Game game1 = new Game("Title1", 100, 200);
 		assertEquals(100, game1.getWindowWidth());
 		assertEquals(200, game1.getWindowHeight());
@@ -36,7 +40,5 @@ class GameTest {
 	void testGameRun() {
 		Game game1 = new Game("Title1", 1080, 720);
 		
-		//Test that there are no exceptions in a game
-		//assertDoesNotThrow(() -> game1.Run());
 	}
 }
