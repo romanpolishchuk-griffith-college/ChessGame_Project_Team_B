@@ -11,6 +11,8 @@ public class Board extends JPanel  {
   private static final int SQUARE_SIZE = 80;
   private JPanel piecePanel;
   private JFrame window;
+  private java.util.List<ChessPiece> capturedWhitePieces = new java.util.ArrayList<>();
+  private java.util.List<ChessPiece> capturedBlackPieces = new java.util.ArrayList<>();
 //  private ChessPiece[][] board;
   private ChessPiece[][] board = {
 	      {null, null, null, null, null, null, null, null},
