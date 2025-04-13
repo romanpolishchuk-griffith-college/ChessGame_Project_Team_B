@@ -44,6 +44,8 @@ public class King extends ChessPiece {
                     // Set the x position of the king
                     kingX = x;
 
+                    // Set the y position of the king
+                	kingY = y;
                     break;
                 }
             }
