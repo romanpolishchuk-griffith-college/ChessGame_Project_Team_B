@@ -6,10 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.Timer;
 import java.awt.FlowLayout;
 import java.awt.Component;
-import javax.swing.BoxLayout;
 
 import javax.swing.*;
 
@@ -117,10 +115,15 @@ public class Renderer {
     private void createCapturedPanel() {
 		// Create a new captured panel
         JPanel capturedPanel = new JPanel();  //Panel for captured pieces
+		//Vertical box layout for the main panel
+		capturedPanel.setLayout(new BoxLayout(capturedPanel, BoxLayout.Y_AXIS));
 		// Set the preferred size of the captured panel
         capturedPanel.setPreferredSize(new Dimension(150, 600));  //size of the panel
 		// Set the border of the captured panel
         capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
+		
+
+		
 		// Add the captured panel to the window
         window.add(capturedPanel, BorderLayout.EAST); 
 		// Revalidate the window
