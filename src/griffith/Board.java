@@ -273,6 +273,97 @@ public class Board extends JPanel  {
   }
   
   public boolean isBlackWon() {
-	  return false;
+	  int kingX = 0;
+	  int kingY = 0;
+	  
+	  for (int y = 0; y < BOARD_SIZE; y++) {
+          for (int x = 0; x < BOARD_SIZE; x++) {
+              if (getPiece(x, y) instanceof King && getPiece(x, y).isWhite) {
+              	kingX = x;
+              	kingY = y;
+                  break;
+              }
+          }
+      }
+	  
+	  if(isSquareUnderAttack(kingX, kingY, false) == null){
+		  return false;
+	  }
+	  
+	  if(kingY + 1 < BOARD_SIZE &&
+			  getPiece(kingX, kingY + 1) == null &&
+			  isSquareUnderAttack(kingX, kingY + 1, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingY - 1 >= 0 &&
+			  getPiece(kingX, kingY - 1) == null &&
+			  isSquareUnderAttack(kingX, kingY - 1, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingX + 1 < BOARD_SIZE &&
+			  getPiece(kingX + 1, kingY) == null &&
+			  isSquareUnderAttack(kingX + 1, kingY, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingX - 1 >= 0 &&
+			  getPiece(kingX - 1, kingY) == null &&
+			  isSquareUnderAttack(kingX - 1, kingY, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingX - 1 >= 0 &&
+			  kingY - 1 >= 0 &&
+			  getPiece(kingX - 1, kingY - 1) == null &&
+			  isSquareUnderAttack(kingX - 1, kingY - 1, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingX - 1 >= 0 &&
+			  kingY + 1 < BOARD_SIZE &&
+			  getPiece(kingX - 1, kingY + 1) == null &&
+			  isSquareUnderAttack(kingX - 1, kingY + 1, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingX + 1 < BOARD_SIZE &&
+			  kingY - 1 >= 0 &&
+			  getPiece(kingX + 1, kingY - 1) == null &&
+			  isSquareUnderAttack(kingX + 1, kingY - 1, false) == null) {
+			  		return false;
+	  }
+	  
+	  if(kingX + 1 < BOARD_SIZE &&
+			  kingY + 1 < BOARD_SIZE &&
+			  getPiece(kingX + 1, kingY + 1) == null &&
+			  isSquareUnderAttack(kingX + 1, kingY + 1, false) == null) {
+			  		return false;
+	  }
+	  
+	  ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, false);
+	  
+	  int attackingPieceX = 0;
+	  int attackingPieceY = 0;
+	  for (int y = 0; y < BOARD_SIZE; y++) {
+          for (int x = 0; x < BOARD_SIZE; x++) {
+              if (getPiece(x, y) == attackingPiece) {
+            	  attackingPieceX = x;
+            	  attackingPieceY = y;
+                  break;
+              }
+          }
+      }
+	  
+	  String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+	  
+	  for(int i = 0; i < validMovesOFAttakingPiece.length; i++) {
+		  if(isSquareUnderAttack(validMovesOFAttakingPiece[i].charAt(0), validMovesOFAttakingPiece[i].charAt(2), true) != null) {
+			  return false;
+		  }
+	  }
+	  
+	  return true;
   }
 }
