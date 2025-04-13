@@ -127,7 +127,10 @@ public class Renderer {
 		//Panel for black pieces
 		JPanel blackCapturedPanel = new JPanel();
 
-		
+		//Both panels will be in the main captured panel		
+		capturedPanel.add(whiteCapturedPanel);
+		capturedPanel.add(blackCapturedPanel);
+
 		// Add the captured panel to the window
         window.add(capturedPanel, BorderLayout.EAST); 
 		// Revalidate the window
