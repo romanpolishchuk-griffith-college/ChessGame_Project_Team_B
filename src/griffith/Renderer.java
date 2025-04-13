@@ -153,7 +153,10 @@ public class Renderer {
         window.repaint();
     }
 	private void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
-		
+		//Clear existing displays
+		whiteCapturedPanel.removeAll();
+		blackCapturedPanel.removeAll();
+
 	}
 	// Creates the stats panel.
     private void createStatsPanel() {
