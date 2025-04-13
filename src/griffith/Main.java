@@ -1,14 +1,13 @@
 package griffith;
 
 public class Main {
+	public static void main(String[] args) {
 
-    public static void main(String[] args) {
+		// Create a new game
+		Game game = new Game("Super Chess", 1080, 720);
 
-        // Create a new game
-        Game game = new Game("Super Chess", 1080, 720);
+		// Run the game
+		game.Run();
 
-        // Run the game
-        game.Run();
-
-    }
+	}
 }
