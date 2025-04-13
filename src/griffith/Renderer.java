@@ -122,6 +122,10 @@ public class Renderer {
 		// Set the border of the captured panel
         capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
 		
+		//Panel for white pieces 
+		JPanel whiteCapturedPanel = new JPanel();
+		//Panel for black pieces
+		JPanel blackCapturedPanel = new JPanel();
 
 		
 		// Add the captured panel to the window
