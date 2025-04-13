@@ -48,6 +48,7 @@ public class Renderer {
 		window.setVisible(true);
 	
         }
+		
 	// Renders the game.
 	public void RenderGame() {
 		// If the welcome panel is not null
@@ -69,6 +70,7 @@ public class Renderer {
 			isGameDrawn = true;
 		}
 	}
+
 	// Renders the menu.
 	public void RenderMenu() {
 		// If the board is not null
@@ -79,6 +81,7 @@ public class Renderer {
 		// Create the welcome panel
 		createWelcomePanel();
 	}
+
 	// Creates the welcome panel.
 	private void createWelcomePanel() {
 		// Create a new welcome panel
@@ -111,20 +114,21 @@ public class Renderer {
 		// Create a new exit button
         JButton exitButton = new JButton("Quit");
         
-     
-        startButton.setBackground(new Color(60, 179, 113));
-        startButton.setForeground(Color.WHITE);
-        startButton.setFocusPainted(false);
-        startButton.setFont(new Font("Roboto", Font.BOLD, 16));
-        startButton.setBorder(new LineBorder(Color.DARK_GRAY, 2));
-        startButton.setPreferredSize(new Dimension(120,50));
+     	// Setting new button 'Start game' design
+        startButton.setBackground(new Color(60, 179, 113)); 		// green
+        startButton.setForeground(Color.WHITE); 					// white
+		startButton.setFocusPainted(false);
+        startButton.setFont(new Font("Roboto", Font.BOLD, 16)); 	// New font
+        startButton.setBorder(new LineBorder(Color.DARK_GRAY, 2)); 	// border color
+        startButton.setPreferredSize(new Dimension(120,50)); 		// button size
         
-        exitButton.setBackground(new Color(250, 106, 104));
-        exitButton.setForeground(Color.WHITE);
+		// Setting new button 'Quit' design
+        exitButton.setBackground(new Color(250, 106, 104)); 		// red
+        exitButton.setForeground(Color.WHITE);						// white
         exitButton.setFocusPainted(true);
-        exitButton.setFont(new Font("Roboto", Font.BOLD, 16));
-        exitButton.setBorder(new LineBorder(Color.DARK_GRAY, 2));
-        exitButton.setPreferredSize(new Dimension(120,50));
+        exitButton.setFont(new Font("Roboto", Font.BOLD, 16));		// New font
+        exitButton.setBorder(new LineBorder(Color.DARK_GRAY, 2));	// border color
+        exitButton.setPreferredSize(new Dimension(120,50));			// button size
 
 		// Add an action listener to the start button
         startButton.addActionListener(e -> changeGameState());
@@ -158,6 +162,7 @@ public class Renderer {
 		// Repaint the window
         window.repaint();
     }
+
 	// Creates the captured panel.
     private void createCapturedPanel() {
 		// Create a new captured panel
@@ -173,6 +178,7 @@ public class Renderer {
 		// Repaint the window
         window.repaint();
     }
+
 	// Creates the stats panel.
     private void createStatsPanel() {
 		// Create a new stats panel
