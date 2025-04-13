@@ -185,8 +185,16 @@ public class Renderer {
 				blackCapturedPanel.add(pieceLabel);
 			}
 		}
-
+		//Refresh white captured panel layout
+		whiteCapturedPanel.revalidate();
+		//Redraw white captured panel
+		whiteCapturedPanel.repaint();
+		//Refresh black captured panel layout
+		blackCapturedPanel.revalidate();
+		//Redraw black captured panel
+		blackCapturedPanel.repaint();
 	}
+
 	// Creates the stats panel.
     private void createStatsPanel() {
 		// Create a new stats panel
