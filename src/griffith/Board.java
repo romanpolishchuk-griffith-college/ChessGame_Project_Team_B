@@ -182,5 +182,12 @@ public void addCapturedPiece(ChessPiece piece) {
       capturedBlackPieces.add(piece);
   }
 }
+public java.util.List<ChessPiece> getCapturedWhitePieces() {
+  return capturedWhitePieces;
+}
+
+public java.util.List<ChessPiece> getCapturedBlackPieces() {
+  return capturedBlackPieces;
+}
 
 }
