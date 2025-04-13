@@ -146,6 +146,9 @@ public class Renderer {
 
 		// Add the captured panel to the window
         window.add(capturedPanel, BorderLayout.EAST); 
+
+		//Timer to update captured pieces display periodically
+		new Timer(500, e -> updateCapturedPieces(whiteCapturedPanel, blackCapturedPanel)).start();
 		
 		// Revalidate the window
         window.revalidate();
