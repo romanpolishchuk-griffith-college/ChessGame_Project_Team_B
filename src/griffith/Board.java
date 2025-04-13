@@ -174,4 +174,13 @@ public class Board extends JPanel  {
   public int getSquareSize() {
 	  return SQUARE_SIZE;
   }
+  //Method to manage captured pieces
+public void addCapturedPiece(ChessPiece piece) {
+  if (piece.isWhite) {
+      capturedWhitePieces.add(piece);
+  } else {
+      capturedBlackPieces.add(piece);
+  }
+}
+
 }
