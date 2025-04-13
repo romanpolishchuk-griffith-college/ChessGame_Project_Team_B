@@ -11,6 +11,8 @@ public class Board extends JPanel  {
   private static final int SQUARE_SIZE = 80;
   private JPanel piecePanel;
   private JFrame window;
+  private java.util.List<ChessPiece> capturedWhitePieces = new java.util.ArrayList<>();
+  private java.util.List<ChessPiece> capturedBlackPieces = new java.util.ArrayList<>();
 //  private ChessPiece[][] board;
   private ChessPiece[][] board = {
 	      {null, null, null, null, null, null, null, null},
@@ -124,9 +126,18 @@ public class Board extends JPanel  {
           }
       }
       
-      if(window != null && getPiece(newX, newY) != null) {
-          window.remove(getPiece(newX, newY).button);  
-      }
+      //Get whatever piece is at a new position
+      ChessPiece targetPiece = getPiece(newX, newY);
+      //Checking if a piece of the other side is on that position
+    if (targetPiece != null && targetPiece.isWhite != piece.isWhite) {
+        //Piece is added to captured panel if yes
+        addCapturedPiece(targetPiece);
+        //Verifying game window is not null
+        if(window != null) {
+          //Removing that chesss piece from the game window
+            window.remove(targetPiece.button);  
+        }
+    }
       
       //Remove piece from old place
       setPiece(pieceX, pieceY, null);
@@ -172,4 +183,20 @@ public class Board extends JPanel  {
   public int getSquareSize() {
 	  return SQUARE_SIZE;
   }
+  //Method to manage captured pieces
+public void addCapturedPiece(ChessPiece piece) {
+  if (piece.isWhite) {
+      capturedWhitePieces.add(piece);
+  } else {
+      capturedBlackPieces.add(piece);
+  }
+}
+public java.util.List<ChessPiece> getCapturedWhitePieces() {
+  return capturedWhitePieces;
+}
+
+public java.util.List<ChessPiece> getCapturedBlackPieces() {
+  return capturedBlackPieces;
+}
+
 }

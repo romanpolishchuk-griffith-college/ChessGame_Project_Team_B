@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.FlowLayout;
+import java.awt.Component;
 
 import javax.swing.*;
 
@@ -113,17 +115,89 @@ public class Renderer {
     private void createCapturedPanel() {
 		// Create a new captured panel
         JPanel capturedPanel = new JPanel();  //Panel for captured pieces
+		//Vertical box layout for the main panel
+		capturedPanel.setLayout(new BoxLayout(capturedPanel, BoxLayout.Y_AXIS));
 		// Set the preferred size of the captured panel
         capturedPanel.setPreferredSize(new Dimension(150, 600));  //size of the panel
 		// Set the border of the captured panel
         capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
+		
+		//Panel for white pieces 
+		JPanel whiteCapturedPanel = new JPanel();
+		//Left aligned flow layout
+		whiteCapturedPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		//Adding a title to the panel
+		whiteCapturedPanel.setBorder(BorderFactory.createTitledBorder("White pieces captured"));
+		//Left align
+		whiteCapturedPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		//Panel for black pieces
+		JPanel blackCapturedPanel = new JPanel();
+		//Left aligned flow layout
+		blackCapturedPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		//Adding a title to the panel
+		blackCapturedPanel.setBorder(BorderFactory.createTitledBorder("Black pieces captured"));
+		//Left align
+		blackCapturedPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		//Both panels will be in the main captured panel		
+		capturedPanel.add(whiteCapturedPanel);
+		capturedPanel.add(blackCapturedPanel);
+
 		// Add the captured panel to the window
         window.add(capturedPanel, BorderLayout.EAST); 
+
+		//Timer to update captured pieces display periodically
+		new Timer(500, e -> updateCapturedPieces(whiteCapturedPanel, blackCapturedPanel)).start();
+		
 		// Revalidate the window
         window.revalidate();
 		// Repaint the window
         window.repaint();
     }
+	private void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
+		//Clear existing displays
+		whiteCapturedPanel.removeAll();
+		blackCapturedPanel.removeAll();
+		
+		//Loop for all captured white pieces
+		for (ChessPiece piece : board.getCapturedWhitePieces()){
+			 //Checks if piece has a valid image
+			 if (piece.sprite != null) {
+				//Creates a label with piece image
+				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
+				
+				//Size for the chess piece 
+				pieceLabel.setPreferredSize(new Dimension(40, 40));
+				
+				//Add piece to white captured panel
+				whiteCapturedPanel.add(pieceLabel);
+			}
+		}
+		//Loop for all captured black pieces
+		for (ChessPiece piece : board.getCapturedBlackPieces()) {
+			//Checks if piece has a valid image
+			if (piece.sprite != null) {
+				//Creates a label with piece image
+				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
+				
+				//Size for the chess piece 
+				pieceLabel.setPreferredSize(new Dimension(40, 40));
+				
+				//Add piece to black captured panel
+				blackCapturedPanel.add(pieceLabel);
+			}
+		}
+		//Refresh white captured panel layout
+		whiteCapturedPanel.revalidate();
+		//Redraw white captured panel
+		whiteCapturedPanel.repaint();
+		//Refresh black captured panel layout
+		blackCapturedPanel.revalidate();
+		//Redraw black captured panel
+		blackCapturedPanel.repaint();
+	}
+
 	// Creates the stats panel.
     private void createStatsPanel() {
 		// Create a new stats panel
