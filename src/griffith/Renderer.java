@@ -156,6 +156,21 @@ public class Renderer {
 		//Clear existing displays
 		whiteCapturedPanel.removeAll();
 		blackCapturedPanel.removeAll();
+		
+		//Loop for all captured white pieces
+		for (ChessPiece piece : board.getCapturedWhitePieces()){
+			 //Checks if piece has a valid image
+			 if (piece.sprite != null) {
+				//Creates a label with piece image
+				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
+				
+				//Set preferred size for the piece icon
+				pieceLabel.setPreferredSize(new Dimension(40, 40));
+				
+				//Add piece to white captured panel
+				whiteCapturedPanel.add(pieceLabel);
+			}
+		}
 
 	}
 	// Creates the stats panel.
