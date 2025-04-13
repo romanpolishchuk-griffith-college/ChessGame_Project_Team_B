@@ -126,9 +126,18 @@ public class Board extends JPanel  {
           }
       }
       
-      if(window != null && getPiece(newX, newY) != null) {
-          window.remove(getPiece(newX, newY).button);  
-      }
+      //Get whatever piece is at a new position
+      ChessPiece targetPiece = getPiece(newX, newY);
+      //Checking if a piece of the other side is on that position
+    if (targetPiece != null && targetPiece.isWhite != piece.isWhite) {
+        //Piece is added to captured panel if yes
+        addCapturedPiece(targetPiece);
+        //Verifying game window is not null
+        if(window != null) {
+          //Removing that chesss piece from the game window
+            window.remove(targetPiece.button);  
+        }
+    }
       
       //Remove piece from old place
       setPiece(pieceX, pieceY, null);
