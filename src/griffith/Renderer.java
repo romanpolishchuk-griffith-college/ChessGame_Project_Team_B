@@ -124,6 +124,13 @@ public class Renderer {
 		
 		//Panel for white pieces 
 		JPanel whiteCapturedPanel = new JPanel();
+		//Left aligned flow layout
+		whiteCapturedPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		//Adding a title to the panel
+		whiteCapturedPanel.setBorder(BorderFactory.createTitledBorder("White pieces captured"));
+		//Left align
+		whiteCapturedPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
 		//Panel for black pieces
 		JPanel blackCapturedPanel = new JPanel();
 
