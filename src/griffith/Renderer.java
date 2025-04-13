@@ -164,11 +164,25 @@ public class Renderer {
 				//Creates a label with piece image
 				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
 				
-				//Set preferred size for the piece icon
+				//Size for the chess piece 
 				pieceLabel.setPreferredSize(new Dimension(40, 40));
 				
 				//Add piece to white captured panel
 				whiteCapturedPanel.add(pieceLabel);
+			}
+		}
+		//Loop for all captured black pieces
+		for (ChessPiece piece : board.getCapturedBlackPieces()) {
+			//Checks if piece has a valid image
+			if (piece.sprite != null) {
+				//Creates a label with piece image
+				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
+				
+				//Size for the chess piece 
+				pieceLabel.setPreferredSize(new Dimension(40, 40));
+				
+				//Add piece to black captured panel
+				blackCapturedPanel.add(pieceLabel);
 			}
 		}
 
