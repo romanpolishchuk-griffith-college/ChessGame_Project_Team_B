@@ -118,7 +118,7 @@ public class Renderer {
 		//Vertical box layout for the main panel
 		capturedPanel.setLayout(new BoxLayout(capturedPanel, BoxLayout.Y_AXIS));
 		// Set the preferred size of the captured panel
-        capturedPanel.setPreferredSize(new Dimension(150, 600));  //size of the panel
+        capturedPanel.setPreferredSize(new Dimension(350, 600));  //size of the panel
 		// Set the border of the captured panel
         capturedPanel.setBorder(BorderFactory.createTitledBorder("Captured Pieces"));  
 		
