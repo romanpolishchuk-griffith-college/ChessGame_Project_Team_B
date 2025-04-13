@@ -146,11 +146,15 @@ public class Renderer {
 
 		// Add the captured panel to the window
         window.add(capturedPanel, BorderLayout.EAST); 
+		
 		// Revalidate the window
         window.revalidate();
 		// Repaint the window
         window.repaint();
     }
+	private void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
+		
+	}
 	// Creates the stats panel.
     private void createStatsPanel() {
 		// Create a new stats panel
