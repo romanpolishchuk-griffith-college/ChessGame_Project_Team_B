@@ -168,7 +168,7 @@ public class Renderer {
 				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
 				
 				//Size for the chess piece 
-				pieceLabel.setPreferredSize(new Dimension(40, 40));
+				pieceLabel.setPreferredSize(new Dimension(70, 70));
 				
 				//Add piece to white captured panel
 				whiteCapturedPanel.add(pieceLabel);
@@ -182,7 +182,7 @@ public class Renderer {
 				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
 				
 				//Size for the chess piece 
-				pieceLabel.setPreferredSize(new Dimension(40, 40));
+				pieceLabel.setPreferredSize(new Dimension(70, 70));
 				
 				//Add piece to black captured panel
 				blackCapturedPanel.add(pieceLabel);
