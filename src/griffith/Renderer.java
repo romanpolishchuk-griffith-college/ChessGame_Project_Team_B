@@ -197,10 +197,11 @@ public class Renderer {
         window.repaint();
     }
 
-    // Creates the captured panel.
-    private void createCapturedPanel() {
+	// Creates the captured panel.
+    public void createCapturedPanel() {
 
         // Create a new captured panel
+
         JPanel capturedPanel = new JPanel();  //Panel for captured pieces
 
         //Vertical box layout for the main panel
@@ -253,58 +254,50 @@ public class Renderer {
         window.repaint();
     }
 
-    private void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
+	public void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
+		//Clear existing displays
+		whiteCapturedPanel.removeAll();
+		blackCapturedPanel.removeAll();
+		
+		//Loop for all captured white pieces
+		for (ChessPiece piece : board.getCapturedWhitePieces()){
+			 //Checks if piece has a valid image
+			 if (piece.sprite != null) {
+				//Creates a label with piece image
+				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
+				
+				//Size for the chess piece 
+				pieceLabel.setPreferredSize(new Dimension(70, 70));
+				
+				//Add piece to white captured panel
+				whiteCapturedPanel.add(pieceLabel);
+			}
+		}
+		//Loop for all captured black pieces
+		for (ChessPiece piece : board.getCapturedBlackPieces()) {
+			//Checks if piece has a valid image
+			if (piece.sprite != null) {
+				//Creates a label with piece image
+				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
+				
+				//Size for the chess piece 
+				pieceLabel.setPreferredSize(new Dimension(70, 70));
+				
+				//Add piece to black captured panel
+				blackCapturedPanel.add(pieceLabel);
+			}
+		}
+		//Refresh white captured panel layout
+		whiteCapturedPanel.revalidate();
+		//Redraw white captured panel
+		whiteCapturedPanel.repaint();
+		//Refresh black captured panel layout
+		blackCapturedPanel.revalidate();
+		//Redraw black captured panel
+		blackCapturedPanel.repaint();
+	}
 
-        //Clear existing displays
-        whiteCapturedPanel.removeAll();
-        blackCapturedPanel.removeAll();
-
-        //Loop for all captured white pieces
-        for (ChessPiece piece : board.getCapturedWhitePieces()) {
-
-            //Checks if piece has a valid image
-            if (piece.sprite != null) {
-
-                //Creates a label with piece image
-                JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
-
-                //Size for the chess piece
-                pieceLabel.setPreferredSize(new Dimension(70, 70));
-
-                //Add piece to white captured panel
-                whiteCapturedPanel.add(pieceLabel);
-            }
-        }
-        //Loop for all captured black pieces
-        for (ChessPiece piece : board.getCapturedBlackPieces()) {
-
-            //Checks if piece has a valid image
-            if (piece.sprite != null) {
-
-                //Creates a label with piece image
-                JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
-
-                //Size for the chess piece
-                pieceLabel.setPreferredSize(new Dimension(70, 70));
-
-                //Add piece to black captured panel
-                blackCapturedPanel.add(pieceLabel);
-            }
-        }
-        //Refresh white captured panel layout
-        whiteCapturedPanel.revalidate();
-
-        //Redraw white captured panel
-        whiteCapturedPanel.repaint();
-
-        //Refresh black captured panel layout
-        blackCapturedPanel.revalidate();
-
-        //Redraw black captured panel
-        blackCapturedPanel.repaint();
-    }
-
-    // Creates the stats panel.
+	// Creates the stats panel.
     private void createStatsPanel() {
 
         // Create a new stats panel

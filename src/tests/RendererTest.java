@@ -35,6 +35,20 @@ class RendererTest {
 		renderer.Setup("Test Window", 800, 600);
 		assertDoesNotThrow(() -> renderer.RenderMenu(), "RenderMenu should not throw an exception");
 	}
+	//Test for captured panel
+	@Test
+	void testCapturedPanel() {
+		renderer.Setup("Test", 800, 600);
+		assertDoesNotThrow(() -> renderer.createCapturedPanel(), "Captured Panel should not throw an exception");
+	}
+	@Test
+	void testUpdateCapturedPieces() {
+		renderer.Setup("Test", 800, 600);
+		JPanel whiteCapturedPanel=new JPanel();
+		JPanel blackCapturedPanel=new JPanel();
+
+		assertDoesNotThrow(() -> renderer.updateCapturedPieces(whiteCapturedPanel, blackCapturedPanel), "Captured pieces should not throw an exception");
+	}
 	   
 
 }
