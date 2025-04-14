@@ -112,7 +112,7 @@ public class Renderer {
         window.repaint();
     }
 	// Creates the captured panel.
-    private void createCapturedPanel() {
+    public void createCapturedPanel() {
 		// Create a new captured panel
         JPanel capturedPanel = new JPanel();  //Panel for captured pieces
 		//Vertical box layout for the main panel
@@ -155,7 +155,7 @@ public class Renderer {
 		// Repaint the window
         window.repaint();
     }
-	private void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
+	public void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
 		//Clear existing displays
 		whiteCapturedPanel.removeAll();
 		blackCapturedPanel.removeAll();
