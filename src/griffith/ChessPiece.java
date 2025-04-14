@@ -9,6 +9,7 @@ import java.awt.event.*;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public abstract class ChessPiece {
 	protected boolean isWhite = true;
@@ -79,6 +80,37 @@ public abstract class ChessPiece {
 	                        
 	                        initialX = xPos;
 	                        initialY = yPos;
+	                        
+	                        ChessPiece thisPiece = this;
+	                        
+	                        pieceButton.addMouseListener(new MouseInputAdapter() {
+	                              public void mousePressed(MouseEvent e) {
+	                            	  System.out.println("Whiter");
+	                            	  if (!isWhite) {
+		                            		return;
+	                            	  }
+	                            	  int pieceStartPositionX = -1;
+	                                  int pieceStartPositionY = -1;
+
+	                                  for (int y = 0; y < board.getBoard().length; y++) {
+	                                      for (int x = 0; x < board.getBoard()[y].length; x++) {
+	                                          if (board.getPiece(x, y) == thisPiece) {
+	                                        	  pieceStartPositionX = x;
+	                                        	  pieceStartPositionY = y;
+	                                              break;
+	                                          }
+	                                      }
+	                                  }
+	                                  
+	                            	  ChessPiece selectedPiece = board.getPiece(pieceStartPositionX, pieceStartPositionY);
+	                            	  if(selectedPiece.getValidMoves() != "") {
+	                            		  BoardPanel.highlightedMoves = selectedPiece.getValidMoves().split(" ");
+	                            	  }
+
+	                        		  panel.revalidate();
+	                          		  panel.repaint();
+	                              }
+	                        });
 
 	                        pieceButton.addMouseMotionListener(new MouseMotionAdapter() {
 	                            public void mouseDragged(MouseEvent e) {
@@ -90,14 +122,18 @@ public abstract class ChessPiece {
 	                                pieceButton.setLocation(newX, newY);
 	                            }
 	                        });
-	                        
-	                        ChessPiece thisPiece = this;
+	                       
 	                        
 	                        pieceButton.addMouseListener(new MouseAdapter() {
 	                            public void mouseReleased(MouseEvent e) {
 	                            	if (!isWhite) {
 	                            		return;
 	                            	}
+	                            	
+	                            	BoardPanel.highlightedMoves = null;
+	                        		panel.revalidate();
+	                          		panel.repaint();
+	                            	
 	                                int newX = pieceButton.getX() + 40;
 	                                int newY = pieceButton.getY() + 40;
 	                                newX = (int) (((newX / 80)) * 80);
