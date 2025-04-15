@@ -351,6 +351,7 @@ public class Renderer {
             System.out.println("Player chose Black.");
             GameLogic.setPlayerColor(false); // Player is black
         }
+        
     
         // Change the game state to start the game
         changeGameState();
