@@ -154,7 +154,7 @@ public class Renderer {
 
 
         // Add an action listener to the start button
-        startButton.addActionListener(e -> changeGameState());
+        startButton.addActionListener(e -> showColorSelectionDialog());
 
         // Add an action listener to the exit button
         exitButton.addActionListener(e -> System.exit(0));
