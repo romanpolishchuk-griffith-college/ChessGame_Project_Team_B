@@ -66,6 +66,11 @@ public abstract class ChessPiece {
     // Returns true if the move is valid for the piece.
     abstract public boolean isMoveValid(int x, int y);
 
+    //added a getter for the isWhite property
+    public boolean isWhite() {
+        return isWhite;
+    }
+
     // Draws the piece on the board.
     public void draw(JFrame panel) {
 
