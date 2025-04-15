@@ -46,7 +46,16 @@ public class Multiplayer {
         int x = e.getX() / (board.getWidth() / 8);
         int y = e.getY() / (board.getHeight() / 8);
 
-// Validate and execute the player's move
+        // Get the piece at the clicked square
+        ChessPiece selectedPiece = board.getPiece(x, y);
+
+        // Ensure the selected piece belongs to the player
+        if (selectedPiece == null || selectedPiece.isWhite != isWhiteTurn) {
+            System.out.println("Invalid selection. You can only move your pieces.");
+            return;
+        }
+
+        // Validate and execute the player's move
         if (gameLogic.isMoveValid(board, x, y, y, y, isWhiteTurn)) {
             gameLogic.executeMove(board, x, y, y, y);
             board.repaint(); // Update the board
