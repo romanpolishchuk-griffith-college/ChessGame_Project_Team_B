@@ -14,6 +14,11 @@ public class GameLogic {
         return isPlayerWhite;
     }
 
+    // Method to check if the computer is white
+    public static boolean isComputerWhite() {
+        return !isPlayerWhite; // Opposite of the player's color
+    }
+
     // Checks if a move is valid
     public boolean isMoveValid(Board chessBoard, int x, int y, boolean isWhiteTurn) {
 
@@ -48,22 +53,22 @@ public class GameLogic {
         return false;
     }
 
-    public static int[] getComputerMove(Board board) {
+        public static int[] getComputerMove(Board board) {
+        boolean computerColor = isComputerWhite(); // Get the computer's color
 
         // Example: Random valid move for the computer
         for (int row = 0; row < 8; row++) {
 
+
             for (int col = 0; col < 8; col++) {
+
 
                 // Get the piece at the specified position
                 ChessPiece piece = board.getPiece(row, col);
 
-                // If the piece is not null and the piece is not white, get the valid moves
-                if (piece != null && !piece.isWhite) { // Computer's pieces
-
-                    // Get the valid moves
+                // If the piece belongs to the computer, get its valid moves
+                if (piece != null && piece.isWhite == computerColor) {
                     for (int targetRow = 0; targetRow < 8; targetRow++) {
-
                         for (int targetCol = 0; targetCol < 8; targetCol++) {
 
                             // If the move is valid, return the move
