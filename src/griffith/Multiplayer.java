@@ -50,8 +50,8 @@ public class Multiplayer {
         ChessPiece selectedPiece = board.getPiece(x, y);
 
         // Ensure the selected piece belongs to the player
-        if (selectedPiece == null || selectedPiece.isWhite != isWhiteTurn) {
-            System.out.println("Invalid selection. You can only move your pieces.");
+        if( selectedPiece == null || selectedPiece.isWhite() != GameLogic.isPlayerWhite()) {
+            System.out.println("Invalid Selection. You are allowed to move only your pieces.");
             return;
         }
 
@@ -74,12 +74,12 @@ public class Multiplayer {
 
     // Handles the computer's move
     private void handleComputerMove() {
-        int[] move = gameLogic.getComputerMove(board); // Get the computer's move
+        int[] move = GameLogic.getComputerMove(board); // Get the computer's move
 
         if (move != null) {
             gameLogic.executeMove(board, move[0], move[1], move[2], move[3]);
             board.repaint();
-            isWhiteTurn = true; // Switch back to player's turn
+            isWhiteTurn = true; //Switch back to player's turn
 
             if (gameLogic.isGameOver(board)) {
                 JOptionPane.showMessageDialog(null, "Game Over! Computer wins!");
