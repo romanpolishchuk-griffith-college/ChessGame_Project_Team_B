@@ -329,4 +329,30 @@ public class Renderer {
         Game.setGameState(GAME_STATE.ACTIVE_GAME);
     }
 
+    private void showColorSelectionDialog() {
+        // Create a dialog for color selection
+        String[] options = {"White", "Black"};
+        int choice = JOptionPane.showOptionDialog(
+            window,
+            "Choose your color:",
+            "Color Selection",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+    
+        // Handle the player's choice
+        if (choice == 0) {
+            System.out.println("Player chose White.");
+            GameLogic.setPlayerColor(true); // Player is white
+        } else if (choice == 1) {
+            System.out.println("Player chose Black.");
+            GameLogic.setPlayerColor(false); // Player is black
+        }
+    
+        // Change the game state to start the game
+        changeGameState();
+    }
 }
