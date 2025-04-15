@@ -47,7 +47,7 @@ public class Multiplayer {
         int y = e.getY() / (board.getHeight() / 8);
 
 // Validate and execute the player's move
-        if (gameLogic.isMoveValid(board, x, y, isWhiteTurn)) {
+        if (gameLogic.isMoveValid(board, x, y, y, y, isWhiteTurn)) {
             gameLogic.executeMove(board, x, y, y, y);
             board.repaint(); // Update the board
             isWhiteTurn = false; // Switch to computer's turn
