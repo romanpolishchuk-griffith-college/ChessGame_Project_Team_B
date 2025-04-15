@@ -144,6 +144,13 @@ public abstract class ChessPiece {
                             // When the mouse is released
                             public void mouseReleased(MouseEvent e) {
 
+                                // Check if the piece belongs to the current player
+                                if (isWhite != GameLogic.isPlayerWhite()) {
+                                    System.out.println("You cannot move the opponent's pieces.");
+                                    piece.setLocation(initialX, initialY); // Reset to original position
+                                    return;
+                                }
+
                                 // Get the new x position
                                 int newX = piece.getX() + e.getX();
 
@@ -152,39 +159,29 @@ public abstract class ChessPiece {
 
                                 // Set the new location of the piece
                                 newX = (int) (((newX / 80)) * 80);
-
-                                // Set the new location of the piece
                                 newY = (int) (((newY / 80)) * 80);
+
                                 System.out.println("X: " + newX / 80 + " " + (7 - newY / 80));
 
                                 if (isMoveValid(newX / 80, 7 - newY / 80)) {
-
                                     piece.setLocation(newX, newY);
                                     board.movePiece(thisPiece, newX / 80, 7 - newY / 80);
                                     initialX = newX;
-                                    // Set the initial y position
                                     initialY = newY;
 
                                     // Get the computer move
                                     int[] moves = GameLogic.getComputerMove(board);
 
-                                    // Get the piece to move
-                                    ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
-
-                                    // Move the piece
-                                    board.movePiece(pieceMove, moves[2], moves[3]);
-
-                                    // Set the location of the piece
-                                    pieceMove.button.setLocation(moves[2] * 80, (7 - moves[3]) * 80);
-
-                                    // Print the move
-                                    System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
-                                }
-                                // If the move is not valid, set the location of the piece to the initial location
-                                else {
+                                    if (moves != null) {
+                                        ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
+                                        board.movePiece(pieceMove, moves[2], moves[3]);
+                                        pieceMove.button.setLocation(moves[2] * 80, (7 - moves[3]) * 80);
+                                        System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
+                                    }
+                                } else {
+                                    // If the move is not valid, reset the piece to its original position
                                     piece.setLocation(initialX, initialY);
                                 }
-
                             }
                         });
                         // Add the piece to the panel

@@ -50,14 +50,17 @@ public class Multiplayer {
         ChessPiece selectedPiece = board.getPiece(x, y);
 
         // Ensure the selected piece belongs to the player
-        if( selectedPiece == null || selectedPiece.isWhite() != GameLogic.isPlayerWhite()) {
-            System.out.println("Invalid Selection. You are allowed to move only your pieces.");
+        if (selectedPiece == null || selectedPiece.isWhite() != GameLogic.isPlayerWhite()) {
+            System.out.println("Invalid selection. You can only move your pieces.");
             return;
         }
 
+        // Wait for the player to select a valid move
+        System.out.println("Selected piece: " + selectedPiece.pieceName);
+
         // Validate and execute the player's move
-        if (gameLogic.isMoveValid(board, x, y, y, y, isWhiteTurn)) {
-            gameLogic.executeMove(board, x, y, y, y);
+        if (gameLogic.isMoveValid(board, x, y, x, y, isWhiteTurn)) {
+            gameLogic.executeMove(board, x, y, x, y);
             board.repaint(); // Update the board
             isWhiteTurn = false; // Switch to computer's turn
 
