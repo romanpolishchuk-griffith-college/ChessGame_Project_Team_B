@@ -25,7 +25,7 @@ class MultiplayerTest {
         // Simulate a valid player move
         int x = 0, y = 1; // Example: Moving a pawn
         board.initializePieces(); // Ensure pieces are initialized
-        assertFalse(gameLogic.isMoveValid(board, x, y, true));
+        assertFalse(gameLogic.isMoveValid(board, x, y, y, y, true));
         gameLogic.executeMove(board, x, y, y, y);
         assertTrue(multiplayer.getIsWhiteTurn()); // Turn should switch to the computer
     }
