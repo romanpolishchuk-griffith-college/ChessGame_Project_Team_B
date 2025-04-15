@@ -55,9 +55,6 @@ public class Multiplayer {
             return;
         }
 
-        // Wait for the player to select a valid move
-        System.out.println("Selected piece: " + selectedPiece.pieceName);
-
         // Validate and execute the player's move
         if (gameLogic.isMoveValid(board, x, y, x, y, isWhiteTurn)) {
             gameLogic.executeMove(board, x, y, x, y);
