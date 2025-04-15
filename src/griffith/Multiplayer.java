@@ -16,20 +16,20 @@ public class Multiplayer {
         // Initialize components
         board = new Board();
         gameLogic = new GameLogic();
-        isWhiteTurn = true; // White starts the game
+        isWhiteTurn = GameLogic.isPlayerWhite(); // White starts the game
     }
 
     // Starts the game.
     public void startGame() {
 
-        // Set up the game window
+        //Set up the game window
         JFrame window = new JFrame("Chess vs Computer");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(800, 800);
         window.add(board);
         window.setVisible(true);
 
-        // Add mouse listener for player moves
+        //Add mouse listener for player moves
         board.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 if (isWhiteTurn) {
