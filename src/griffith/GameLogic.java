@@ -2,6 +2,18 @@ package griffith;
 
 public class GameLogic {
 
+    private static boolean isPlayerWhite = true; // Default to white
+
+    //method to set the player's color
+    public static void setPlayerColor(boolean isWhite) {
+        isPlayerWhite = isWhite;
+    }
+
+    // method to get the player's color
+    public static boolean isPlayerWhite() {
+        return isPlayerWhite;
+    }
+
     // Checks if a move is valid
     public boolean isMoveValid(Board chessBoard, int x, int y, boolean isWhiteTurn) {
 
