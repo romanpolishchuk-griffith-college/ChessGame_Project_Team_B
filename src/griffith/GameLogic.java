@@ -20,10 +20,9 @@ public class GameLogic {
     }
 
     // Checks if a move is valid
-    public boolean isMoveValid(Board chessBoard, int x, int y, boolean isWhiteTurn) {
-
-        // Get the piece at the specified position
-        ChessPiece piece = chessBoard.getPiece(x, y);
+    public boolean isMoveValid(Board chessBoard, int startX, int startY, int endX, int endY, boolean isWhiteTurn) {
+        // Get the piece at the start position
+        ChessPiece piece = chessBoard.getPiece(startX, startY);
 
         // If the piece is null or the color of the piece is not the same as the current turn, return false
         if (piece == null || piece.isWhite != isWhiteTurn) {
@@ -32,8 +31,8 @@ public class GameLogic {
 
         }
 
-        // Return if the move is valid
-        return piece.isMoveValid(x, y);
+        // Check if the move is valid for the piece
+        return piece.isMoveValid(endX, endY);
     }
 
     // Executes a move 
@@ -102,6 +101,7 @@ public class GameLogic {
                 ChessPiece piece = board.getPiece(row, col);
 
                 // If the piece is a king
+
                 if (piece instanceof King) {
 
                     // If the piece is white, set the white king to true

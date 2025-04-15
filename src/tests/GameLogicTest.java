@@ -58,11 +58,11 @@ public class GameLogicTest {
         GameLogic gameLogic = new GameLogic();
 
         // Test valid moves for the rook
-        assertTrue(gameLogic.isMoveValid(board, 0, 0, 0, 5), "Rook should be able to move horizontally");
-        assertTrue(gameLogic.isMoveValid(board, 0, 0, 5, 0), "Rook should be able to move vertically");
+        assertTrue(gameLogic.isMoveValid(board, 0, 0, 0, 1, true), "Rook should be able to move from (0,0) to (0,1)");
+        assertTrue(gameLogic.isMoveValid(board, 0, 0, 1, 0, true), "Rook should be able to move from (0,0) to (1,0)");
 
         // Test invalid moves for the rook
-        assertFalse(gameLogic.isMoveValid(board, 0, 0, 1, 1), "Rook should not be able to move diagonally");
-        assertFalse(gameLogic.isMoveValid(board, 0, 0, 2, 1), "Rook should not be able to move to an invalid position");
+        assertFalse(gameLogic.isMoveValid(board, 0, 0, 1, 1, true), "Rook should not be able to move diagonally");
+        assertFalse(gameLogic.isMoveValid(board, 0, 0, 2, 2, true), "Rook should not be able to move to an invalid position");
     }
 }

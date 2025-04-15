@@ -16,7 +16,7 @@ public class Multiplayer {
         // Initialize components
         board = new Board();
         gameLogic = new GameLogic();
-        isWhiteTurn = GameLogic.isPlayerWhite(); // White starts the game
+        isWhiteTurn = GameLogic.isPlayerWhite(); // Player's turn starts based on their color
     }
 
     // Starts the game.
@@ -46,41 +46,34 @@ public class Multiplayer {
         int x = e.getX() / (board.getWidth() / 8);
         int y = e.getY() / (board.getHeight() / 8);
 
-        // Validate and execute the player's move
+// Validate and execute the player's move
         if (gameLogic.isMoveValid(board, x, y, isWhiteTurn)) {
-
             gameLogic.executeMove(board, x, y, y, y);
             board.repaint(); // Update the board
             isWhiteTurn = false; // Switch to computer's turn
 
-            // Check if the game is over
             if (gameLogic.isGameOver(board)) {
-
-                JOptionPane.showMessageDialog(null, "Game Over! White wins!");
+                JOptionPane.showMessageDialog(null, "Game Over! You win!");
                 return;
             }
 
-            // Let the computer make its move
-            handleComputerMove();
+            handleComputerMove(); // Let the computer make its move
         } else {
             System.out.println("Invalid move. Try again.");
         }
     }
 
+    // Handles the computer's move
     private void handleComputerMove() {
-
-        // Computer makes a move
-        int[] move = gameLogic.getComputerMove(board); // Get a move from the computer
+        int[] move = gameLogic.getComputerMove(board); // Get the computer's move
 
         if (move != null) {
-
-            gameLogic.executeMove(board, move[0], move[1], move[2], move[3]); // Execute the move
-            board.repaint(); // Update the board
+            gameLogic.executeMove(board, move[0], move[1], move[2], move[3]);
+            board.repaint();
             isWhiteTurn = true; // Switch back to player's turn
 
-            // Check if the game is over
             if (gameLogic.isGameOver(board)) {
-                JOptionPane.showMessageDialog(null, "Game Over! Black (Computer) wins!");
+                JOptionPane.showMessageDialog(null, "Game Over! Computer wins!");
             }
         }
     }
