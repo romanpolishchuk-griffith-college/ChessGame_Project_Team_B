@@ -25,10 +25,8 @@ public class GameLogic {
         ChessPiece piece = chessBoard.getPiece(startX, startY);
 
         // If the piece is null or the color of the piece is not the same as the current turn, return false
-        if (piece == null || piece.isWhite != isWhiteTurn) {
-
-            return false; // No piece or wrong color
-
+        if (piece == null || piece.isWhite() != isWhiteTurn) {
+            return false; //No piece or wrong color
         }
 
         // Check if the move is valid for the piece
