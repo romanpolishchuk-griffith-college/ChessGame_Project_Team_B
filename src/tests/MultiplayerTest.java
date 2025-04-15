@@ -39,7 +39,7 @@ class MultiplayerTest {
 
         // Simulate a computer move
         board.initializePieces(); // Ensure pieces are initialized
-        int[] move = gameLogic.getComputerMove(board);
+        int[] move = GameLogic.getComputerMove(board);
         assertNotNull(move);
         gameLogic.executeMove(board, move[0], move[1], move[2], move[3]);
         assertTrue(multiplayer.getIsWhiteTurn()); // Turn should switch back to the player
@@ -47,7 +47,7 @@ class MultiplayerTest {
 
     @Test
     void testGameOver() {
-        Multiplayer multiplayer = new Multiplayer();
+        
         Board board = new Board();
         GameLogic gameLogic = new GameLogic();
 
@@ -59,7 +59,7 @@ class MultiplayerTest {
 
     @Test
     void testPlayerCanOnlyMoveTheirPieces() {
-        Multiplayer multiplayer = new Multiplayer();
+        
         Board board = new Board(true);
 
         // Set player color to white

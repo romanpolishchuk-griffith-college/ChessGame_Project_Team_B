@@ -343,7 +343,7 @@ public class Renderer {
             options[0]
         );
     
-        // Handle the player's choice
+        //Handle the player's choice
         if (choice == 0) {
             System.out.println("Player chose White.");
             GameLogic.setPlayerColor(true); // Player is white
@@ -351,7 +351,7 @@ public class Renderer {
             System.out.println("Player chose Black.");
             GameLogic.setPlayerColor(false); // Player is black
         }
-        
+
     
         // Change the game state to start the game
         changeGameState();
