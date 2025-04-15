@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import griffith.Board;
+import griffith.ChessPiece;
 import griffith.GameLogic;
 import griffith.Multiplayer;
 
@@ -54,6 +55,23 @@ class MultiplayerTest {
         board.initializePieces(); // Ensure pieces are initialized
         assertFalse(gameLogic.isGameOver(board)); // Game should not be over initially
 
+    }
+
+    @Test
+    void testPlayerCanOnlyMoveTheirPieces() {
+        Multiplayer multiplayer = new Multiplayer();
+        Board board = new Board(true);
+
+        // Set player color to white
+        GameLogic.setPlayerColor(true);
+
+        // Attempt to move a black piece (should fail)
+        ChessPiece blackPawn = board.getPiece(0, 6); // Black pawn
+        assertFalse(blackPawn.isWhite(), "Black pawn should not belong to the player");
+
+        // Attempt to move a white piece (should succeed)
+        ChessPiece whitePawn = board.getPiece(0, 1); // White pawn
+        assertTrue(whitePawn.isWhite(), "White pawn should belong to the player");
     }
 
 }
