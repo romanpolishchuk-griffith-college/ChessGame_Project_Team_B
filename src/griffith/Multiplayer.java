@@ -8,6 +8,7 @@ public class Multiplayer {
 
     private Board board;
     private GameLogic gameLogic;
+    private Renderer renderer; // Renderer for the game
     boolean isWhiteTurn; // True for white's turn, false for black's turn (computer)
 
     // Constructor for the multiplayer game.
@@ -72,18 +73,25 @@ public class Multiplayer {
         }
     }
 
-    // Handles the computer's move
+    // Pause the timer during the computer's move
     private void handleComputerMove() {
-        int[] move = GameLogic.getComputerMove(board); // Get the computer's move
+        if (renderer.countdownTimer != null) {
+            renderer.countdownTimer.stop(); // Pause the timer
+        }
 
+        int[] move = GameLogic.getComputerMove(board);
         if (move != null) {
             gameLogic.executeMove(board, move[0], move[1], move[2], move[3]);
             board.repaint();
-            isWhiteTurn = true; //Switch back to player's turn
+            isWhiteTurn = true;
 
             if (gameLogic.isGameOver(board)) {
                 JOptionPane.showMessageDialog(null, "Game Over! Computer wins!");
             }
+        }
+
+        if (renderer.countdownTimer != null) {
+            renderer.countdownTimer.start(); // Resume the timer
         }
     }
 

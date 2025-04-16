@@ -312,13 +312,15 @@ public class Renderer {
         // Create a new move counter label
         JLabel moveCounterLabel = new JLabel("Moves: 0");
 
+        //Initial timer display
+        JLabel timerLabel = new JLabel("Time Left: 05:00"); // Initial timer display
+
         // Add the status label to the stats panel
         statsPanel.add(statusLabel);
 
         // Add the move counter label to the stats panel
         statsPanel.add(moveCounterLabel);
 
-        JLabel timerLabel = new JLabel("Time Left: 05:00"); // Initial timer display
         statsPanel.add(timerLabel); // Add the timer label
 
         // Add the stats panel to the window
@@ -400,6 +402,8 @@ public class Renderer {
         int secs = seconds % 60;
         return String.format("%02d:%02d", minutes, secs);
     }
+
+    
     public static Board getGameBoard() {
     	return board;
     }
