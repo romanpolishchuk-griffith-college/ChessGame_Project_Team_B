@@ -203,7 +203,7 @@ public class Board extends JPanel {
         return capturedBlackPieces;
     }
 
-    private ChessPiece isSquareUnderAttack(int squareX, int squareY, boolean isEnemyWhite) {
+    public ChessPiece isSquareUnderAttack(int squareX, int squareY, boolean isEnemyWhite) {
         for (int y = 0; y < BOARD_SIZE; y++) {
             for (int x = 0; x < BOARD_SIZE; x++) {
                 if (getPiece(x, y) != null && getPiece(x, y).isWhite == isEnemyWhite

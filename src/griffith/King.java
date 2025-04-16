@@ -55,7 +55,8 @@ public class King extends ChessPiece {
         		&& kingY + 1 < board.getBoard().length && kingY + 1 >= 0 &&
         		(board.getPiece(kingX, kingY + 1) == null ||
         		(board.getPiece(kingX, kingY + 1) != null && 
-        		board.getPiece(kingX, kingY + 1).isWhite != isWhite)))
+        		board.getPiece(kingX, kingY + 1).isWhite != isWhite))
+        		&& board.isSquareUnderAttack(kingX, kingY + 1, !board.getPiece(kingX, kingY).isWhite) == null)
         		{
             moves += kingX + "," + (kingY + 1) + " ";
         }
@@ -64,7 +65,8 @@ public class King extends ChessPiece {
         		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0 &&
                 		(board.getPiece(kingX, kingY - 1) == null ||
                 		(board.getPiece(kingX, kingY - 1) != null && 
-                		board.getPiece(kingX, kingY - 1).isWhite != isWhite))) {
+                		board.getPiece(kingX, kingY - 1).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX, kingY - 1, !board.getPiece(kingX, kingY - 1).isWhite) == null) {
             moves += kingX + "," + (kingY - 1) + " ";
         }
 
@@ -72,7 +74,8 @@ public class King extends ChessPiece {
         		&& kingY < board.getBoard().length && kingY >= 0 &&
                 		(board.getPiece(kingX + 1, kingY) == null ||
                 		(board.getPiece(kingX + 1, kingY) != null && 
-                		board.getPiece(kingX + 1, kingY).isWhite != isWhite))) {
+                		board.getPiece(kingX + 1, kingY).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX + 1, kingY, !board.getPiece(kingX + 1, kingY).isWhite) == null) {
             moves += (kingX + 1) + "," + kingY + " ";
         }
 
@@ -80,7 +83,8 @@ public class King extends ChessPiece {
         		&& kingY < board.getBoard().length && kingY >= 0 &&
                 		(board.getPiece(kingX - 1, kingY) == null ||
                 		(board.getPiece(kingX - 1, kingY) != null && 
-                		board.getPiece(kingX - 1, kingY).isWhite != isWhite))) {
+                		board.getPiece(kingX - 1, kingY).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX - 1, kingY, !board.getPiece(kingX - 1, kingY).isWhite) == null) {
             moves += (kingX - 1) + "," + kingY + " ";
         }
 
@@ -88,7 +92,8 @@ public class King extends ChessPiece {
         		&& kingY + 1 < board.getBoard().length && kingY + 1 >= 0 &&
                 		(board.getPiece(kingX + 1, kingY + 1) == null ||
                 		(board.getPiece(kingX + 1, kingY + 1) != null && 
-                		board.getPiece(kingX + 1, kingY + 1).isWhite != isWhite))) {
+                		board.getPiece(kingX + 1, kingY + 1).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX + 1, kingY + 1, !board.getPiece(kingX + 1, kingY + 1).isWhite) == null) {
             moves += (kingX + 1) + "," + (kingY + 1) + " ";
         }
 
@@ -96,7 +101,8 @@ public class King extends ChessPiece {
         		&& kingY + 1 < board.getBoard().length && kingY + 1>= 0 &&
                 		(board.getPiece(kingX - 1, kingY + 1) == null ||
                 		(board.getPiece(kingX - 1, kingY + 1) != null && 
-                		board.getPiece(kingX - 1, kingY + 1).isWhite != isWhite))) {
+                		board.getPiece(kingX - 1, kingY + 1).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX - 1, kingY + 1, !board.getPiece(kingX - 1, kingY + 1).isWhite) == null) {
             moves += (kingX - 1) + "," + (kingY + 1) + " ";
         }
 
@@ -104,7 +110,8 @@ public class King extends ChessPiece {
         		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0 &&
                 		(board.getPiece(kingX + 1, kingY - 1) == null ||
                 		(board.getPiece(kingX + 1, kingY - 1) != null && 
-                		board.getPiece(kingX + 1, kingY - 1).isWhite != isWhite))) {
+                		board.getPiece(kingX + 1, kingY - 1).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX + 1, kingY - 1, !board.getPiece(kingX + 1, kingY - 1).isWhite) == null) {
             moves += (kingX + 1) + "," + (kingY - 1) + " ";
         }
 
@@ -112,7 +119,8 @@ public class King extends ChessPiece {
         		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0 &&
                 		(board.getPiece(kingX - 1, kingY - 1) == null ||
                 		(board.getPiece(kingX - 1, kingY - 1) != null && 
-                		board.getPiece(kingX - 1, kingY - 1).isWhite != isWhite))) {
+                		board.getPiece(kingX - 1, kingY - 1).isWhite != isWhite))
+                && board.isSquareUnderAttack(kingX - 1, kingY - 1, !board.getPiece(kingX - 1, kingY - 1).isWhite) == null) {
             moves += (kingX - 1) + "," + (kingY - 1) + " ";
         }
 

@@ -232,6 +232,21 @@ public abstract class ChessPiece {
                                         board.movePiece(pieceMove, moves[2], moves[3]);
                                         pieceMove.button.setLocation(moves[2] * board.getSquareSize(), (board.getBoredSize() - 1 - moves[3]) * board.getSquareSize());
                                         System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
+
+                                        if (GameLogic.isPlayerWhite()){
+                                            if(board.isBlackWon()){
+                                                JOptionPane.showMessageDialog(panel, "You have lose :(.");
+                                                Game.setGameState(Game.GAME_STATE.MENU);
+                                                return;
+                                            }
+                                        }
+                                        else {
+                                            if(board.isWhiteWon()){
+                                                JOptionPane.showMessageDialog(panel, "You have lose :(.");
+                                                Game.setGameState(Game.GAME_STATE.MENU);
+                                                return;
+                                            }
+                                        }
                                     }
                                 } else {
                                     // If the move is not valid, reset the piece to its original position
