@@ -81,6 +81,9 @@ public class Renderer {
             // Set the game as drawn
             isGameDrawn = true;
         }
+
+        // Start the countdown timer
+        startCountdownTimer();
     }
 
     // Renders the menu.
@@ -383,7 +386,7 @@ public class Renderer {
             updateTimerDisplay();
             if (timeLeft <= 0) {
                 countdownTimer.stop();
-                JOptionPane.showMessageDialog(window, "Time's up! Game over.");
+                JOptionPane.showMessageDialog(window, "Time's up! Game over. No winner.");
                 System.exit(0); // End the game
             }
         });

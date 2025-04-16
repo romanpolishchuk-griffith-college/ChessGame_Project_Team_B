@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 // Represents the game board for a chess game.
 public class Board extends JPanel {
@@ -116,7 +117,6 @@ public class Board extends JPanel {
         board[board.length - 1 - y][x] = piece;
     }
 
-    // Moves a piece from its current position to a new position.
     public void movePiece(ChessPiece piece, int newX, int newY) {
         int pieceX = -1;
         int pieceY = -1;
@@ -142,6 +142,13 @@ public class Board extends JPanel {
                 //Removing that chesss piece from the game window
                 window.remove(targetPiece.button);
             }
+        }
+
+        // Check if the captured piece is a king
+        if (targetPiece instanceof King) {
+            String winner = piece.isWhite() ? "White" : "Black";
+            JOptionPane.showMessageDialog(window, "Game Over! " + winner + " wins!");
+            System.exit(0); // End the game
         }
 
         //Remove piece from old place
