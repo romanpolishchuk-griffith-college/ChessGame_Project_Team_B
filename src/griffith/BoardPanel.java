@@ -42,7 +42,7 @@ public class BoardPanel extends JPanel {
 		if ((row + column) % 2 == 0) {
 			return Color.WHITE;
 		} else {
-			return Color.BLACK;
+			return Color.GRAY;
 		}
 
 	}
