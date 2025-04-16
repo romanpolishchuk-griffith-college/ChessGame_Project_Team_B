@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 public abstract class ChessPiece {
 
@@ -266,6 +267,16 @@ public abstract class ChessPiece {
                                     int[] moves = GameLogic.getComputerMove(board);
 
                                     if (moves != null) {
+                                        if (board.isUnderCheck(GameLogic.isPlayerWhite())){
+                                            ArrayList<Map<ChessPiece, String>> validMovesUnderCheck = board.getValidMovesUnderCheck(!GameLogic.isPlayerWhite());
+                                            ChessPiece defendingPiece = validMovesUnderCheck.get(0).keySet().iterator().next();
+                                            String defendingPieceMove = String.valueOf(validMovesUnderCheck.get(0).entrySet().iterator().next());
+                                            moves[0] = defendingPiece.getX();
+                                            moves[1] = defendingPiece.getY();
+                                            moves[2] = defendingPieceMove.charAt(0);
+                                            moves[3] = defendingPieceMove.charAt(2);
+                                        }
+
                                         ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
                                         board.movePiece(pieceMove, moves[2], moves[3]);
                                         pieceMove.button.setLocation(moves[2] * board.getSquareSize(), (board.getBoredSize() - 1 - moves[3]) * board.getSquareSize());
