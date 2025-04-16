@@ -388,6 +388,11 @@ public class Renderer {
         countdownTimer.start();
     }
 
+    // Add a method to update the timer display
+    private void updateTimerDisplay() {
+        JLabel timerLabel = (JLabel) window.getContentPane().getComponent(2); // Assuming the timer label is the 3rd component
+        timerLabel.setText("Time Left: " + formatTime(timeLeft));
+    }
     
     public static Board getGameBoard() {
     	return board;
