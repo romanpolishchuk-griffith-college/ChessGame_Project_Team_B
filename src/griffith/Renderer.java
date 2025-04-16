@@ -14,7 +14,7 @@ public class Renderer {
     private JFrame window;
 
     // The board of the game
-    private Board board;
+    private static Board board;
 
     // The welcome panel of the game
     private JPanel welcomePanel;
@@ -355,5 +355,9 @@ public class Renderer {
     
         // Change the game state to start the game
         changeGameState();
+    }
+    
+    public static Board getGameBoard() {
+    	return board;
     }
 }

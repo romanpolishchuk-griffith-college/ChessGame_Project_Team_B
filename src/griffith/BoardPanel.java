@@ -31,8 +31,14 @@ public class BoardPanel extends JPanel {
 
 		if (highlightedMoves != null) {
 			for (int i = 0; i < highlightedMoves.length; i++) {
-				g.setColor(Color.RED);
-				g.fillOval(Integer.parseInt(highlightedMoves[i].charAt(0) + "") * 80 + 40 - 10, ( 7 - Integer.parseInt(highlightedMoves[i].charAt(2) + "")) * 80 + 40 - 10, 20, 20);
+				g.setColor(Color.BLUE);
+				int x = Integer.parseInt(highlightedMoves[i].charAt(0) + "");
+				int y = Integer.parseInt(highlightedMoves[i].charAt(2) + "");
+				g.fillOval(x * 80 + 40 - 10, (7 - y) * 80 + 40 - 10, 20, 20);
+				if (Renderer.getGameBoard().getPiece(x, y) != null) {
+					g.setColor(Color.RED);
+					g.fillRect(x * 80, (7 - y) * 80, 80, 80);
+				}
 			}
 		}
 	}
