@@ -22,8 +22,8 @@ public class Renderer {
     // Whether the game is drawn
     private boolean isGameDrawn = false;
 
-    private Timer countdownTimer; // Timer for countdown
-    private int timeLeft = 300; // Default time in seconds (5 minutes)
+    protected Timer countdownTimer; // Timer for countdown
+    protected int timeLeft = 300; // Default time in seconds (5 minutes)
 
     // Sets up the game.
     public void Setup(String title, int width, int heigth) {
@@ -394,6 +394,12 @@ public class Renderer {
         timerLabel.setText("Time Left: " + formatTime(timeLeft));
     }
     
+    // Add a helper method to format time
+    private String formatTime(int seconds) {
+        int minutes = seconds / 60;
+        int secs = seconds % 60;
+        return String.format("%02d:%02d", minutes, secs);
+    }
     public static Board getGameBoard() {
     	return board;
     }

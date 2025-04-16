@@ -131,4 +131,12 @@ public class Game {
     public void setWindowHeight(int windowHeight) {
         this.windowHeight = windowHeight;
     }
+
+    // Add a method to reset the timer
+    public void resetTimer(Renderer renderer) {
+        renderer.timeLeft = 300; // Reset to 5 minutes
+        if (renderer.countdownTimer != null) {
+            renderer.countdownTimer.stop();
+        }
+    }
 }
