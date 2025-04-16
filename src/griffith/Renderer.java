@@ -25,6 +25,7 @@ public class Renderer {
     protected Timer countdownTimer; // Timer for countdown
     protected int timeLeft = 300;   //Default time in seconds (5 minutes)
     private JLabel timerLabel;      //Timer label for countdown display
+    private boolean isTimerEnabled = false; // Add a flag to track if the timer is enabled
 
     // Sets up the game.
     public void Setup(String title, int width, int heigth) {
@@ -314,15 +315,16 @@ public class Renderer {
         // Create a new move counter label
         JLabel moveCounterLabel = new JLabel("Moves: 0");
 
-        timerLabel = new JLabel("Time Left: 05:00"); // Initialize the timer label
-
         // Add the status label to the stats panel
         statsPanel.add(statusLabel);
 
         // Add the move counter label to the stats panel
         statsPanel.add(moveCounterLabel);
 
-        statsPanel.add(timerLabel); // Add the timer label
+        if (isTimerEnabled) { // Only add the timer label if the timer is enabled
+            timerLabel = new JLabel("Time Left: 05:00");
+            statsPanel.add(timerLabel);
+        }
 
         // Add the stats panel to the window
         window.add(statsPanel, BorderLayout.SOUTH);
@@ -379,6 +381,7 @@ public class Renderer {
     }
     // Add a method to start the countdown timer
     private void startCountdownTimer() {
+        isTimerEnabled = true; // Set the timer flag to true
         countdownTimer = new Timer(1000, e -> {
             timeLeft--;
             updateTimerDisplay();
@@ -393,7 +396,7 @@ public class Renderer {
 
     // Add a method to update the timer display
     private void updateTimerDisplay() {
-        if (timerLabel != null) {
+        if (isTimerEnabled && timerLabel != null) { // Update the timer only if it's enabled
             timerLabel.setText("Time Left: " + formatTime(timeLeft));
         }
     }
