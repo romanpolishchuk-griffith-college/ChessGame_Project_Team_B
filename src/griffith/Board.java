@@ -1,6 +1,9 @@
 package griffith;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -428,5 +431,117 @@ public class Board extends JPanel {
         }
 
         return false;
+    }
+    
+    public ArrayList<Map<ChessPiece, String>> getValidMovesUnderCheck(boolean forWhitePlayer){
+        ArrayList<Map<ChessPiece, String>> validMoves = new ArrayList<>();
+
+        int kingX = 0;
+        int kingY = 0;
+
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) instanceof King && getPiece(x, y).isWhite) {
+                    kingX = x;
+                    kingY = y;
+                    break;
+                }
+            }
+        }
+
+        if (kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX, kingY + 1) == null &&
+                isSquareUnderAttack(kingX, kingY + 1, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), kingX + "," + (kingY + 1));
+            validMoves.add(move);
+        }
+
+        if (kingY - 1 >= 0 &&
+                getPiece(kingX, kingY - 1) == null &&
+                isSquareUnderAttack(kingX, kingY - 1, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), kingX + "," + (kingY - 1));
+            validMoves.add(move);
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                getPiece(kingX + 1, kingY) == null &&
+                isSquareUnderAttack(kingX + 1, kingY, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), (kingX + 1) + "," + kingY);
+            validMoves.add(move);
+        }
+
+        if (kingX - 1 >= 0 &&
+                getPiece(kingX - 1, kingY) == null &&
+                isSquareUnderAttack(kingX - 1, kingY, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), (kingX - 1) + "," + kingY);
+            validMoves.add(move);
+        }
+
+        if (kingX - 1 >= 0 &&
+                kingY - 1 >= 0 &&
+                getPiece(kingX - 1, kingY - 1) == null &&
+                isSquareUnderAttack(kingX - 1, kingY - 1, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), (kingX - 1) + "," + (kingY - 1));
+            validMoves.add(move);
+        }
+
+        if (kingX - 1 >= 0 &&
+                kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX - 1, kingY + 1) == null &&
+                isSquareUnderAttack(kingX - 1, kingY + 1, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), (kingX - 1) + "," + (kingY + 1));
+            validMoves.add(move);
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                kingY - 1 >= 0 &&
+                getPiece(kingX + 1, kingY - 1) == null &&
+                isSquareUnderAttack(kingX + 1, kingY - 1, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), (kingX + 1) + "," + (kingY - 1));
+            validMoves.add(move);
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX + 1, kingY + 1) == null &&
+                isSquareUnderAttack(kingX + 1, kingY + 1, false) == null) {
+            Map<ChessPiece, String> move = new HashMap<>();
+            move.put(getPiece(kingX, kingY), (kingX + 1) + "," + (kingY + 1));
+            validMoves.add(move);
+        }
+
+        ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, false);
+
+        int attackingPieceX = 0;
+        int attackingPieceY = 0;
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) == attackingPiece) {
+                    attackingPieceX = x;
+                    attackingPieceY = y;
+                    break;
+                }
+            }
+        }
+
+        String[] validMovesOfAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+
+        for (int i = 0; i < validMovesOfAttakingPiece.length; i++) {
+            ChessPiece defendingPiece = isSquareUnderAttack(validMovesOfAttakingPiece[i].charAt(0), validMovesOfAttakingPiece[i].charAt(2), true);
+            if (defendingPiece != null) {
+                Map<ChessPiece, String> move = new HashMap<>();
+                move.put(defendingPiece, validMovesOfAttakingPiece[i].charAt(0) + "," + validMovesOfAttakingPiece[i].charAt(2));
+                validMoves.add(move);
+            }
+        }
+
+        return validMoves;
     }
 }
