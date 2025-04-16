@@ -209,6 +209,21 @@ public abstract class ChessPiece {
                                     initialX = newX;
                                     initialY = newY;
 
+                                    if (GameLogic.isPlayerWhite()){
+                                        if(board.isWhiteWon()){
+                                            JOptionPane.showMessageDialog(panel, "You have won!.");
+                                            Game.setGameState(Game.GAME_STATE.MENU);
+                                            return;
+                                        }
+                                    }
+                                    else {
+                                        if(board.isBlackWon()){
+                                            JOptionPane.showMessageDialog(panel, "You have won!.");
+                                            Game.setGameState(Game.GAME_STATE.MENU);
+                                            return;
+                                        }
+                                    }
+
                                     // Get the computer move
                                     int[] moves = GameLogic.getComputerMove(board);
 
