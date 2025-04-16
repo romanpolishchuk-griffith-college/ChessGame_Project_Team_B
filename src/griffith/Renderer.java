@@ -4,7 +4,6 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.Timer;
 
 import griffith.Game.GAME_STATE;
 
@@ -371,9 +370,24 @@ public class Renderer {
             startCountdownTimer();
         }
 
+
         // Change the game state to start the game
         changeGameState();
     }
+    // Add a method to start the countdown timer
+    private void startCountdownTimer() {
+        countdownTimer = new Timer(1000, e -> {
+            timeLeft--;
+            updateTimerDisplay();
+            if (timeLeft <= 0) {
+                countdownTimer.stop();
+                JOptionPane.showMessageDialog(window, "Time's up! Game over.");
+                System.exit(0); // End the game
+            }
+        });
+        countdownTimer.start();
+    }
+
     
     public static Board getGameBoard() {
     	return board;

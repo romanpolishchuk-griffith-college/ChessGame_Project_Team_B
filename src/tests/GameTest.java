@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import griffith.Game;
 
+
 // Represents a test for the Game class.
 class GameTest {
 	// Test for initializing the properties of the game	
