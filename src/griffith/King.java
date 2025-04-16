@@ -122,8 +122,11 @@ public class King extends ChessPiece {
     // Returns true if the move is valid for the king.
     @Override
     public boolean isMoveValid(int x, int y) {
+		if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
+				y > board.getBoard().length) {
+			return false;
+		}
 
-        // Get the valid moves for the king
         String validMoves = getValidMoves();
 
         // Get the target move

@@ -10,9 +10,13 @@ public class Board extends JPanel {
     private static final int BOARD_SIZE = 8;
     private static final int SQUARE_SIZE = 80;
 
-    private JFrame window;
     private java.util.List<ChessPiece> capturedWhitePieces = new java.util.ArrayList<>();
     private java.util.List<ChessPiece> capturedBlackPieces = new java.util.ArrayList<>();
+
+    private JPanel piecePanel;
+    private JFrame window;
+
+    //  private ChessPiece[][] board;
     private ChessPiece[][] board = {
             {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
@@ -79,7 +83,6 @@ public class Board extends JPanel {
     }
 
     // Returns the current board configuration.
-
     public ChessPiece[][] getBoard() {
         return board;
     }
@@ -200,4 +203,230 @@ public class Board extends JPanel {
         return capturedBlackPieces;
     }
 
+    private ChessPiece isSquareUnderAttack(int squareX, int squareY, boolean isEnemyWhite) {
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) != null && getPiece(x, y).isWhite == isEnemyWhite
+                        && getPiece(x, y).isMoveValid(squareX, squareY)) {
+                    return getPiece(x, y);
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean isWhiteWon() {
+        int kingX = 0;
+        int kingY = 0;
+
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) instanceof King && !getPiece(x, y).isWhite) {
+                    kingX = x;
+                    kingY = y;
+                    break;
+                }
+            }
+        }
+
+        if (isSquareUnderAttack(kingX, kingY, true) == null) {
+            return false;
+        }
+
+        if (kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX, kingY + 1) == null &&
+                isSquareUnderAttack(kingX, kingY + 1, true) == null) {
+            return false;
+        }
+
+        if (kingY - 1 >= 0 &&
+                getPiece(kingX, kingY - 1) == null &&
+                isSquareUnderAttack(kingX, kingY - 1, true) == null) {
+            return false;
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                getPiece(kingX + 1, kingY) == null &&
+                isSquareUnderAttack(kingX + 1, kingY, true) == null) {
+            return false;
+        }
+
+        if (kingX - 1 >= 0 &&
+                getPiece(kingX - 1, kingY) == null &&
+                isSquareUnderAttack(kingX - 1, kingY, true) == null) {
+            return false;
+        }
+
+        if (kingX - 1 >= 0 &&
+                kingY - 1 >= 0 &&
+                getPiece(kingX - 1, kingY - 1) == null &&
+                isSquareUnderAttack(kingX - 1, kingY - 1, true) == null) {
+            return false;
+        }
+
+        if (kingX - 1 >= 0 &&
+                kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX - 1, kingY + 1) == null &&
+                isSquareUnderAttack(kingX - 1, kingY + 1, true) == null) {
+            return false;
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                kingY - 1 >= 0 &&
+                getPiece(kingX + 1, kingY - 1) == null &&
+                isSquareUnderAttack(kingX + 1, kingY - 1, true) == null) {
+            return false;
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX + 1, kingY + 1) == null &&
+                isSquareUnderAttack(kingX + 1, kingY + 1, true) == null) {
+            return false;
+        }
+
+        ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, true);
+
+        int attackingPieceX = 0;
+        int attackingPieceY = 0;
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) == attackingPiece) {
+                    attackingPieceX = x;
+                    attackingPieceY = y;
+                    break;
+                }
+            }
+        }
+
+        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+
+        for (int i = 0; i < validMovesOFAttakingPiece.length; i++) {
+            if (isSquareUnderAttack(validMovesOFAttakingPiece[i].charAt(0), validMovesOFAttakingPiece[i].charAt(2), false) != null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isBlackWon() {
+        int kingX = 0;
+        int kingY = 0;
+
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) instanceof King && getPiece(x, y).isWhite) {
+                    kingX = x;
+                    kingY = y;
+                    break;
+                }
+            }
+        }
+
+        if (isSquareUnderAttack(kingX, kingY, false) == null) {
+            return false;
+        }
+
+        if (kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX, kingY + 1) == null &&
+                isSquareUnderAttack(kingX, kingY + 1, false) == null) {
+            return false;
+        }
+
+        if (kingY - 1 >= 0 &&
+                getPiece(kingX, kingY - 1) == null &&
+                isSquareUnderAttack(kingX, kingY - 1, false) == null) {
+            return false;
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                getPiece(kingX + 1, kingY) == null &&
+                isSquareUnderAttack(kingX + 1, kingY, false) == null) {
+            return false;
+        }
+
+        if (kingX - 1 >= 0 &&
+                getPiece(kingX - 1, kingY) == null &&
+                isSquareUnderAttack(kingX - 1, kingY, false) == null) {
+            return false;
+        }
+
+        if (kingX - 1 >= 0 &&
+                kingY - 1 >= 0 &&
+                getPiece(kingX - 1, kingY - 1) == null &&
+                isSquareUnderAttack(kingX - 1, kingY - 1, false) == null) {
+            return false;
+        }
+
+        if (kingX - 1 >= 0 &&
+                kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX - 1, kingY + 1) == null &&
+                isSquareUnderAttack(kingX - 1, kingY + 1, false) == null) {
+            return false;
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                kingY - 1 >= 0 &&
+                getPiece(kingX + 1, kingY - 1) == null &&
+                isSquareUnderAttack(kingX + 1, kingY - 1, false) == null) {
+            return false;
+        }
+
+        if (kingX + 1 < BOARD_SIZE &&
+                kingY + 1 < BOARD_SIZE &&
+                getPiece(kingX + 1, kingY + 1) == null &&
+                isSquareUnderAttack(kingX + 1, kingY + 1, false) == null) {
+            return false;
+        }
+
+        ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, false);
+
+        int attackingPieceX = 0;
+        int attackingPieceY = 0;
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) == attackingPiece) {
+                    attackingPieceX = x;
+                    attackingPieceY = y;
+                    break;
+                }
+            }
+        }
+
+        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+
+        for (int i = 0; i < validMovesOFAttakingPiece.length; i++) {
+            if (isSquareUnderAttack(validMovesOFAttakingPiece[i].charAt(0), validMovesOFAttakingPiece[i].charAt(2), true) != null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isUnderCheck(boolean isCheckForWhite) {
+        int kingX = 0;
+        int kingY = 0;
+
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if (getPiece(x, y) instanceof King && getPiece(x, y).isWhite == isCheckForWhite) {
+                    kingX = x;
+                    kingY = y;
+                    break;
+                }
+            }
+        }
+
+        if(isCheckForWhite && !isBlackWon() && isSquareUnderAttack(kingX, kingY, false) != null) {
+            return true;
+        }
+
+        if(!isCheckForWhite && !isWhiteWon() && isSquareUnderAttack(kingX, kingY, true) != null) {
+            return true;
+        }
+
+        return false;
+    }
 }

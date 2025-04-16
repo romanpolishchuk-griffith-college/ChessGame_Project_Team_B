@@ -97,12 +97,15 @@ public class Rook extends ChessPiece {
         return moves.trim();
     }
 
-    @Override
-    public boolean isMoveValid(int x, int y) {
+	@Override
+	public boolean isMoveValid(int x, int y) {
+		if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
+				y > board.getBoard().length) {
+			return false;
+		}
         String validMoves = getValidMoves();
         String targetMove = x + "," + y;
 
         return validMoves.contains(targetMove);
     }
-
 }

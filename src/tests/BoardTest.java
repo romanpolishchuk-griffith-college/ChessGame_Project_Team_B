@@ -6,6 +6,7 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Test;
 
+import griffith.Bishop;
 import griffith.Board;
 import griffith.ChessPiece;
 import griffith.King;
@@ -109,4 +110,65 @@ class BoardTest {
 	    assertEquals(Color.WHITE, board.getSquareColor(1, 1));
 	}
 	  
+	@Test
+	public void testIsWhiteWon() {
+		Board board = new Board();
+		
+		//Black pawn
+		Pawn pawn = new Pawn(board, false);
+		//Black pawn
+		Pawn pawn2 = new Pawn(board, false);
+		//Black king
+		King king = new King(board, false);
+		
+		//White rook
+		Rook rook = new Rook(board);
+		//White bishop
+		Bishop bishop = new Bishop(board);
+		//White king
+		King king2 = new King(board);
+		
+		board.setPiece(5, 6, pawn);
+		board.setPiece(7, 6, pawn2);
+		board.setPiece(7, 7, king);
+		
+		board.setPiece(7, 0, king2);
+		board.setPiece(6, 0, rook);
+		board.setPiece(5, 5, bishop);
+		
+		assertTrue(board.isWhiteWon());
+		assertFalse(board.isBlackWon());
+		
+	}
+	
+	@Test
+	public void testIsBlackWon() {
+		Board board = new Board();
+		
+		//Black king
+		King king = new King(board, false);
+		//Black rook
+		Rook rook = new Rook(board, false);
+		
+		//White pawn
+		Pawn pawn = new Pawn(board);
+		//White pawn
+		Pawn pawn2 = new Pawn(board);
+		//White pawn
+		Pawn pawn3 = new Pawn(board);
+		//White king
+		King king2 = new King(board);
+	
+		
+		board.setPiece(0, 0, king2);
+		board.setPiece(0, 1, pawn);
+		board.setPiece(1, 1, pawn2);
+		board.setPiece(2, 1, pawn3);
+		
+		board.setPiece(7, 7, king);
+		board.setPiece(7, 0, rook);
+		
+		assertTrue(board.isBlackWon());
+		assertFalse(board.isWhiteWon());
+	}
 }

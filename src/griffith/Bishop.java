@@ -112,8 +112,11 @@ public class Bishop extends ChessPiece {
     // Checks if a move to the specified coordinates is valid for this bishop.
     @Override
     public boolean isMoveValid(int x, int y) {
+		if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
+				y > board.getBoard().length) {
+			return false;
+		}
 
-        // Get the valid moves for this bishop
         String validMoves = getValidMoves();
         String targetMove = x + "," + y;
 

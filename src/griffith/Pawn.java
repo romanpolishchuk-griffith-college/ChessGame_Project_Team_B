@@ -53,9 +53,11 @@ public class Pawn extends ChessPiece {
         else {
             pawnOffset = -1;
         }
+
         // If the pawn can move forward
-        if (board.getPiece(pawnX, pawnY + pawnOffset) == null) {
-            // Add the move to the moves string
+        if (board.getPiece(pawnX, pawnY + pawnOffset) == null &&
+        		pawnY + pawnOffset < board.getBoard().length &&
+        		pawnY + pawnOffset > 0) {
             moves += pawnX + "," + (pawnY + pawnOffset) + " ";
         }
         // If the pawn is white and can move forward two squares
@@ -93,8 +95,11 @@ public class Pawn extends ChessPiece {
     // Returns true if the move is valid for the pawn.
     @Override
     public boolean isMoveValid(int x, int y) {
+		if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
+				y > board.getBoard().length) {
+			return false;
+		}
 
-        // Get the valid moves for the pawn
         String validMoves = getValidMoves();
 
         // Get the target move

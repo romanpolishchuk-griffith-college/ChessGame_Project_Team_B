@@ -5,8 +5,9 @@ import javax.swing.event.MouseInputAdapter;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.util.ArrayList;
 
-// Represents a chess piece.
 public abstract class ChessPiece {
 
     protected boolean isWhite = true;
@@ -112,9 +113,35 @@ public abstract class ChessPiece {
                         initialY = yPos;
 
                         // Add a mouse listener to the piece
+                        ChessPiece thisPiece = this;
+
+                        // Add a mouse listener to the piece
                         piece.addMouseListener(new MouseInputAdapter() {
                             // When the mouse is pressed
                             public void mousePressed(MouseEvent e) {
+                                if (isWhite != GameLogic.isPlayerWhite()) {
+                                    return;
+                                }
+                                int pieceStartPositionX = -1;
+                                int pieceStartPositionY = -1;
+
+                                for (int y = 0; y < board.getBoard().length; y++) {
+                                    for (int x = 0; x < board.getBoard()[y].length; x++) {
+                                        if (board.getPiece(x, y) == thisPiece) {
+                                            pieceStartPositionX = x;
+                                            pieceStartPositionY = y;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                ChessPiece selectedPiece = board.getPiece(pieceStartPositionX, pieceStartPositionY);
+                                if(selectedPiece.getValidMoves() != "") {
+                                    BoardPanel.highlightedMoves = selectedPiece.getValidMoves().split(" ");
+                                }
+
+                                panel.revalidate();
+                                panel.repaint();
                             }
                         });
 
@@ -123,6 +150,9 @@ public abstract class ChessPiece {
 
                             // When the mouse is dragged
                             public void mouseDragged(MouseEvent e) {
+                                if (isWhite != GameLogic.isPlayerWhite()) {
+                                    return;
+                                }
 
                                 // Get the new x position
                                 int newX = piece.getX() + e.getX() - 40;
@@ -136,9 +166,6 @@ public abstract class ChessPiece {
                         });
 
                         // Add a mouse listener to the piece
-                        ChessPiece thisPiece = this;
-
-                        // Add a mouse listener to the piece
                         piece.addMouseListener(new MouseAdapter() {
 
                             // When the mouse is released
@@ -147,9 +174,12 @@ public abstract class ChessPiece {
                                 // Check if the piece belongs to the current player
                                 if (isWhite != GameLogic.isPlayerWhite()) {
                                     System.out.println("You cannot move the opponent's pieces.");
-                                    piece.setLocation(initialX, initialY); // Reset to original position
                                     return;
                                 }
+
+                                BoardPanel.highlightedMoves = null;
+                                panel.revalidate();
+                                panel.repaint();
 
                                 // Get the new x position
                                 int newX = piece.getX() + e.getX();

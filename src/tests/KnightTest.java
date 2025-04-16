@@ -13,23 +13,25 @@ public class KnightTest {
 	// Test for getting the valid moves for the knight
 	@Test
 	void getValidMovesTest() {
-		// Create a new board
+		//Create test board
         Board board = new Board();
-		// Create a new knight
+        //Create test piece
         Knight knight = new Knight(board);
-		// Set the knight to the board
+
+        //Add piece in the middle of the board
         board.setPiece(3, 3, knight);
-		// Get the valid moves for the knight
+        //Get all valid moves
         String validMoves = knight.getValidMoves();
-		// The correct valid moves for the knight
+        //Correct valid moves
         String correctValidMoves = "1,4 2,5 4,5 5,4 5,2 4,1 2,1 1,2";
-		// Assert that the valid moves are correct
+        //Validate moves
         assertEquals(correctValidMoves, validMoves);
 		// Create a new board
         Board board2 = new Board();
 		// Create a new knight
         Knight knight2 = new Knight(board2);
-		// Set the knight to the board
+        
+        //Test piece in the corner
         board2.setPiece(0, 0, knight2);
 		// Get the valid moves for the knight
         validMoves = knight2.getValidMoves();
@@ -48,14 +50,24 @@ public class KnightTest {
         Knight knight = new Knight(board);
 
         board.setPiece(3, 3, knight);
-		// Test valid moves
+
+        //Valid moves
         assertTrue(knight.isMoveValid(1, 4));
         assertTrue(knight.isMoveValid(2, 5));
         assertTrue(knight.isMoveValid(5, 2));
         assertTrue(knight.isMoveValid(1, 2));
-		// Test invalid moves
+
+        //Invalid moves
         assertFalse(knight.isMoveValid(6, 6));
         assertFalse(knight.isMoveValid(0, 0));
         assertFalse(knight.isMoveValid(3, 3));
+        
+        Board board2 = new Board();
+        Knight knight2 = new Knight(board2);
+
+        board.setPiece(0, 0, knight2);
+        //Go out of bounds out the board
+        assertFalse(knight.isMoveValid(-1, 2));
+        assertFalse(knight.isMoveValid(-1, -2));
 	}
 }
