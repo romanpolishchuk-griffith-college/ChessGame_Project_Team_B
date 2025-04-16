@@ -384,7 +384,7 @@ public class Board extends JPanel {
         String[] validMovesOfAttakingPiece = (attackingPieceX + "," + attackingPieceY).split(" ");
         
         for (int i = 0; i < validMovesOfAttakingPiece.length; i++) {
-            if (isSquareUnderAttack(Integer.parseInt(validMovesOfAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOfAttakingPiece[i].charAt(2) + ""), false) != null) {
+            if (isSquareUnderAttack(Integer.parseInt(validMovesOfAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOfAttakingPiece[i].charAt(2) + ""), true) != null) {
                 return false;
             }
         }
