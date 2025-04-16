@@ -290,22 +290,13 @@ public class Board extends JPanel {
 
         ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, true);
 
-        int attackingPieceX = 0;
-        int attackingPieceY = 0;
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            for (int x = 0; x < BOARD_SIZE; x++) {
-                if (getPiece(x, y) == attackingPiece) {
-                    attackingPieceX = x;
-                    attackingPieceY = y;
-                    break;
-                }
-            }
-        }
+        int attackingPieceX = attackingPiece.getX();
+        int attackingPieceY = attackingPiece.getY();
 
-        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + " " + attackingPieceX + "," + attackingPieceY).split(" ");
 
         for (int i = 0; i < validMovesOFAttakingPiece.length; i++) {
-            if (isSquareUnderAttack(validMovesOFAttakingPiece[i].charAt(0), validMovesOFAttakingPiece[i].charAt(2), false) != null) {
+            if (isSquareUnderAttack(Integer.parseInt(validMovesOFAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOFAttakingPiece[i].charAt(2) + ""), false) != null) {
                 return false;
             }
         }
@@ -385,22 +376,13 @@ public class Board extends JPanel {
 
         ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, false);
 
-        int attackingPieceX = 0;
-        int attackingPieceY = 0;
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            for (int x = 0; x < BOARD_SIZE; x++) {
-                if (getPiece(x, y) == attackingPiece) {
-                    attackingPieceX = x;
-                    attackingPieceY = y;
-                    break;
-                }
-            }
-        }
+        int attackingPieceX = attackingPiece.getX();
+        int attackingPieceY = attackingPiece.getY();
 
-        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + " " + attackingPieceX + "," + attackingPieceY).split(" ");
 
         for (int i = 0; i < validMovesOFAttakingPiece.length; i++) {
-            if (isSquareUnderAttack(validMovesOFAttakingPiece[i].charAt(0), validMovesOFAttakingPiece[i].charAt(2), true) != null) {
+            if (isSquareUnderAttack(Integer.parseInt(validMovesOFAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOFAttakingPiece[i].charAt(2) + ""), false) != null) {
                 return false;
             }
         }
