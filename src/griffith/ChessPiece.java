@@ -143,7 +143,9 @@ public abstract class ChessPiece {
                         pieceButton.setIcon(new ImageIcon(sprite));
 
                         // Set the piece to be opaque
-                        pieceButton.setOpaque(true);
+                        pieceButton.setOpaque(false);
+                        pieceButton.setContentAreaFilled(false);
+                        pieceButton.setBorderPainted(false);
 
                         // Set the initial x position
                         initialX = xPos;
@@ -251,14 +253,12 @@ public abstract class ChessPiece {
                                     if (GameLogic.isPlayerWhite()){
                                         if(board.isWhiteWon()){
                                             JOptionPane.showMessageDialog(panel, "You have won!.");
-                                            Game.setGameState(Game.GAME_STATE.MENU);
                                             return;
                                         }
                                     }
                                     else {
                                         if(board.isBlackWon()){
                                             JOptionPane.showMessageDialog(panel, "You have won!.");
-                                            Game.setGameState(Game.GAME_STATE.MENU);
                                             return;
                                         }
                                     }
@@ -285,14 +285,12 @@ public abstract class ChessPiece {
                                         if (GameLogic.isPlayerWhite()){
                                             if(board.isBlackWon()){
                                                 JOptionPane.showMessageDialog(panel, "You have lose :(.");
-                                                Game.setGameState(Game.GAME_STATE.MENU);
                                                 return;
                                             }
                                         }
                                         else {
                                             if(board.isWhiteWon()){
                                                 JOptionPane.showMessageDialog(panel, "You have lose :(.");
-                                                Game.setGameState(Game.GAME_STATE.MENU);
                                                 return;
                                             }
                                         }
