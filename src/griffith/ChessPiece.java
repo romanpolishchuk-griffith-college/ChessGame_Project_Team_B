@@ -270,11 +270,11 @@ public abstract class ChessPiece {
                                         if (board.isUnderCheck(!GameLogic.isPlayerWhite())){
                                             ArrayList<Map<ChessPiece, String>> validMovesUnderCheck = board.getValidMovesUnderCheck(!GameLogic.isPlayerWhite());
                                             ChessPiece defendingPiece = validMovesUnderCheck.get(0).keySet().iterator().next();
-                                            String defendingPieceMove = String.valueOf(validMovesUnderCheck.get(0).entrySet().iterator().next());
+                                            String defendingPieceMove = validMovesUnderCheck.get(0).get(defendingPiece);
                                             moves[0] = defendingPiece.getX();
                                             moves[1] = defendingPiece.getY();
-                                            moves[2] = defendingPieceMove.charAt(0);
-                                            moves[3] = defendingPieceMove.charAt(2);
+                                            moves[2] = Integer.parseInt(defendingPieceMove.charAt(0) + "");
+                                            moves[3] = Integer.parseInt(defendingPieceMove.charAt(2) + "");
                                         }
 
                                         ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
