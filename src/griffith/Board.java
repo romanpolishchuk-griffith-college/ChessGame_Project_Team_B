@@ -293,10 +293,11 @@ public class Board extends JPanel {
         int attackingPieceX = attackingPiece.getX();
         int attackingPieceY = attackingPiece.getY();
 
-        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + " " + attackingPieceX + "," + attackingPieceY).split(" ");
-
-        for (int i = 0; i < validMovesOFAttakingPiece.length; i++) {
-            if (isSquareUnderAttack(Integer.parseInt(validMovesOFAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOFAttakingPiece[i].charAt(2) + ""), false) != null) {
+        //String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + " " + attackingPieceX + "," + attackingPieceY).split(" ");
+        String[] validMovesOfAttakingPiece = (attackingPieceX + "," + attackingPieceY).split(" ");
+        
+        for (int i = 0; i < validMovesOfAttakingPiece.length; i++) {
+            if (isSquareUnderAttack(Integer.parseInt(validMovesOfAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOfAttakingPiece[i].charAt(2) + ""), false) != null) {
                 return false;
             }
         }
@@ -379,10 +380,11 @@ public class Board extends JPanel {
         int attackingPieceX = attackingPiece.getX();
         int attackingPieceY = attackingPiece.getY();
 
-        String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + " " + attackingPieceX + "," + attackingPieceY).split(" ");
-
-        for (int i = 0; i < validMovesOFAttakingPiece.length; i++) {
-            if (isSquareUnderAttack(Integer.parseInt(validMovesOFAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOFAttakingPiece[i].charAt(2) + ""), false) != null) {
+        //String[] validMovesOFAttakingPiece = (attackingPiece.getValidMoves() + " " + attackingPieceX + "," + attackingPieceY).split(" ");
+        String[] validMovesOfAttakingPiece = (attackingPieceX + "," + attackingPieceY).split(" ");
+        
+        for (int i = 0; i < validMovesOfAttakingPiece.length; i++) {
+            if (isSquareUnderAttack(Integer.parseInt(validMovesOfAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOfAttakingPiece[i].charAt(2) + ""), false) != null) {
                 return false;
             }
         }
@@ -423,7 +425,7 @@ public class Board extends JPanel {
 
         for (int y = 0; y < BOARD_SIZE; y++) {
             for (int x = 0; x < BOARD_SIZE; x++) {
-                if (getPiece(x, y) instanceof King && getPiece(x, y).isWhite) {
+                if (getPiece(x, y) instanceof King && getPiece(x, y).isWhite == forWhitePlayer) {
                     kingX = x;
                     kingY = y;
                     break;
@@ -433,7 +435,7 @@ public class Board extends JPanel {
 
         if (kingY + 1 < BOARD_SIZE &&
                 getPiece(kingX, kingY + 1) == null &&
-                isSquareUnderAttack(kingX, kingY + 1, false) == null) {
+                isSquareUnderAttack(kingX, kingY + 1, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), kingX + "," + (kingY + 1));
             validMoves.add(move);
@@ -441,7 +443,7 @@ public class Board extends JPanel {
 
         if (kingY - 1 >= 0 &&
                 getPiece(kingX, kingY - 1) == null &&
-                isSquareUnderAttack(kingX, kingY - 1, false) == null) {
+                isSquareUnderAttack(kingX, kingY - 1, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), kingX + "," + (kingY - 1));
             validMoves.add(move);
@@ -449,7 +451,7 @@ public class Board extends JPanel {
 
         if (kingX + 1 < BOARD_SIZE &&
                 getPiece(kingX + 1, kingY) == null &&
-                isSquareUnderAttack(kingX + 1, kingY, false) == null) {
+                isSquareUnderAttack(kingX + 1, kingY, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), (kingX + 1) + "," + kingY);
             validMoves.add(move);
@@ -457,7 +459,7 @@ public class Board extends JPanel {
 
         if (kingX - 1 >= 0 &&
                 getPiece(kingX - 1, kingY) == null &&
-                isSquareUnderAttack(kingX - 1, kingY, false) == null) {
+                isSquareUnderAttack(kingX - 1, kingY, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), (kingX - 1) + "," + kingY);
             validMoves.add(move);
@@ -466,7 +468,7 @@ public class Board extends JPanel {
         if (kingX - 1 >= 0 &&
                 kingY - 1 >= 0 &&
                 getPiece(kingX - 1, kingY - 1) == null &&
-                isSquareUnderAttack(kingX - 1, kingY - 1, false) == null) {
+            isSquareUnderAttack(kingX - 1, kingY - 1, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), (kingX - 1) + "," + (kingY - 1));
             validMoves.add(move);
@@ -475,7 +477,7 @@ public class Board extends JPanel {
         if (kingX - 1 >= 0 &&
                 kingY + 1 < BOARD_SIZE &&
                 getPiece(kingX - 1, kingY + 1) == null &&
-                isSquareUnderAttack(kingX - 1, kingY + 1, false) == null) {
+                isSquareUnderAttack(kingX - 1, kingY + 1, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), (kingX - 1) + "," + (kingY + 1));
             validMoves.add(move);
@@ -484,7 +486,7 @@ public class Board extends JPanel {
         if (kingX + 1 < BOARD_SIZE &&
                 kingY - 1 >= 0 &&
                 getPiece(kingX + 1, kingY - 1) == null &&
-                isSquareUnderAttack(kingX + 1, kingY - 1, false) == null) {
+                isSquareUnderAttack(kingX + 1, kingY - 1, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), (kingX + 1) + "," + (kingY - 1));
             validMoves.add(move);
@@ -493,30 +495,23 @@ public class Board extends JPanel {
         if (kingX + 1 < BOARD_SIZE &&
                 kingY + 1 < BOARD_SIZE &&
                 getPiece(kingX + 1, kingY + 1) == null &&
-                isSquareUnderAttack(kingX + 1, kingY + 1, false) == null) {
+                isSquareUnderAttack(kingX + 1, kingY + 1, !forWhitePlayer) == null) {
             Map<ChessPiece, String> move = new HashMap<>();
             move.put(getPiece(kingX, kingY), (kingX + 1) + "," + (kingY + 1));
             validMoves.add(move);
         }
 
-        ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, false);
+        ChessPiece attackingPiece = isSquareUnderAttack(kingX, kingY, !forWhitePlayer);
 
-        int attackingPieceX = 0;
-        int attackingPieceY = 0;
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            for (int x = 0; x < BOARD_SIZE; x++) {
-                if (getPiece(x, y) == attackingPiece) {
-                    attackingPieceX = x;
-                    attackingPieceY = y;
-                    break;
-                }
-            }
-        }
+        int attackingPieceX = attackingPiece.getX();
+        int attackingPieceY = attackingPiece.getY();
 
-        String[] validMovesOfAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
-
+        //String[] validMovesOfAttakingPiece = (attackingPiece.getValidMoves() + attackingPieceX + "," + attackingPieceY).split(" ");
+        String[] validMovesOfAttakingPiece = (attackingPieceX + "," + attackingPieceY).split(" ");
+        
+        
         for (int i = 0; i < validMovesOfAttakingPiece.length; i++) {
-            ChessPiece defendingPiece = isSquareUnderAttack(validMovesOfAttakingPiece[i].charAt(0), validMovesOfAttakingPiece[i].charAt(2), true);
+            ChessPiece defendingPiece = isSquareUnderAttack(Integer.parseInt(validMovesOfAttakingPiece[i].charAt(0) + ""), Integer.parseInt(validMovesOfAttakingPiece[i].charAt(2) + ""), forWhitePlayer);
             if (defendingPiece != null) {
                 Map<ChessPiece, String> move = new HashMap<>();
                 move.put(defendingPiece, validMovesOfAttakingPiece[i].charAt(0) + "," + validMovesOfAttakingPiece[i].charAt(2));

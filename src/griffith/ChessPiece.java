@@ -267,7 +267,7 @@ public abstract class ChessPiece {
                                     int[] moves = GameLogic.getComputerMove(board);
 
                                     if (moves != null) {
-                                        if (board.isUnderCheck(GameLogic.isPlayerWhite())){
+                                        if (board.isUnderCheck(!GameLogic.isPlayerWhite())){
                                             ArrayList<Map<ChessPiece, String>> validMovesUnderCheck = board.getValidMovesUnderCheck(!GameLogic.isPlayerWhite());
                                             ChessPiece defendingPiece = validMovesUnderCheck.get(0).keySet().iterator().next();
                                             String defendingPieceMove = String.valueOf(validMovesUnderCheck.get(0).entrySet().iterator().next());
