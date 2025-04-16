@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.Timer;
 
 import griffith.Game.GAME_STATE;
 
@@ -21,6 +22,9 @@ public class Renderer {
 
     // Whether the game is drawn
     private boolean isGameDrawn = false;
+
+    private Timer countdownTimer; // Timer for countdown
+    private int timeLeft = 300; // Default time in seconds (5 minutes)
 
     // Sets up the game.
     public void Setup(String title, int width, int heigth) {
@@ -315,6 +319,9 @@ public class Renderer {
         // Add the move counter label to the stats panel
         statsPanel.add(moveCounterLabel);
 
+        JLabel timerLabel = new JLabel("Time Left: 05:00"); // Initial timer display
+        statsPanel.add(timerLabel); // Add the timer label
+
         // Add the stats panel to the window
         window.add(statsPanel, BorderLayout.SOUTH);
 
@@ -352,7 +359,18 @@ public class Renderer {
             GameLogic.setPlayerColor(false); // Player is black
         }
 
-    
+        // Ask if the player wants a countdown timer
+        int timerChoice = JOptionPane.showConfirmDialog(
+            window,
+            "Do you want to play with a countdown timer?",
+            "Countdown Timer",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (timerChoice == JOptionPane.YES_OPTION) {
+            startCountdownTimer();
+        }
+
         // Change the game state to start the game
         changeGameState();
     }
