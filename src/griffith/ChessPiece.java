@@ -71,6 +71,44 @@ public abstract class ChessPiece {
     public boolean isWhite() {
         return isWhite;
     }
+    
+    //Get x on the board
+    public int getX() {
+        int pawnX = -1;
+
+        // Loop through the board
+        for (int y = 0; y < board.getBoard().length; y++) {
+
+            // Loop through the board
+            for (int x = 0; x < board.getBoard()[y].length; x++) {
+
+                // If the piece is the pawn
+                if (board.getPiece(x, y) == this) {
+                    return x;
+                }
+            }
+        }
+        return 0;
+    }
+    
+    //Get y on the board
+    public int getY() {
+        int pawnY = -1;
+
+        // Loop through the board
+        for (int y = 0; y < board.getBoard().length; y++) {
+
+            // Loop through the board
+            for (int x = 0; x < board.getBoard()[y].length; x++) {
+
+                // If the piece is the pawn
+                if (board.getPiece(x, y) == this) {
+                    return y;
+                }
+            }
+        }
+        return 0;
+    }
 
     // Draws the piece on the board.
     public void draw(JFrame panel) {

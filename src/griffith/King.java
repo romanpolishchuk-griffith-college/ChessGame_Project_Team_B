@@ -55,73 +55,105 @@ public class King extends ChessPiece {
         		&& kingY + 1 < board.getBoard().length && kingY + 1 >= 0 &&
         		(board.getPiece(kingX, kingY + 1) == null ||
         		(board.getPiece(kingX, kingY + 1) != null && 
-        		board.getPiece(kingX, kingY + 1).isWhite != isWhite))
-        		&& board.isSquareUnderAttack(kingX, kingY + 1, !board.getPiece(kingX, kingY).isWhite) == null)
+        		board.getPiece(kingX, kingY + 1).isWhite != isWhite)))
         		{
-            moves += kingX + "," + (kingY + 1) + " ";
+        	Board boardCopy = new Board();
+        	boardCopy.setBoard(board.getBoard().clone());
+        	boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX, kingY + 1);
+        	if(boardCopy.isSquareUnderAttack(kingX, kingY + 1, !isWhite) == null) {
+                moves += kingX + "," + (kingY + 1) + " ";
+        	}
         }
 
         if (kingX < board.getBoard()[0].length && kingX >= 0
         		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0 &&
                 		(board.getPiece(kingX, kingY - 1) == null ||
                 		(board.getPiece(kingX, kingY - 1) != null && 
-                		board.getPiece(kingX, kingY - 1).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX, kingY - 1, !board.getPiece(kingX, kingY - 1).isWhite) == null) {
-            moves += kingX + "," + (kingY - 1) + " ";
+                		board.getPiece(kingX, kingY - 1).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX, kingY - 1);
+            if(boardCopy.isSquareUnderAttack(kingX, kingY - 1, !isWhite) == null) {
+                moves += kingX + "," + (kingY - 1) + " ";
+            }
         }
 
         if (kingX + 1 < board.getBoard()[0].length && kingX + 1 >= 0
         		&& kingY < board.getBoard().length && kingY >= 0 &&
                 		(board.getPiece(kingX + 1, kingY) == null ||
                 		(board.getPiece(kingX + 1, kingY) != null && 
-                		board.getPiece(kingX + 1, kingY).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX + 1, kingY, !board.getPiece(kingX + 1, kingY).isWhite) == null) {
-            moves += (kingX + 1) + "," + kingY + " ";
+                		board.getPiece(kingX + 1, kingY).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX + 1, kingY);
+            if(boardCopy.isSquareUnderAttack(kingX + 1, kingY, !isWhite) == null) {
+                moves += (kingX + 1) + "," + kingY + " ";
+            }
         }
 
         if (kingX - 1 < board.getBoard()[0].length && kingX - 1 >= 0
         		&& kingY < board.getBoard().length && kingY >= 0 &&
                 		(board.getPiece(kingX - 1, kingY) == null ||
                 		(board.getPiece(kingX - 1, kingY) != null && 
-                		board.getPiece(kingX - 1, kingY).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX - 1, kingY, !board.getPiece(kingX - 1, kingY).isWhite) == null) {
-            moves += (kingX - 1) + "," + kingY + " ";
+                		board.getPiece(kingX - 1, kingY).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX - 1, kingY);
+            if(boardCopy.isSquareUnderAttack(kingX - 1, kingY, !isWhite) == null) {
+                moves += (kingX - 1) + "," + kingY + " ";
+            }
         }
 
         if (kingX + 1 < board.getBoard()[0].length && kingX + 1 >= 0
         		&& kingY + 1 < board.getBoard().length && kingY + 1 >= 0 &&
                 		(board.getPiece(kingX + 1, kingY + 1) == null ||
                 		(board.getPiece(kingX + 1, kingY + 1) != null && 
-                		board.getPiece(kingX + 1, kingY + 1).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX + 1, kingY + 1, !board.getPiece(kingX + 1, kingY + 1).isWhite) == null) {
-            moves += (kingX + 1) + "," + (kingY + 1) + " ";
+                		board.getPiece(kingX + 1, kingY + 1).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX + 1, kingY + 1);
+            if(boardCopy.isSquareUnderAttack(kingX + 1, kingY + 1, !isWhite) == null) {
+                moves += (kingX + 1) + "," + (kingY + 1) + " ";
+            }
         }
 
         if (kingX - 1 < board.getBoard()[0].length && kingX - 1 >= 0
         		&& kingY + 1 < board.getBoard().length && kingY + 1>= 0 &&
                 		(board.getPiece(kingX - 1, kingY + 1) == null ||
                 		(board.getPiece(kingX - 1, kingY + 1) != null && 
-                		board.getPiece(kingX - 1, kingY + 1).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX - 1, kingY + 1, !board.getPiece(kingX - 1, kingY + 1).isWhite) == null) {
-            moves += (kingX - 1) + "," + (kingY + 1) + " ";
+                		board.getPiece(kingX - 1, kingY + 1).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX - 1, kingY + 1);
+            if(boardCopy.isSquareUnderAttack(kingX - 1, kingY + 1, !isWhite) == null) {
+                moves += (kingX - 1) + "," + (kingY + 1) + " ";
+            }
         }
 
         if (kingX + 1 < board.getBoard()[0].length && kingX + 1 >= 0
         		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0 &&
                 		(board.getPiece(kingX + 1, kingY - 1) == null ||
                 		(board.getPiece(kingX + 1, kingY - 1) != null && 
-                		board.getPiece(kingX + 1, kingY - 1).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX + 1, kingY - 1, !board.getPiece(kingX + 1, kingY - 1).isWhite) == null) {
-            moves += (kingX + 1) + "," + (kingY - 1) + " ";
+                		board.getPiece(kingX + 1, kingY - 1).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX + 1, kingY - 1);
+            if(boardCopy.isSquareUnderAttack(kingX + 1, kingY - 1, !isWhite) == null) {
+                moves += (kingX + 1) + "," + (kingY - 1) + " ";
+            }
         }
 
         if (kingX - 1 < board.getBoard()[0].length && kingX - 1 >= 0
         		&& kingY - 1 < board.getBoard().length && kingY - 1 >= 0 &&
                 		(board.getPiece(kingX - 1, kingY - 1) == null ||
                 		(board.getPiece(kingX - 1, kingY - 1) != null && 
-                		board.getPiece(kingX - 1, kingY - 1).isWhite != isWhite))
-                && board.isSquareUnderAttack(kingX - 1, kingY - 1, !board.getPiece(kingX - 1, kingY - 1).isWhite) == null) {
-            moves += (kingX - 1) + "," + (kingY - 1) + " ";
+                		board.getPiece(kingX - 1, kingY - 1).isWhite != isWhite))) {
+            Board boardCopy = new Board();
+            boardCopy.setBoard(board.getBoard().clone());
+            boardCopy.movePiece(boardCopy.getPiece(kingX, kingY), kingX - 1, kingY - 1);
+            if(boardCopy.isSquareUnderAttack(kingX - 1, kingY - 1, !isWhite) == null) {
+                moves += (kingX - 1) + "," + (kingY - 1) + " ";
+            }
         }
 
         return moves.trim();
