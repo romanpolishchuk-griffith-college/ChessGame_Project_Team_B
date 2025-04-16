@@ -49,6 +49,55 @@ class RendererTest {
 
 		assertDoesNotThrow(() -> renderer.updateCapturedPieces(whiteCapturedPanel, blackCapturedPanel), "Captured pieces should not throw an exception");
 	}
+
+	@Test
+    void testTimerStartsWhenEnabled() {
+        renderer.Setup("Test Window", 800, 600);
+
+        // Simulate enabling the timer
+        renderer.startCountdownTimer();
+
+        // Wait for 2 seconds to simulate timer countdown
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Check if the timer decrements
+        assertTrue(renderer.timeLeft < 300, "Timer should decrement when started.");
+    }
+
+    @Test
+    void testTimerDoesNotStartWhenDisabled() {
+        renderer.Setup("Test Window", 800, 600);
+
+        // Simulate not enabling the timer
+        assertFalse(renderer.isTimerEnabled, "Timer should not be enabled by default.");
+        assertNull(renderer.countdownTimer, "Countdown timer should not be initialized.");
+    }
+
+    @Test
+    void testTimerEndsGameWhenTimeRunsOut() {
+        renderer.Setup("Test Window", 800, 600);
+
+        // Simulate enabling the timer
+        renderer.startCountdownTimer();
+
+        // Set the timer to 1 second for testing
+        renderer.timeLeft = 1;
+
+        // Wait for 2 seconds to allow the timer to expire
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Since the game ends with System.exit(0), this test will not proceed further.
+        // You can mock System.exit(0) in advanced testing frameworks.
+        assertEquals(0, renderer.timeLeft, "Timer should reach 0.");
+    }
 	   
 
 }

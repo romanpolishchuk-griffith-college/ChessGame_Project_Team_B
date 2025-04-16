@@ -22,10 +22,10 @@ public class Renderer {
     // Whether the game is drawn
     private boolean isGameDrawn = false;
 
-    protected Timer countdownTimer; // Timer for countdown
-    protected int timeLeft = 300;   //Default time in seconds (5 minutes)
+    public Timer countdownTimer; // Timer for countdown
+    public int timeLeft = 300;   //Default time in seconds (5 minutes)
     private JLabel timerLabel;      //Timer label for countdown display
-    private boolean isTimerEnabled = false; // Add a flag to track if the timer is enabled
+    public boolean isTimerEnabled = false; // Add a flag to track if the timer is enabled
 
     // Sets up the game.
     public void Setup(String title, int width, int heigth) {
@@ -380,7 +380,7 @@ public class Renderer {
         changeGameState();
     }
     // Add a method to start the countdown timer
-    private void startCountdownTimer() {
+    public void startCountdownTimer() {
         isTimerEnabled = true; // Set the timer flag to true
         countdownTimer = new Timer(1000, e -> {
             timeLeft--;
