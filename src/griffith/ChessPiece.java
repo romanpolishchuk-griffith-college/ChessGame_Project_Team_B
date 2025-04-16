@@ -122,6 +122,11 @@ public abstract class ChessPiece {
                                 if (isWhite != GameLogic.isPlayerWhite()) {
                                     return;
                                 }
+
+                                panel.setLayout(null);
+                                panel.remove(piece);
+                                panel.add(piece);
+
                                 int pieceStartPositionX = -1;
                                 int pieceStartPositionY = -1;
 
