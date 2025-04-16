@@ -1,5 +1,9 @@
 package griffith;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameLogic {
 
     private static boolean isPlayerWhite = true; // Default to white
@@ -50,34 +54,34 @@ public class GameLogic {
         return false;
     }
 
-        public static int[] getComputerMove(Board board) {
+    public static int[] getComputerMove(Board board) {
         boolean computerColor = isComputerWhite(); // Get the computer's color
 
+        ArrayList<Map<ChessPiece, String>> validMoves = new ArrayList<>();
+        
         // Example: Random valid move for the computer
         for (int row = 0; row < 8; row++) {
-
-
             for (int col = 0; col < 8; col++) {
-
-
                 // Get the piece at the specified position
                 ChessPiece piece = board.getPiece(row, col);
 
                 // If the piece belongs to the computer, get its valid moves
                 if (piece != null && piece.isWhite == computerColor) {
-                    for (int targetRow = 0; targetRow < 8; targetRow++) {
-                        for (int targetCol = 0; targetCol < 8; targetCol++) {
-
-                            // If the move is valid, return the move
-                            if (piece.isMoveValid(targetRow, targetCol)) {
-                                return new int[]{row, col, targetRow, targetCol};
-                            }
-                        }
-                    }
+                	Map<ChessPiece, String> moves = new HashMap<>();
+                    moves.put(piece, piece.getValidMoves());
+                    
+                	validMoves.add(moves);
                 }
             }
         }
-        return null; // No valid moves
+        
+        int randomPieceId = (int)(Math.random()*validMoves.size());
+        
+        ChessPiece pieceToMove = validMoves.get(randomPieceId).keySet().iterator().next();
+        String[] pieceToMoveMoves = validMoves.get(randomPieceId).get(pieceToMove).split(" ");
+        String finalMove = pieceToMoveMoves[(int)(Math.random()*pieceToMoveMoves.length)];
+        
+        return new int[]{pieceToMove.getX(), pieceToMove.getY(), Integer.parseInt(finalMove.charAt(0) + ""), Integer.parseInt(finalMove.charAt(2) + "")};
     }
 
     // Checks if the game is over
