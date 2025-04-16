@@ -76,10 +76,10 @@ public abstract class ChessPiece {
     public void draw(JFrame panel) {
 
         // Create a new button
-        JButton piece = new JButton();
+        JButton pieceButton = new JButton();
 
         // Set the button to the piece
-        button = piece;
+        button = pieceButton;
 
         if (sprite != null) {
 
@@ -98,13 +98,13 @@ public abstract class ChessPiece {
                         int yPos = row * board.getSquareSize();
 
                         // Set the bounds of the piece
-                        piece.setBounds(xPos, yPos, 80, 80);
+                        pieceButton.setBounds(xPos, yPos, 80, 80);
 
                         // Set the icon of the piece
-                        piece.setIcon(new ImageIcon(sprite));
+                        pieceButton.setIcon(new ImageIcon(sprite));
 
                         // Set the piece to be opaque
-                        piece.setOpaque(true);
+                        pieceButton.setOpaque(true);
 
                         // Set the initial x position
                         initialX = xPos;
@@ -116,20 +116,18 @@ public abstract class ChessPiece {
                         ChessPiece thisPiece = this;
 
                         // Add a mouse listener to the piece
-                        piece.addMouseListener(new MouseInputAdapter() {
+                        pieceButton.addMouseListener(new MouseInputAdapter() {
                             // When the mouse is pressed
                             public void mousePressed(MouseEvent e) {
+                                //If it is not a player's piece, don't allow to move it
                                 if (isWhite != GameLogic.isPlayerWhite()) {
                                     return;
                                 }
 
-                                panel.setLayout(null);
-                                panel.remove(piece);
-                                panel.add(piece);
-
                                 int pieceStartPositionX = -1;
                                 int pieceStartPositionY = -1;
 
+                                //Find picked piece position
                                 for (int y = 0; y < board.getBoard().length; y++) {
                                     for (int x = 0; x < board.getBoard()[y].length; x++) {
                                         if (board.getPiece(x, y) == thisPiece) {
@@ -140,38 +138,42 @@ public abstract class ChessPiece {
                                     }
                                 }
 
+                                //Get all possible positions of this piece
                                 ChessPiece selectedPiece = board.getPiece(pieceStartPositionX, pieceStartPositionY);
                                 if(selectedPiece.getValidMoves() != "") {
+                                    //Split string that contains all moves into array
                                     BoardPanel.highlightedMoves = selectedPiece.getValidMoves().split(" ");
                                 }
 
+                                //Redraw the board
                                 panel.revalidate();
                                 panel.repaint();
                             }
                         });
 
                         // Add a mouse motion listener to the piece
-                        piece.addMouseMotionListener(new MouseMotionAdapter() {
+                        pieceButton.addMouseMotionListener(new MouseMotionAdapter() {
 
                             // When the mouse is dragged
                             public void mouseDragged(MouseEvent e) {
+                                //If it is not a player's piece, don't allow to move it
                                 if (isWhite != GameLogic.isPlayerWhite()) {
                                     return;
                                 }
 
                                 // Get the new x position
-                                int newX = piece.getX() + e.getX() - 40;
+                                int newX = pieceButton.getX() + e.getX() - board.getSquareSize() / 2;
 
                                 // Get the new y position
-                                int newY = piece.getY() + e.getY() - 40;
+                                int newY = pieceButton.getY() + e.getY() - board.getSquareSize() / 2;
 
                                 // Set the new location of the piece
-                                piece.setLocation(newX, newY);
+                                pieceButton.setLocation(newX, newY);
                             }
                         });
 
                         // Add a mouse listener to the piece
-                        piece.addMouseListener(new MouseAdapter() {
+                        pieceButton.addMouseListener(new MouseAdapter() {
 
                             // When the mouse is released
                             public void mouseReleased(MouseEvent e) {
@@ -182,25 +184,28 @@ public abstract class ChessPiece {
                                     return;
                                 }
 
+                                //Remove all highlighted moves
                                 BoardPanel.highlightedMoves = null;
+
+                                //Redraw the board
                                 panel.revalidate();
                                 panel.repaint();
 
                                 // Get the new x position
-                                int newX = piece.getX() + e.getX();
+                                int newX = pieceButton.getX() + board.getSquareSize() / 2;
 
                                 // Get the new y position
-                                int newY = piece.getY() + e.getY();
+                                int newY = pieceButton.getY() + board.getSquareSize() / 2;
 
                                 // Set the new location of the piece
-                                newX = (int) (((newX / 80)) * 80);
-                                newY = (int) (((newY / 80)) * 80);
+                                newX = (int) (((newX / board.getSquareSize())) * board.getSquareSize());
+                                newY = (int) (((newY / board.getSquareSize())) * board.getSquareSize());
 
-                                System.out.println("X: " + newX / 80 + " " + (7 - newY / 80));
+                                System.out.println("X: " + newX / board.getSquareSize() + " " + (board.getBoredSize() - 1 - newY / board.getSquareSize()));
 
-                                if (isMoveValid(newX / 80, 7 - newY / 80)) {
-                                    piece.setLocation(newX, newY);
-                                    board.movePiece(thisPiece, newX / 80, 7 - newY / 80);
+                                if (isMoveValid(newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize())) {
+                                    pieceButton.setLocation(newX, newY);
+                                    board.movePiece(thisPiece, newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize());
                                     initialX = newX;
                                     initialY = newY;
 
@@ -210,17 +215,17 @@ public abstract class ChessPiece {
                                     if (moves != null) {
                                         ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
                                         board.movePiece(pieceMove, moves[2], moves[3]);
-                                        pieceMove.button.setLocation(moves[2] * 80, (7 - moves[3]) * 80);
+                                        pieceMove.button.setLocation(moves[2] * board.getSquareSize(), (board.getBoredSize() - 1 - moves[3]) * board.getSquareSize());
                                         System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
                                     }
                                 } else {
                                     // If the move is not valid, reset the piece to its original position
-                                    piece.setLocation(initialX, initialY);
+                                    pieceButton.setLocation(initialX, initialY);
                                 }
                             }
                         });
                         // Add the piece to the panel
-                        panel.add(piece);
+                        panel.add(pieceButton);
                         return;  // Exit after drawing once
                     }
                 }
