@@ -99,5 +99,23 @@ class RendererTest {
         assertEquals(0, renderer.timeLeft, "Timer should reach 0.");
     }
 	   
+	@Test
+    void testTimerSelectionYes() {
+        Renderer renderer = new Renderer();
 
+        // Simulate the player choosing "Yes" for the timer
+        renderer.isTimerEnabled = true;
+
+        assertTrue(renderer.isTimerEnabled, "Timer should be enabled when the player selects 'Yes'.");
+    }
+
+    @Test
+    void testTimerSelectionNo() {
+        Renderer renderer = new Renderer();
+
+        // Simulate the player choosing "No" for the timer
+        renderer.isTimerEnabled = false;
+
+        assertFalse(renderer.isTimerEnabled, "Timer should not be enabled when the player selects 'No'.");
+    }
 }
