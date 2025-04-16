@@ -64,38 +64,27 @@ public class Game {
         gameState = state;
     }
 
-    // Runs the game
+    // Ensure the game state is set to ACTIVE_GAME when starting the game
     public void Run() {
-
+        //creating a new renderer variable
         Renderer renderer = new Renderer();
-
         renderer.Setup(windowTitle, windowWidth, windowHeight);
 
-        // The last state of the game
         GAME_STATE lastState = null;
 
-        // Run the game
+        //making sure the timer starts
         while (gameActive) {
-
-            // If the state of the game has changed, render the game
-            if (gameState != lastState) {  // Only render when state changes
-
-                // If the game is in the menu state, render the menu
+            if (gameState != lastState) {
                 if (gameState == GAME_STATE.MENU) {
                     renderer.RenderMenu();
-
                 } else if (gameState == GAME_STATE.ACTIVE_GAME) {
-                    renderer.RenderGame();
-
+                    renderer.RenderGame(); // This will start the timer
                 }
-
                 lastState = gameState;
-
             }
 
             try {
-                Thread.sleep(16);  // Add a small delay to prevent CPU overuse
-
+                Thread.sleep(16); // Prevent CPU overuse
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
