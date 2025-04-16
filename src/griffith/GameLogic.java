@@ -66,7 +66,8 @@ public class GameLogic {
                 ChessPiece piece = board.getPiece(row, col);
 
                 // If the piece belongs to the computer, get its valid moves
-                if (piece != null && piece.isWhite == computerColor) {
+                if (piece != null && piece.isWhite == computerColor && 
+                		piece.getValidMoves() != "") {
                 	Map<ChessPiece, String> moves = new HashMap<>();
                     moves.put(piece, piece.getValidMoves());
                     
