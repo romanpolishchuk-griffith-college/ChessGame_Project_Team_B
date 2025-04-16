@@ -29,7 +29,7 @@ public class BoardPanel extends JPanel {
 
 		if (highlightedMoves != null) {
 			for (int i = 0; i < highlightedMoves.length; i++) {
-				g.setColor(Color.BLUE);
+				g.setColor(Color.RED);
 				g.fillOval(Integer.parseInt(highlightedMoves[i].charAt(0) + "") * 80 + 40 - 10, ( 7 - Integer.parseInt(highlightedMoves[i].charAt(2) + "")) * 80 + 40 - 10, 20, 20);
 			}
 		}
