@@ -116,7 +116,7 @@ public class Renderer {
             chessImageForGameMenu = new ImageIcon(getClass().getResource("/res/gameMenuChessImage.png"));
 
         } catch (Exception e) {
-            System.out.println("Failed to load title icon" + e.getMessage());
+            System.out.println("Failed to load game Menu Chess Image icon" + e.getMessage());
         }
 
         JLabel welcomeLabel;

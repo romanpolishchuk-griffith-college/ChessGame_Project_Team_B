@@ -171,8 +171,7 @@ class BoardTest {
 		assertTrue(board.isBlackWon());
 		assertFalse(board.isWhiteWon());
 	}
-
-    @Test
+	@Test
     void testGameEndsWhenKingCaptured() {
         Board board = new Board(true);
 
@@ -185,8 +184,7 @@ class BoardTest {
         // Capture the white king
         board.movePiece(blackRook, 4, 4);
 
-        // Since the game ends with System.exit(0), this test will not proceed further.
-        // You can mock System.exit(0) in advanced testing frameworks.
-        assertNull(board.getPiece(4, 4), "White king should be removed from the board.");
+        // Verify the king is captured and game is over
+        assertTrue(board.isGameOver(), "Game should be marked as over when king is captured.");
     }
 }

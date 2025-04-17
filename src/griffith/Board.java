@@ -16,6 +16,7 @@ public class Board extends JPanel {
 
     private java.util.List<ChessPiece> capturedWhitePieces = new java.util.ArrayList<>();
     private java.util.List<ChessPiece> capturedBlackPieces = new java.util.ArrayList<>();
+    private boolean gameOver = false;
 
     private JPanel piecePanel;
     private JFrame window;
@@ -117,6 +118,10 @@ public class Board extends JPanel {
         board[board.length - 1 - y][x] = piece;
     }
 
+    public boolean isGameOver() {
+        return gameOver;
+    }
+    
     public void movePiece(ChessPiece piece, int newX, int newY) {
         int pieceX = -1;
         int pieceY = -1;
@@ -148,7 +153,7 @@ public class Board extends JPanel {
         if (targetPiece instanceof King) {
             String winner = piece.isWhite() ? "White" : "Black";
             JOptionPane.showMessageDialog(window, "Game Over! " + winner + " wins!");
-            System.exit(0); // End the game
+            gameOver = true; // End the game
         }
 
         //Remove piece from old place
