@@ -26,7 +26,7 @@ class MultiplayerTest {
         board.initializePieces(); // Ensure pieces are initialized
         assertFalse(gameLogic.isMoveValid(board, x, y, y, y, true));
         gameLogic.executeMove(board, x, y, y, y);
-        assertTrue(multiplayer.getIsWhiteTurn()); // Turn should switch to the computer
+        assertFalse(multiplayer.getIsWhiteTurn()); // Turn should switch to the computer
     }
 
     // Test for the computer's move
