@@ -27,6 +27,9 @@ public class Renderer {
     private JLabel timerLabel;      //Timer label for countdown display
     public boolean isTimerEnabled = false; // Add a flag to track if the timer is enabled
 
+    private static JLabel moveCounterLabel;
+    private static MoveCounter moveCounter = new MoveCounter();
+
     // Sets up the game.
     public void Setup(String title, int width, int heigth) {
 
@@ -313,7 +316,7 @@ public class Renderer {
         JLabel statusLabel = new JLabel("Turn: White");
 
         // Create a new move counter label
-        JLabel moveCounterLabel = new JLabel("Moves: 0");
+        moveCounterLabel = new JLabel("Moves: 0");
 
         // Add the status label to the stats panel
         statsPanel.add(statusLabel);
@@ -411,5 +414,10 @@ public class Renderer {
     
     public static Board getGameBoard() {
     	return board;
+    }
+
+    public static void updateGameStats() {
+        moveCounter.increment();
+        moveCounterLabel.setText("Moves: " + moveCounter.getCount());
     }
 }
