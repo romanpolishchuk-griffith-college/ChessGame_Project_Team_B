@@ -136,6 +136,8 @@ public class Board extends JPanel {
             }
         }
 
+        Renderer.updateGameStats();
+
         //Get whatever piece is at a new position
         ChessPiece targetPiece = getPiece(newX, newY);
         //Checking if a piece of the other side is on that position
