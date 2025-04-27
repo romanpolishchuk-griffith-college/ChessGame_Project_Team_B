@@ -3,10 +3,8 @@ package griffith;
 public class Main {
 	public static void main(String[] args) {
 
-		// Create a new game
+		// Create a new game and a renderer
 		Game game = new Game("Super Chess", 1080, 720);
-
-		//Creating a new renderer variable
 		Renderer renderer = new Renderer();
 
 		// Run the game
