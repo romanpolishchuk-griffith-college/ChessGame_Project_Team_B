@@ -5,7 +5,6 @@ import javax.swing.event.MouseInputAdapter;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -19,12 +18,11 @@ public abstract class ChessPiece {
     // The button for the piece
     public JButton button;
 
-    // The initial x position of the piece
+    // The initial x and y positions of the piece
     private int initialX = 0;
-    // The initial y position of the piece
     private int initialY = 0;
 
-    // Constructor with specified board and color.
+    // Constructors
     ChessPiece(Board board, boolean isWhite, String pieceName) {
         this.board = board;
         this.isWhite = isWhite;
@@ -59,56 +57,6 @@ public abstract class ChessPiece {
             e.printStackTrace();
 
         }
-    }
-
-
-    // Returns the valid moves for the piece.
-    abstract public String getValidMoves();
-
-    // Returns true if the move is valid for the piece.
-    abstract public boolean isMoveValid(int x, int y);
-
-    //added a getter for the isWhite property
-    public boolean isWhite() {
-        return isWhite;
-    }
-    
-    //Get x on the board
-    public int getX() {
-        int pawnX = -1;
-
-        // Loop through the board
-        for (int y = 0; y < board.getBoard().length; y++) {
-
-            // Loop through the board
-            for (int x = 0; x < board.getBoard()[y].length; x++) {
-
-                // If the piece is the pawn
-                if (board.getPiece(x, y) == this) {
-                    return x;
-                }
-            }
-        }
-        return 0;
-    }
-    
-    //Get y on the board
-    public int getY() {
-        int pawnY = -1;
-
-        // Loop through the board
-        for (int y = 0; y < board.getBoard().length; y++) {
-
-            // Loop through the board
-            for (int x = 0; x < board.getBoard()[y].length; x++) {
-
-                // If the piece is the pawn
-                if (board.getPiece(x, y) == this) {
-                    return y;
-                }
-            }
-        }
-        return 0;
     }
 
     // Draws the piece on the board.
@@ -313,4 +261,52 @@ public abstract class ChessPiece {
         }
 
     }
+
+
+    // Boolean flags
+    abstract public boolean isMoveValid(int x, int y);
+
+    public boolean isWhite() {
+        return isWhite;
+    }
+
+
+    // Getters
+    public int getX() {
+        int pawnX = -1;
+
+        // Loop through the board
+        for (int y = 0; y < board.getBoard().length; y++) {
+
+            // Loop through the board
+            for (int x = 0; x < board.getBoard()[y].length; x++) {
+
+                // If the piece is the pawn
+                if (board.getPiece(x, y) == this) {
+                    return x;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int getY() {
+        int pawnY = -1;
+
+        // Loop through the board
+        for (int y = 0; y < board.getBoard().length; y++) {
+
+            // Loop through the board
+            for (int x = 0; x < board.getBoard()[y].length; x++) {
+
+                // If the piece is the pawn
+                if (board.getPiece(x, y) == this) {
+                    return y;
+                }
+            }
+        }
+        return 0;
+    }
+
+    abstract public String getValidMoves();
 }
