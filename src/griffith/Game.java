@@ -3,16 +3,11 @@ package griffith;
 // Represents a game.
 public class Game {
 
-    // The title of the window
+    // Window parameters
     private String windowTitle;
-
-    // The width of the window
     private int windowWidth;
-
-    // The height of the window
     private int windowHeight;
 
-    // Whether the game is active
     private boolean gameActive = true;
 
     enum GAME_STATE {
@@ -23,7 +18,7 @@ public class Game {
     // The current state of the game
     private static GAME_STATE gameState = GAME_STATE.MENU;
 
-    // Constructor with specified window title, width, and height.
+    // Constructor
     public Game(String windowTitle, int windowWidth, int windowHeight) {
 
         // If the window width is less than or equal to 0, set the window width to 1000
@@ -59,11 +54,6 @@ public class Game {
         return gameState;
     }
 
-    // Sets the current state of the game
-    public static void setGameState(GAME_STATE state) {
-        gameState = state;
-    }
-
     // Ensure the game state is set to ACTIVE_GAME when starting the game
     public void Run() {
         //creating a new renderer variable
@@ -91,41 +81,43 @@ public class Game {
         }
     }
 
-    // Returns the window title
-    public String getWindowTitle() {
-        return windowTitle;
-    }
-
-    // Sets the window title
-    public void setWindowTitle(String windowTitle) {
-        this.windowTitle = windowTitle;
-    }
-
-    // Returns the window width
-    public int getWindowWidth() {
-        return windowWidth;
-    }
-
-    // Sets the window width
-    public void setWindowWidth(int windowWidth) {
-        this.windowWidth = windowWidth;
-    }
-
-    // Returns the window height
-    public int getWindowHeight() {
-        return windowHeight;
-    }
-
-    // Sets the window height
-    public void setWindowHeight(int windowHeight) {
-        this.windowHeight = windowHeight;
-    }
-
     // Add a method to reset the timer
     public void resetTimer(Renderer renderer) {
         renderer.timeLeft = 300; // Reset to 5 minutes
         if (renderer.countdownTimer != null) {
             renderer.countdownTimer.stop();
         }
+    }
+
+
+    // Getters
+    public int getWindowHeight() {
+        return windowHeight;
+    }
+
+    public String getWindowTitle() {
+        return windowTitle;
+    }
+
+    public int getWindowWidth() {
+        return windowWidth;
+    }
+
+
+    //Setters
+    public void setWindowHeight(int windowHeight) {
+        this.windowHeight = windowHeight;
+    }
+
+    public void setWindowWidth(int windowWidth) {
+        this.windowWidth = windowWidth;
+    }
+
+    public void setWindowTitle(String windowTitle) {
+        this.windowTitle = windowTitle;
+    }
+
+    public static void setGameState(GAME_STATE state) {
+        gameState = state;
     }
 }
