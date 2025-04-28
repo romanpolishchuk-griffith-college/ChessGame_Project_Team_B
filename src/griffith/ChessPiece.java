@@ -6,8 +6,12 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public abstract class ChessPiece {
 
@@ -245,7 +249,24 @@ public abstract class ChessPiece {
                                 System.out.println("X: " + newX / board.getSquareSize() + " " + (board.getBoredSize() - 1 - newY / board.getSquareSize()));
 
                                 if (isMoveValid(newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize())) {
-                                    pieceButton.setLocation(newX, newY);
+                                	String soundPath = "src/res/move.mp3";
+									try {
+										AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
+										Media hit = new Media(new File(soundPath).toURI().toString());
+										MediaPlayer mediaPlayer = new MediaPlayer(hit);
+										mediaPlayer.play();
+									} catch (UnsupportedAudioFileException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (LineUnavailableException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+                                	
+                                	pieceButton.setLocation(newX, newY);
                                     board.movePiece(thisPiece, newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize());
                                     initialX = newX;
                                     initialY = newY;
