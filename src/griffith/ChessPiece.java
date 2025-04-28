@@ -9,9 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class ChessPiece {
 
@@ -249,12 +251,12 @@ public abstract class ChessPiece {
                                 System.out.println("X: " + newX / board.getSquareSize() + " " + (board.getBoredSize() - 1 - newY / board.getSquareSize()));
 
                                 if (isMoveValid(newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize())) {
-                                	String soundPath = "src/res/move.mp3";
+                                	String soundPath = "src/res/move.wav";
 									try {
 										AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
-										Media hit = new Media(new File(soundPath).toURI().toString());
-										MediaPlayer mediaPlayer = new MediaPlayer(hit);
-										mediaPlayer.play();
+	                                	Clip clip = AudioSystem.getClip();
+	                                	clip.open(audioInputStream);
+	                                	clip.start();
 									} catch (UnsupportedAudioFileException e1) {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
