@@ -1,5 +1,14 @@
 package griffith;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 // Represents a game.
 public class Game {
 
@@ -78,6 +87,22 @@ public class Game {
                 if (gameState == GAME_STATE.MENU) {
                     renderer.RenderMenu();
                 } else if (gameState == GAME_STATE.ACTIVE_GAME) {
+                	String soundPath = "src/res/background-music.wav";
+					try {
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
+                    	Clip clip = AudioSystem.getClip();
+                    	clip.open(audioInputStream);
+                    	clip.start();
+					} catch (UnsupportedAudioFileException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                     renderer.RenderGame(); // This will start the timer
                 }
                 lastState = gameState;
