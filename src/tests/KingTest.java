@@ -123,4 +123,17 @@ public class KingTest {
         // Test that the king can move to a safe position
         assertTrue(whiteKing.isMoveValid(3, 3), "King should be able to move to a safe position.");
     }
+
+    @Test
+    public void testKingCanMoveToSafePosition() {
+        // Create a new board
+        Board board = new Board();
+
+        // Place a white king on the board
+        King whiteKing = new King(board, true);
+        board.setPiece(4, 4, whiteKing);
+
+        // Test that the king can move to a position not under attack
+        assertTrue(whiteKing.isMoveValid(3, 3), "King should be able to move to a safe position.");
+    }
 }
