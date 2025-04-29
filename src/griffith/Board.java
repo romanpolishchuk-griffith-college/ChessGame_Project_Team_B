@@ -18,6 +18,9 @@ public class Board extends JPanel {
     private java.util.List<ChessPiece> capturedBlackPieces = new java.util.ArrayList<>();
     private boolean gameOver = false;
 
+    private ChessPiece lastMovedPiece;
+    private int lastMoveStartX, lastMoveStartY, lastMoveEndX, lastMoveEndY;
+
     private JFrame window;
 
     private ChessPiece[][] board = {
@@ -31,7 +34,7 @@ public class Board extends JPanel {
             {null, null, null, null, null, null, null, null}
     };
 
-
+    
     // Constructors
     public Board(boolean initializePieces) {
         setPreferredSize(new java.awt.Dimension(BOARD_SIZE * SQUARE_SIZE, BOARD_SIZE * SQUARE_SIZE));
@@ -57,6 +60,13 @@ public class Board extends JPanel {
                 }
             }
         }
+
+        // Track the last move
+        lastMovedPiece = piece;
+        lastMoveStartX = pieceX;
+        lastMoveStartY = pieceY;
+        lastMoveEndX = newX;
+        lastMoveEndY = newY;
 
         Renderer.updateGameStats();
 
@@ -84,6 +94,18 @@ public class Board extends JPanel {
         setPiece(pieceX, pieceY, null);
         //Move piece to new place
         setPiece(newX, newY, piece);
+    }
+
+    public ChessPiece getLastMovedPiece() {
+        return lastMovedPiece;
+    }
+
+    public int getLastMoveStartY() {
+        return lastMoveStartY;
+    }
+
+    public int getLastMoveEndY() {
+        return lastMoveEndY;
     }
 
     // Initializes the pieces on the board.
