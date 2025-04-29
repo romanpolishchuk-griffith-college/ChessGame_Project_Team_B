@@ -251,23 +251,9 @@ public abstract class ChessPiece {
                                 System.out.println("X: " + newX / board.getSquareSize() + " " + (board.getBoredSize() - 1 - newY / board.getSquareSize()));
 
                                 if (isMoveValid(newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize())) {
-                                	//Path to the move sound
-                                	String soundPath = "src/res/move.wav";
-                					try {
-                						//Get the audio stream
-                						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
-                                    	//Create clip out of audio stream
-                						Clip clip = AudioSystem.getClip();
-                                    	clip.open(audioInputStream);
-                                    	//Play the clip
-                                    	clip.start();
-                					} catch (UnsupportedAudioFileException e1) {
-                						e1.printStackTrace();
-                					} catch (IOException e1) {
-                						e1.printStackTrace();
-                					} catch (LineUnavailableException e1) {
-                						e1.printStackTrace();
-                					}
+                                	
+                                	//Play move sound
+                                	SoundControl.playMoveSound();
                                 	
                                 	pieceButton.setLocation(newX, newY);
                                     board.movePiece(thisPiece, newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize());
