@@ -87,20 +87,21 @@ public class Game {
                 if (gameState == GAME_STATE.MENU) {
                     renderer.RenderMenu();
                 } else if (gameState == GAME_STATE.ACTIVE_GAME) {
+                	//Path to the background music
                 	String soundPath = "src/res/background-music.wav";
 					try {
+						//Get the audio stream
 						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
-                    	Clip clip = AudioSystem.getClip();
+                    	//Create clip out of audio stream
+						Clip clip = AudioSystem.getClip();
                     	clip.open(audioInputStream);
+                    	//Play the clip
                     	clip.start();
 					} catch (UnsupportedAudioFileException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (LineUnavailableException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
                     renderer.RenderGame(); // This will start the timer
