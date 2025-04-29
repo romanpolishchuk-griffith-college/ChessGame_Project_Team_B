@@ -122,17 +122,35 @@ public class King extends ChessPiece {
     // Returns true if the move is valid for the king.
     @Override
     public boolean isMoveValid(int x, int y) {
-        if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
-                y > board.getBoard().length) {
+        // Check if the move is within bounds
+        if (x < 0 || y < 0 || x >= board.getBoard()[0].length || y >= board.getBoard().length) {
             return false;
         }
 
+        // Get the valid moves for the king
         String validMoves = getValidMoves();
-
-        // Get the target move
         String targetMove = x + "," + y;
 
-        // Return if the move is valid
-        return validMoves.contains(targetMove);
+        // If the move is not in the valid moves list, return false
+        if (!validMoves.contains(targetMove)) {
+            return false;
+        }
+
+        // Temporarily move the king to the target position
+        ChessPiece originalPiece = board.getPiece(x, y);
+        int currentX = getX();
+        int currentY = getY();
+        board.setPiece(currentX, currentY, null);
+        board.setPiece(x, y, this);
+
+        // Check if the king would be in check at the target position
+        boolean isInCheck = board.isSquareUnderAttack(x, y, !isWhite) != null;
+
+        // Revert the move
+        board.setPiece(x, y, originalPiece);
+        board.setPiece(currentX, currentY, this);
+
+        // Return false if the king would be in check, otherwise true
+        return !isInCheck;
     }
 }
