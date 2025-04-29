@@ -106,13 +106,55 @@ public class GameLogic {
             }
         }
 
-        int randomPieceId = (int) (Math.random() * validMoves.size());
+        // Filter out moves that would place the king in check
+        ArrayList<int[]> filteredMoves = new ArrayList<>();
+        for (Map<ChessPiece, String> moveMap : validMoves) {
+            ChessPiece piece = moveMap.keySet().iterator().next();
+            String[] moves = moveMap.get(piece).split(" ");
+            for (String move : moves) {
+                int targetX = Integer.parseInt(move.split(",")[0]);
+                int targetY = Integer.parseInt(move.split(",")[1]);
 
-        ChessPiece pieceToMove = validMoves.get(randomPieceId).keySet().iterator().next();
-        String[] pieceToMoveMoves = validMoves.get(randomPieceId).get(pieceToMove).split(" ");
-        String finalMove = pieceToMoveMoves[(int) (Math.random() * pieceToMoveMoves.length)];
+                // Temporarily move the piece
+                ChessPiece originalPiece = board.getPiece(targetX, targetY);
+                int currentX = piece.getX();
+                int currentY = piece.getY();
+                board.setPiece(currentX, currentY, null);
+                board.setPiece(targetX, targetY, piece);
 
-        return new int[]{pieceToMove.getX(), pieceToMove.getY(), Integer.parseInt(finalMove.charAt(0) + ""), Integer.parseInt(finalMove.charAt(2) + "")};
+                // Check if the king is in check
+                boolean isInCheck = false;
+                for (int row = 0; row < 8; row++) {
+                    for (int col = 0; col < 8; col++) {
+                        ChessPiece opponentPiece = board.getPiece(row, col);
+                        if (opponentPiece != null && opponentPiece.isWhite != computerColor &&
+                                opponentPiece.isMoveValid(piece.getX(), piece.getY())) {
+                            isInCheck = true;
+                            break;
+                        }
+                    }
+                    if (isInCheck) break;
+                }
+
+                // Revert the move
+                board.setPiece(targetX, targetY, originalPiece);
+                board.setPiece(currentX, currentY, piece);
+
+                // Add the move if it doesn't place the king in check
+                if (!isInCheck) {
+                    filteredMoves.add(new int[]{currentX, currentY, targetX, targetY});
+                }
+            }
+        }
+
+        // If no valid moves are left, return null
+        if (filteredMoves.isEmpty()) {
+            return null;
+        }
+
+        // Choose a random move from the filtered list
+        int[] chosenMove = filteredMoves.get((int) (Math.random() * filteredMoves.size()));
+        return chosenMove;
     }
 
 
