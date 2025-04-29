@@ -10,6 +10,7 @@ import griffith.Board;
 import griffith.King;
 import griffith.Knight;
 import griffith.Pawn;
+import griffith.Rook;
 
 // Represents a test for the King class.
 public class KingTest {
@@ -101,4 +102,25 @@ public class KingTest {
         assertFalse(king3.isMoveValid(8, 7));
         assertFalse(king3.isMoveValid(8, 8));
 	}
+
+    @Test
+    public void testKingCannotMoveIntoCheck() {
+        // Create a new board
+        Board board = new Board();
+
+        // Place a white king on the board
+        King whiteKing = new King(board, true);
+        board.setPiece(4, 4, whiteKing);
+
+        // Place a black rook threatening the king
+        Rook blackRook = new Rook(board, false);
+        board.setPiece(4, 7, blackRook);
+
+        // Test that the king cannot move into a position where it would be in check
+        assertFalse(whiteKing.isMoveValid(4, 5), "King should not be able to move into check.");
+        assertFalse(whiteKing.isMoveValid(4, 6), "King should not be able to move into check.");
+
+        // Test that the king can move to a safe position
+        assertTrue(whiteKing.isMoveValid(3, 3), "King should be able to move to a safe position.");
+    }
 }
