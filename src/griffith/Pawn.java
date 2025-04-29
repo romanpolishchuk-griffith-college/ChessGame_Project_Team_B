@@ -92,10 +92,10 @@ public class Pawn extends ChessPiece {
         if (x < 0 || y < 0 || x >= board.getBoard()[0].length || y >= board.getBoard().length) {
             return false;
         }
-
+    
         String validMoves = getValidMoves();
         String targetMove = x + "," + y;
-
+    
         // Handle En Passant capture
         if (validMoves.contains(targetMove)) {
             if (Math.abs(x - getX()) == 1 && board.getPiece(x, y) == null) {
@@ -108,7 +108,7 @@ public class Pawn extends ChessPiece {
             }
             return true;
         }
-
+    
         return false;
     }
 }
