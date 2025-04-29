@@ -18,9 +18,6 @@ public class Board extends JPanel {
     private java.util.List<ChessPiece> capturedBlackPieces = new java.util.ArrayList<>();
     private boolean gameOver = false;
 
-    private ChessPiece lastMovedPiece;
-    private int lastMoveStartX, lastMoveStartY, lastMoveEndX, lastMoveEndY;
-
     private JFrame window;
 
     private ChessPiece[][] board = {
@@ -50,7 +47,7 @@ public class Board extends JPanel {
     public void movePiece(ChessPiece piece, int newX, int newY) {
         int pieceX = -1;
         int pieceY = -1;
-
+    
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
                 if (getPiece(x, y) == piece) {
@@ -60,52 +57,37 @@ public class Board extends JPanel {
                 }
             }
         }
-
-        // Track the last move
-        lastMovedPiece = piece;
-        lastMoveStartX = pieceX;
-        lastMoveStartY = pieceY;
-        lastMoveEndX = newX;
-        lastMoveEndY = newY;
-
+    
+      
         Renderer.updateGameStats();
-
-        //Get whatever piece is at a new position
+    
+        // Get the piece at the new position
         ChessPiece targetPiece = getPiece(newX, newY);
-        //Checking if a piece of the other side is on that position
+    
+        // If a piece is captured
         if (targetPiece != null && targetPiece.isWhite != piece.isWhite) {
-            //Piece is added to captured panel if yes
             addCapturedPiece(targetPiece);
-            //Verifying game window is not null
-            if (window != null) {
-                //Removing that chess piece from the game window
+    
+            // Remove the captured piece's button from the window
+            if (targetPiece.button != null && window != null) {
                 window.remove(targetPiece.button);
+                window.revalidate();
+                window.repaint();
             }
         }
-
+    
         // Check if the captured piece is a king
         if (targetPiece instanceof King) {
             String winner = piece.isWhite() ? "White" : "Black";
             JOptionPane.showMessageDialog(window, "Game Over! " + winner + " wins!");
             gameOver = true; // End the game
         }
-
-        //Remove piece from old place
+    
+        // Remove the piece from its old position
         setPiece(pieceX, pieceY, null);
-        //Move piece to new place
+    
+        // Move the piece to the new position
         setPiece(newX, newY, piece);
-    }
-
-    public ChessPiece getLastMovedPiece() {
-        return lastMovedPiece;
-    }
-
-    public int getLastMoveStartY() {
-        return lastMoveStartY;
-    }
-
-    public int getLastMoveEndY() {
-        return lastMoveEndY;
     }
 
     // Initializes the pieces on the board.

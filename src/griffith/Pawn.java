@@ -22,13 +22,18 @@ public class Pawn extends ChessPiece {
 
     @Override
     public String getValidMoves() {
+
         String moves = "";
         int pawnX = -1;
         int pawnY = -1;
 
-        // Loop through the board to find the pawn's position
+        // Loop through the board
         for (int y = 0; y < board.getBoard().length; y++) {
+
+            // Loop through the board
             for (int x = 0; x < board.getBoard()[y].length; x++) {
+
+                // If the piece is the pawn
                 if (board.getPiece(x, y) == this) {
                     pawnX = x;
                     pawnY = y;
@@ -36,79 +41,71 @@ public class Pawn extends ChessPiece {
                 }
             }
         }
+        // The offset of the pawn
+        int pawnOffset;
 
-        int pawnOffset = isWhite ? 1 : -1;
+        // If the pawn is white
+        if (isWhite) {
+            // Set the offset to 1
+            pawnOffset = 1;
+        }
+        // If the pawn is black
+        else {
+            pawnOffset = -1;
+        }
 
-        // Normal forward move
+        // If the pawn can move forward
         if (board.getPiece(pawnX, pawnY + pawnOffset) == null &&
-                pawnY + pawnOffset < board.getBoard().length &&
-                pawnY + pawnOffset >= 0) {
+        		pawnY + pawnOffset < board.getBoard().length &&
+        		pawnY + pawnOffset > 0) {
             moves += pawnX + "," + (pawnY + pawnOffset) + " ";
         }
-
-        // Double forward move from starting position
-        if (isWhite && pawnY == 1 && board.getPiece(pawnX, pawnY + pawnOffset) == null &&
+        // If the pawn is white and can move forward two squares
+        if (isWhite &&
+                pawnY == 1 &&
+                board.getPiece(pawnX, pawnY + pawnOffset) == null &&
                 board.getPiece(pawnX, pawnY + pawnOffset * 2) == null) {
+            // Add the move to the moves string
             moves += pawnX + "," + (pawnY + pawnOffset * 2) + " ";
         }
-        if (!isWhite && pawnY == 6 && board.getPiece(pawnX, pawnY + pawnOffset) == null &&
+        // If the pawn is black and can move forward two squares
+        if (!isWhite &&
+                pawnY == 6 &&
+                board.getPiece(pawnX, pawnY + pawnOffset) == null &&
                 board.getPiece(pawnX, pawnY + pawnOffset * 2) == null) {
+            // Add the move to the moves string
             moves += pawnX + "," + (pawnY + pawnOffset * 2) + " ";
         }
-
-        // Capture moves
+        // If the pawn can capture a piece to the right
         if (board.getPiece(pawnX + 1, pawnY + pawnOffset) != null &&
                 board.getPiece(pawnX + 1, pawnY + pawnOffset).isWhite != isWhite) {
+            // Add the move to the moves string
             moves += (pawnX + 1) + "," + (pawnY + pawnOffset) + " ";
         }
+        // If the pawn can capture a piece to the left
         if (board.getPiece(pawnX - 1, pawnY + pawnOffset) != null &&
                 board.getPiece(pawnX - 1, pawnY + pawnOffset).isWhite != isWhite) {
+            // Add the move to the moves string
             moves += (pawnX - 1) + "," + (pawnY + pawnOffset) + " ";
         }
-
-        // En Passant
-        if (pawnY == (isWhite ? 4 : 3)) { // Check if the pawn is in the correct row for En Passant
-            ChessPiece leftPiece = board.getPiece(pawnX - 1, pawnY);
-            ChessPiece rightPiece = board.getPiece(pawnX + 1, pawnY);
-
-            if (leftPiece instanceof Pawn && leftPiece.isWhite != isWhite &&
-                    board.getLastMovedPiece() == leftPiece &&
-                    Math.abs(board.getLastMoveStartY() - board.getLastMoveEndY()) == 2) {
-                moves += (pawnX - 1) + "," + (pawnY + pawnOffset) + " ";
-            }
-
-            if (rightPiece instanceof Pawn && rightPiece.isWhite != isWhite &&
-                    board.getLastMovedPiece() == rightPiece &&
-                    Math.abs(board.getLastMoveStartY() - board.getLastMoveEndY()) == 2) {
-                moves += (pawnX + 1) + "," + (pawnY + pawnOffset) + " ";
-            }
-        }
-
+        // Return the moves string
         return moves.trim();
     }
 
+    // Returns true if the move is valid for the pawn.
     @Override
     public boolean isMoveValid(int x, int y) {
-        if (x < 0 || y < 0 || x >= board.getBoard()[0].length || y >= board.getBoard().length) {
-            return false;
-        }
-    
+		if(x < 0 || y < 0 || x > board.getBoard()[0].length - 1 ||
+				y > board.getBoard().length) {
+			return false;
+		}
+
         String validMoves = getValidMoves();
+
+        // Get the target move
         String targetMove = x + "," + y;
-    
-        // Handle En Passant capture
-        if (validMoves.contains(targetMove)) {
-            if (Math.abs(x - getX()) == 1 && board.getPiece(x, y) == null) {
-                int capturedPawnY = isWhite ? y - 1 : y + 1;
-                ChessPiece capturedPawn = board.getPiece(x, capturedPawnY);
-                if (capturedPawn instanceof Pawn && capturedPawn.isWhite != isWhite) {
-                    board.addCapturedPiece(capturedPawn);
-                    board.setPiece(x, capturedPawnY, null); // Remove the captured pawn
-                }
-            }
-            return true;
-        }
-    
-        return false;
+
+        // Return if the move is valid
+        return validMoves.contains(targetMove);
     }
 }
