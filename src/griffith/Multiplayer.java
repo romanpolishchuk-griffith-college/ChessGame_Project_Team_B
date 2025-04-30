@@ -63,7 +63,7 @@ public class Multiplayer {
             isWhiteTurn = false; // Switch to computer's turn
 
             if (gameLogic.isGameOver(board)) {
-                JOptionPane.showMessageDialog(null, "Game Over! You win!");
+                JOptionPane.showMessageDialog(null, "Congratulations, you won!");
                 return;
             }
 

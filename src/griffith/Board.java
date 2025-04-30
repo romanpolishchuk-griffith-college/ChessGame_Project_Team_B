@@ -79,7 +79,7 @@ public class Board extends JPanel {
         // Check if the captured piece is a king
         if (targetPiece instanceof King) {
             String winner = piece.isWhite() ? "White" : "Black";
-            JOptionPane.showMessageDialog(window, "Game Over! " + winner + " wins!");
+            JOptionPane.showMessageDialog(window, winner + " wins!");
             gameOver = true; // End the game
         }
     
