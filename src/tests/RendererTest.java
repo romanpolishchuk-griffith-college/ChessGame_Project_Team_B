@@ -118,4 +118,14 @@ class RendererTest {
 
         assertFalse(renderer.isTimerEnabled, "Timer should not be enabled when the player selects 'No'.");
     }
+
+    //Test for the static getGameBoard method
+    @Test
+    void testGetGameBoard() {
+     renderer.Setup("Test Window", 800, 600);
+    
+     //Test that the board is properly initialized and returned
+     assertNotNull(Renderer.getGameBoard(), "getGameBoard should return a non-null Board instance");
+   
+    }
 }
