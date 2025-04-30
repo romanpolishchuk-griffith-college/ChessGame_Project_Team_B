@@ -118,4 +118,26 @@ class RendererTest {
 
         assertFalse(renderer.isTimerEnabled, "Timer should not be enabled when the player selects 'No'.");
     }
+
+    //Test for the static getGameBoard method
+    @Test
+    void testGetGameBoard() {
+     renderer.Setup("Test Window", 800, 600);
+    
+     //Test that the board is properly initialized and returned
+     assertNotNull(Renderer.getGameBoard(), "getGameBoard should return a non-null Board instance");
+   
+    }
+    //Test the consecutive execution of RenderGame for the isGameDrawn flag
+    @Test
+    void testConsecutiveRenderGame() {
+        renderer.Setup("Test Window", 800, 600);
+        
+        //First render - should set up the board
+        renderer.RenderGame();
+        
+        //Second render - should not throw exceptions due to isGameDrawn flag
+        assertDoesNotThrow(() -> renderer.RenderGame(), 
+            "Consecutive RenderGame calls should not throw exceptions");
+    }
 }
