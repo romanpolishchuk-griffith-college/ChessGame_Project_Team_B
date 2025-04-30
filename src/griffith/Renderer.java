@@ -1,28 +1,33 @@
 package griffith;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import griffith.Game.GAME_STATE;
 
+// Represents a renderer for the game.
 public class Renderer {
 
+    // The window of the game
     private JFrame window;
-    private JPanel welcomePanel;
 
+    // The board of the game
     private static Board board;
 
+    // The welcome panel of the game
+    private JPanel welcomePanel;
+
+    // Whether the game is drawn
     private boolean isGameDrawn = false;
 
-    public Timer countdownTimer;
+    public Timer countdownTimer; // Timer for countdown
     public int timeLeft = 300;   //Default time in seconds (5 minutes)
-    private JLabel timerLabel;
-    public boolean isTimerEnabled = false;
-
-    private static JLabel moveCounterLabel;
-    private static MoveCounter moveCounter = new MoveCounter();
+    private JLabel timerLabel;      //Timer label for countdown display
+    public boolean isTimerEnabled = false; // Add a flag to track if the timer is enabled
 
     // Sets up the game.
     public void Setup(String title, int width, int heigth) {
@@ -52,7 +57,7 @@ public class Renderer {
 
     }
 
-    // Renders
+    // Renders the game.
     public void RenderGame() {
 
         // If the welcome panel is not null
@@ -79,10 +84,44 @@ public class Renderer {
 
             // Set the game as drawn
             isGameDrawn = true;
+            
+         // Get the computer move
+            int[] moves = GameLogic.getComputerMove(board);
+
+            if (moves != null) {
+                if (board.isUnderCheck(!GameLogic.isPlayerWhite())){
+                    ArrayList<Map<ChessPiece, String>> validMovesUnderCheck = board.getValidMovesUnderCheck(!GameLogic.isPlayerWhite());
+                    ChessPiece defendingPiece = validMovesUnderCheck.get(0).keySet().iterator().next();
+                    String defendingPieceMove = validMovesUnderCheck.get(0).get(defendingPiece);
+                    moves[0] = defendingPiece.getX();
+                    moves[1] = defendingPiece.getY();
+                    moves[2] = Integer.parseInt(defendingPieceMove.charAt(0) + "");
+                    moves[3] = Integer.parseInt(defendingPieceMove.charAt(2) + "");
+                }
+
+                ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
+                board.movePiece(pieceMove, moves[2], moves[3]);
+                pieceMove.button.setLocation(moves[2] * board.getSquareSize(), (board.getBoredSize() - 1 - moves[3]) * board.getSquareSize());
+                System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
+
+                if (GameLogic.isPlayerWhite()){
+                    if(board.isBlackWon()){
+                        JOptionPane.showMessageDialog(window, "You have lose :(.");
+                        return;
+                    }
+                }
+                else {
+                    if(board.isWhiteWon()){
+                        JOptionPane.showMessageDialog(window, "You have lose :(.");
+                        return;
+                    }
+                }
+            }
         }
 
     }
 
+    // Renders the menu.
     public void RenderMenu() {
 
         // If the board is not null
@@ -96,8 +135,7 @@ public class Renderer {
         createWelcomePanel();
     }
 
-
-    // Panels
+    // Creates the welcome panel.
     private void createWelcomePanel() {
 
         // Create a new welcome panel
@@ -200,6 +238,7 @@ public class Renderer {
         window.repaint();
     }
 
+	// Creates the captured panel.
     public void createCapturedPanel() {
 
         // Create a new captured panel
@@ -256,41 +295,7 @@ public class Renderer {
         window.repaint();
     }
 
-    private void createStatsPanel() {
-
-        // Create a new stats panel
-        JPanel statsPanel = new JPanel();
-
-        // Create a new status label
-        JLabel statusLabel = new JLabel("Turn: White");
-
-        // Create a new move counter label
-        moveCounterLabel = new JLabel("Moves: 0");
-
-        // Add the status label to the stats panel
-        statsPanel.add(statusLabel);
-
-        // Add the move counter label to the stats panel
-        statsPanel.add(moveCounterLabel);
-
-        if (isTimerEnabled) { // Only add the timer label if the timer is enabled
-            timerLabel = new JLabel("Time Left: 05:00");
-            statsPanel.add(timerLabel);
-        }
-
-        // Add the stats panel to the window
-        window.add(statsPanel, BorderLayout.SOUTH);
-
-        // Revalidate the window
-        window.revalidate();
-
-        // Repaint the window
-        window.repaint();
-    }
-
-
-    // Modifiers
-    public void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
+	public void updateCapturedPieces(JPanel whiteCapturedPanel, JPanel blackCapturedPanel) {
 		//Clear existing displays
 		whiteCapturedPanel.removeAll();
 		blackCapturedPanel.removeAll();
@@ -333,21 +338,42 @@ public class Renderer {
 		blackCapturedPanel.repaint();
 	}
 
-    private void updateTimerDisplay() {
-        if (isTimerEnabled && timerLabel != null) { // Update the timer only if it's enabled
-            timerLabel.setText("Time Left: " + formatTime(timeLeft));
-        }
-    }
+	// Creates the stats panel.
+    private void createStatsPanel() {
 
-    public static void updateGameStats() {
-        moveCounter.increment();
-        moveCounterLabel.setText("Moves: " + moveCounter.getCount());
+        // Create a new stats panel
+        JPanel statsPanel = new JPanel();
+
+        // Create a new status label
+        JLabel statusLabel = new JLabel("Turn: White");
+
+        // Create a new move counter label
+        JLabel moveCounterLabel = new JLabel("Moves: 0");
+
+        // Add the status label to the stats panel
+        statsPanel.add(statusLabel);
+
+        // Add the move counter label to the stats panel
+        statsPanel.add(moveCounterLabel);
+
+        if (isTimerEnabled) { // Only add the timer label if the timer is enabled
+            timerLabel = new JLabel("Time Left: 05:00");
+            statsPanel.add(timerLabel);
+        }
+
+        // Add the stats panel to the window
+        window.add(statsPanel, BorderLayout.SOUTH);
+
+        // Revalidate the window
+        window.revalidate();
+
+        // Repaint the window
+        window.repaint();
     }
 
     private void changeGameState() {
         Game.setGameState(GAME_STATE.ACTIVE_GAME);
     }
-
 
     private void showColorSelectionDialog() {
         // Create a dialog for color selection
@@ -388,7 +414,6 @@ public class Renderer {
         // Change the game state to start the game
         changeGameState();
     }
-
     // Add a method to start the countdown timer
     public void startCountdownTimer() {
         isTimerEnabled = true; // Set the timer flag to true
@@ -404,6 +429,13 @@ public class Renderer {
         countdownTimer.start();
     }
 
+    // Add a method to update the timer display
+    private void updateTimerDisplay() {
+        if (isTimerEnabled && timerLabel != null) { // Update the timer only if it's enabled
+            timerLabel.setText("Time Left: " + formatTime(timeLeft));
+        }
+    }
+    
     // Add a helper method to format time
     private String formatTime(int seconds) {
         int minutes = seconds / 60;
@@ -411,10 +443,8 @@ public class Renderer {
         return String.format("%02d:%02d", minutes, secs);
     }
 
-
-    // Getters
+    
     public static Board getGameBoard() {
     	return board;
     }
-
 }
