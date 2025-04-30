@@ -128,4 +128,16 @@ class RendererTest {
      assertNotNull(Renderer.getGameBoard(), "getGameBoard should return a non-null Board instance");
    
     }
+    //Test the consecutive execution of RenderGame for the isGameDrawn flag
+    @Test
+    void testConsecutiveRenderGame() {
+        renderer.Setup("Test Window", 800, 600);
+        
+        //First render - should set up the board
+        renderer.RenderGame();
+        
+        //Second render - should not throw exceptions due to isGameDrawn flag
+        assertDoesNotThrow(() -> renderer.RenderGame(), 
+            "Consecutive RenderGame calls should not throw exceptions");
+    }
 }
