@@ -303,9 +303,6 @@ public class Renderer {
         // Create a new status label
         JLabel statusLabel = new JLabel("Turn: White");
 
-//        // Create a new move counter label
-//        moveCounterLabel = new JLabel("Moves: 0");
-
         // Add the status label to the stats panel
         statsPanel.add(statusLabel);
 
