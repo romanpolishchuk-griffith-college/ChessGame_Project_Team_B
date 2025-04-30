@@ -23,7 +23,7 @@ public class Renderer {
     private JLabel timerLabel;
     public boolean isTimerEnabled = false;
 
-    private static JLabel moveCounterLabel;
+    private static JLabel moveCounterLabel = new JLabel("Moves: 0");
     private static MoveCounter moveCounter = new MoveCounter();
 
     // Sets up the game.
@@ -78,7 +78,7 @@ public class Renderer {
 
             // Create the stats panel
             createStatsPanel();
-            
+
          // Get the computer move
             int[] moves = GameLogic.getComputerMove(board);
 
@@ -86,22 +86,22 @@ public class Renderer {
                 if (board.isUnderCheck(!GameLogic.isPlayerWhite())){
                     ArrayList<Map<ChessPiece, String>> validMovesUnderCheck = board.getValidMovesUnderCheck(!GameLogic.isPlayerWhite());
                     ChessPiece defendingPiece = validMovesUnderCheck.get(0).keySet().iterator().next();
- 
+
                     String defendingPieceMove = validMovesUnderCheck.get(0).get(defendingPiece);
                     moves[0] = defendingPiece.getX();
                     moves[1] = defendingPiece.getY();
                     moves[2] = Integer.parseInt(defendingPieceMove.charAt(0) + "");
                     moves[3] = Integer.parseInt(defendingPieceMove.charAt(2) + "");
                 }
- 
+
                 ChessPiece pieceMove = board.getPiece(moves[0], moves[1]);
- 
+
                 board.movePiece(pieceMove, moves[2], moves[3]);
- 
+
                 pieceMove.button.setLocation(moves[2] * board.getSquareSize(), (board.getBoredSize() - 1 - moves[3]) * board.getSquareSize());
- 
+
                 System.out.println(moves[0] + " " + moves[1] + " " + moves[2] + " " + moves[3]);
- 
+
                 if (GameLogic.isPlayerWhite()){
                     if(board.isBlackWon()){
                         JOptionPane.showMessageDialog(window, "You have lose :(.");
@@ -303,8 +303,8 @@ public class Renderer {
         // Create a new status label
         JLabel statusLabel = new JLabel("Turn: White");
 
-        // Create a new move counter label
-        moveCounterLabel = new JLabel("Moves: 0");
+//        // Create a new move counter label
+//        moveCounterLabel = new JLabel("Moves: 0");
 
         // Add the status label to the stats panel
         statsPanel.add(statusLabel);
@@ -333,17 +333,17 @@ public class Renderer {
 		//Clear existing displays
 		whiteCapturedPanel.removeAll();
 		blackCapturedPanel.removeAll();
-		
+
 		//Loop for all captured white pieces
 		for (ChessPiece piece : board.getCapturedWhitePieces()){
 			 //Checks if piece has a valid image
 			 if (piece.sprite != null) {
 				//Creates a label with piece image
 				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
-				
-				//Size for the chess piece 
+
+				//Size for the chess piece
 				pieceLabel.setPreferredSize(new Dimension(70, 70));
-				
+
 				//Add piece to white captured panel
 				whiteCapturedPanel.add(pieceLabel);
 			}
@@ -354,10 +354,10 @@ public class Renderer {
 			if (piece.sprite != null) {
 				//Creates a label with piece image
 				JLabel pieceLabel = new JLabel(new ImageIcon(piece.sprite));
-				
-				//Size for the chess piece 
+
+				//Size for the chess piece
 				pieceLabel.setPreferredSize(new Dimension(70, 70));
-				
+
 				//Add piece to black captured panel
 				blackCapturedPanel.add(pieceLabel);
 			}
@@ -401,7 +401,7 @@ public class Renderer {
             options,
             options[0]
         );
-    
+
         //Handle the player's choice
         if (choice == 0) {
             System.out.println("Player chose White.");

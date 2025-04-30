@@ -171,20 +171,4 @@ class BoardTest {
 		assertTrue(board.isBlackWon());
 		assertFalse(board.isWhiteWon());
 	}
-//	@Test
-//    void testGameEndsWhenKingCaptured() {
-//        Board board = new Board(true);
-//
-//        // Place a white king and a black rook
-//        King whiteKing = new King(board, true);
-//        Rook blackRook = new Rook(board, false);
-//        board.setPiece(4, 4, whiteKing);
-//        board.setPiece(4, 5, blackRook);
-//
-//        // Capture the white king
-//        board.movePiece(blackRook, 4, 4);
-//
-//        // Verify the king is captured and game is over
-//        assertTrue(board.isGameOver(), "Game should be marked as over when king is captured.");
-//    }
 }
