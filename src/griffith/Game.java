@@ -1,5 +1,14 @@
 package griffith;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 // Represents a game.
 public class Game {
 
@@ -68,6 +77,10 @@ public class Game {
                 if (gameState == GAME_STATE.MENU) {
                     renderer.RenderMenu();
                 } else if (gameState == GAME_STATE.ACTIVE_GAME) {
+                	
+                	//Play background music
+                	SoundControl.playBackroundMusic();
+                	
                     renderer.RenderGame(); // This will start the timer
                 }
                 lastState = gameState;

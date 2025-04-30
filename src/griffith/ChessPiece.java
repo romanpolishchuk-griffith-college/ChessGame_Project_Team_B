@@ -5,8 +5,15 @@ import javax.swing.event.MouseInputAdapter;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class ChessPiece {
 
@@ -193,7 +200,11 @@ public abstract class ChessPiece {
                                 System.out.println("X: " + newX / board.getSquareSize() + " " + (board.getBoredSize() - 1 - newY / board.getSquareSize()));
 
                                 if (isMoveValid(newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize())) {
-                                    pieceButton.setLocation(newX, newY);
+                                	
+                                	//Play move sound
+                                	SoundControl.playMoveSound();
+                                	
+                                	pieceButton.setLocation(newX, newY);
                                     board.movePiece(thisPiece, newX / board.getSquareSize(), board.getBoredSize() - 1 - newY / board.getSquareSize());
                                     initialX = newX;
                                     initialY = newY;
